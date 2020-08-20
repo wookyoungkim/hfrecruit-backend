@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 @RestController
-public class HelloApiController {
+public class    HelloApiController {
     @GetMapping("/api/hello")
     public HashMap Hello(){
         HashMap<String, String> result = new HashMap<String,String>();

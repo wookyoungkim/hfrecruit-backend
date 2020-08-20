@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>네이버 아이디로 로그인</title>
-    <style>
-        pre{
-            overflow: scroll;
-        }
-    </style>
 </head>
 <body>
 <div th:if="${session.currentUser eq null}">
     <h3>네이버 로그인</h3>
-    <a th:href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+    <a th:href="${apiURL}">로그인</a>
 </div>
 
 <div th:if="${session.currentUser ne null}">
     <pre th:text="${session.currentUser}"></pre>
-    <a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">Get User's Profile</a>
-    <a th:href="${'/naver/refreshToken?refreshToken=' + session.currentRT}">Refresh Token</a>
-    <a th:href="${'/naver/deleteToken?accessToken=' + session.currentAT}">Delete Token</a>
-    <a href="/naver/logout">로그아웃 (Invalidate Session)</a>
+    <a th:href="${'/naver-login/getProfile?accessToken=' + session.currentAT}">유저프로필 가져오기</a>
+    <br>
+    <a th:href="${'/naver-login/refreshToken?refreshToken=' + session.currentRT}">토큰 갱신</a>
+    <br>
+    <a th:href="${'/naver-login/deleteToken?accessToken=' + session.currentAT}">토큰 삭제</a>
+    <br>
+    <a href="/naver-login/logout">로그아웃</a>
 </div>
 
 </body>
