@@ -1,0 +1,19 @@
+oauth2:
+  kakao:
+    client-id: f9580fd7455b0683b9b55e0d431b1e00
+    client-secret: G6hy1S3Z1xsnBiavVyXCYyRxdWa9kzh4
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/test?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=utf-8
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+
+  profiles:
+    include: oauth
