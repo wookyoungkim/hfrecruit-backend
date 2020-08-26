@@ -10,4 +10,10 @@ public class HfrecruitApplication {
 		SpringApplication.run(HfrecruitApplication.class, args);
 	}
 
+    @SpringBootApplication
+    public static class OAuth2Application {
+        public static void main(String[] args){
+            SpringApplication.run(OAuth2Application.class, args);
+        }
+    }
 }

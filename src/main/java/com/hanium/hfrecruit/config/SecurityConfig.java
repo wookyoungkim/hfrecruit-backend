@@ -1,16 +1,34 @@
 package com.hanium.hfrecruit.config;
 
-import org.springframework.context.annotation.Configuration;
+import com.hanium.hfrecruit.domain.user.naver.Role;
+import com.hanium.hfrecruit.oauth2.naver.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration
+@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final CustomOAuth2UserService customOAuth2UserService;
+
     @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception {
-       // httpSecurity.authorizeRequests().antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**", "/favicon.ico/**").permitAll()
-       //         .antMatchers("/naver").hasAuthority(NAVER.getRoleType())
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**"). permitAll()
+                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(customOAuth2UserService);
     }
 }
