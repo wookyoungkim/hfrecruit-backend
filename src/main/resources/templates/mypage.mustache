@@ -1,0 +1,90 @@
+{{>layout/header}}
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    HF채용평가
+                </a>
+            </li>
+            <li>
+                <a href="mypage">마이페이지</a>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <div id="mypage">
+        <div class="title-card">
+            <b>마이페이지</b>
+            <a class="btn btn-primary btn-right" href="#" role="button">로그아웃</a>
+        </div>
+        <div class="welcome-card text-center">
+            <div class="welcome-card-body">
+                <h5 class="welcome-card-title">{{!name}}님, 환영합니다!</h5>
+                <p class="welcome-card-text">회원님은 {{!role}}입니다.</p>
+            </div>
+        </div>
+        {{!#role.company}}
+        <div class="container">
+            <div class="mypage-wrapper">
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace">전체 채용공고</span>
+                    <span class="text">{{!all-recruit}}</span>
+                </a>
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace">마감된 채용공고</span>
+                    <span class="text">{{!closed-recruit}}</span>
+                </a>
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace" href="#">진행중인 채용공고</span>
+                    <span class="text">{{!active-recruit}}</span>
+                </a>
+            </div>
+            <a type="button" class="btn btn-outline-warning" href="#">정보 수정하기</a>
+            <a type="button" class="btn btn-outline-danger" href="#">탈퇴하기</a>
+        </div>
+        {{!/role.company}}
+        <br>
+        {{!#role.person}}
+        <div class="container">
+            <div class="mypage-wrapper">
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace">진행중인 지원서</span>
+                    <span class="text">{{!active-resume}}</span>
+                </a>
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace">작성중인 지원서</span>
+                    <span class="text">{{!writing-resume}}</span>
+                </a>
+                <a type="button" class="btn btn-outline-secondary" href="#">
+                    <span class="text-monospace">내 스펙보기</span>
+                    <span class="text">{{!spec}}</span>
+                </a>
+            </div>
+            <a type="button" class="btn btn-outline-warning" href="#">정보 수정하기</a>
+            <a type="button" class="btn btn-outline-danger" href="#">탈퇴하기</a>
+        </div>
+        {{!/role.person}}
+    </div>
+</div>
+{{>layout/footer}}
