@@ -1,0 +1,60 @@
+{{>layout/header}}
+<style>
+    label{
+        font-weight: bold;
+    }
+</style>
+<div id="wrapper">
+
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+    <div id="page-content-wrapper">
+        <form style="align-self: center; padding: 30px" >
+            <div class="form-group">
+                <label for="user_id">아이디</label>
+                <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your id" value="한 이음">
+                <small id="fullNameHelp" class="form-text text-muted">아이디를 입력해주세요.</small>
+            </div>
+            <div class="form-group">
+                <label for="user_pw">비밀번호</label>
+                <input type="password" class="form-control" id="user_pw" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="username">닉네임</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your nickname" value="한이음짱">
+            </div>
+            <div class="form-group">
+                <label for="user_email">이메일</label>
+                <input type="text" class="form-control" id="user_email" placeholder="Enter your email" value="hanium@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="birth">생년월일</label>
+                <input type="text" class="form-control" id="birth" placeholder="Enter your birth" value="1996.11.26">
+            </div>
+            <div class="form-group">
+                <label for="college">대학교</label>
+                <input type="text" class="form-control" id="college" placeholder="Enter your college" value="홍익대학교">
+            </div>
+            <div class="form-group">
+                <label for="gender">성별</label>
+                <select class="form-control" id="gender">
+                    <option>여자</option>
+                    <option>남자</option>
+                    <option>모름</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="highschool">고등학교</label>
+                <input type="text" class="form-control" id="highschool" placeholder="Enter your highschool" value="abc고등학교">
+            </div>
+            <div class="form-group small text-muted">
+                All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
+            </div>
+            <button type="button" class="btn btn-primary">Update Profile</button>
+            <button type="reset" class="btn btn-light">Reset Changes</button>
+        </form>
+    </div>
+</div>
+
+
+{{>layout/footer}}
