@@ -34,7 +34,6 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
@@ -49,7 +48,6 @@
     position: absolute;
     margin-right: -250px;
 }
-
 /* Sidebar Styles */
 
 .sidebar-nav {
