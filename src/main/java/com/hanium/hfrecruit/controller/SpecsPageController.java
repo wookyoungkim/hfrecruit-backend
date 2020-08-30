@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SpecsPageController {
     @GetMapping("/specs")
     public String index(){
-
         return "index";
     }
 }

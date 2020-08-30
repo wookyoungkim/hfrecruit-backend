@@ -1,6 +1,6 @@
 package com.hanium.hfrecruit.domain.application;
 
-import com.hanium.hfrecruit.domain.Recruit.Recruit;
+import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;

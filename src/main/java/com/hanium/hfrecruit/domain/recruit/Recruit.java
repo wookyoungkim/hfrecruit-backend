@@ -1,4 +1,4 @@
-package com.hanium.hfrecruit.domain.Recruit;
+package com.hanium.hfrecruit.domain.recruit;
 
 import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
