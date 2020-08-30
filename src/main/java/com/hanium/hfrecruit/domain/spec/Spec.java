@@ -16,7 +16,6 @@ import java.util.List;
 public class Spec {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
     private Long specId;
 
     @Column(nullable = false)

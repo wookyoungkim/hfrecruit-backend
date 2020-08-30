@@ -2,6 +2,7 @@ package com.hanium.hfrecruit.repository;
 
 import com.hanium.hfrecruit.HfrecruitApplicationTests;
 import com.hanium.hfrecruit.domain.user.User;
+import com.hanium.hfrecruit.domain.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
