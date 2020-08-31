@@ -19,17 +19,17 @@
 
                 <div id="nav">
                     <ul class="menu">
-                        <li>
-                            <a href="#">
+                        <li class="dropdown">
+                            <a id="menu1" role="button" data-toggle="dropmenu" href="#" aria-haspopup="false" aria-expanded="true">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                 </svg>
                             </a>
-                            <ul class="sub">
-                                <li><a href="#">{{!}}채용공고 보기</a></li>
-                                <li><a href="#">{{!}}지원서 보기</a></li>
-                                <li><a href="profile">회원정보수정</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="menu1">
+                                <li><a href="#">로그아웃</a></li>
                                 <li><a href="mypage">마이페이지</a></li>
+                                <li><a href="profile">회원정보수정</a></li>
+                                <li><a href="#">회원탈퇴</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -49,12 +49,12 @@
         <li>
             <a href="/specs">스펙</a>
         </li>
-<!--        <li>-->
-<!--            <a href="#">Services</a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            <a href="#">Contact</a>-->
-<!--        </li>-->
+        <!--        <li>-->
+        <!--            <a href="#">Services</a>-->
+        <!--        </li>-->
+        <!--        <li>-->
+        <!--            <a href="#">Contact</a>-->
+        <!--        </li>-->
     </ul>
 </div>
 <!-- /#sidebar-wrapper -->
