@@ -8,6 +8,6 @@ public class JobPageController {
     @GetMapping("/job")
     public String index(){
 
-        return "index";
+        return "job";
     }
 }
