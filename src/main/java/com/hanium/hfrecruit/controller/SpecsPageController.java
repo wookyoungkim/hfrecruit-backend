@@ -8,6 +8,6 @@ public class SpecsPageController {
     @GetMapping("/specs")
     public String index(){
 
-        return "index";
+        return "myspec";
     }
 }
