@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ApplicationPageController {
     @GetMapping("/application")
-    public String index(){
+    public String application(){
 
-        return "index";
+        return "application";
+    }
+    @GetMapping("/apply")
+    public String apply(){
+
+        return "apply";
     }
 }
