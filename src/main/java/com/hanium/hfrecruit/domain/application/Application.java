@@ -1,28 +1,29 @@
 package com.hanium.hfrecruit.domain.application;
 
+import com.hanium.hfrecruit.domain.BaseTimeEntity;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Application {
+public class Application extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long applicationId;
 
-    @Column(nullable = false)
-    private Date dateCreated;
-
-    @Column(nullable = false)
-    private Date lastUpdated;
+//    @Column(nullable = false)
+//    private Date dateCreated;
+//      BaseTimeEntity 에 속해있으므로 따로 정의할 필요가 없다.
+//    @Column(nullable = false)
+//    private Date lastUpdated;
 
     @Column(nullable = false)
     private Integer bit;
@@ -69,4 +70,17 @@ public class Application {
     @ManyToOne
     @JoinColumn(name = "user_no")
     private User user;
+
+    @Builder
+    public Application(Integer bit,String question1,String question2,
+                       String question3,String educationLevel, String militaryService)
+    {
+        this.bit = bit;
+        this.question1 = question1;
+        this.question2 = question2;
+        this.question3 = question3;
+        this.educationLevel = educationLevel;
+        this.militaryService = militaryService;
+    }
+
 }
