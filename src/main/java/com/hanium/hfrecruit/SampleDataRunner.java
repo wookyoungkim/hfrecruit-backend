@@ -2,8 +2,8 @@ package com.hanium.hfrecruit;
 
 import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
-import com.hanium.hfrecruit.domain.recruit.Recruit;
-import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
+import com.hanium.hfrecruit.domain.Recruit.Recruit;
+import com.hanium.hfrecruit.domain.Recruit.RecruitRepository;
 import com.hanium.hfrecruit.domain.spec.PersonalSpec;
 import com.hanium.hfrecruit.domain.spec.PersonalSpecRepository;
 import com.hanium.hfrecruit.domain.spec.Spec;

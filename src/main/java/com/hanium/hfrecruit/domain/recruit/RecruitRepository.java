@@ -1,4 +1,4 @@
-package com.hanium.hfrecruit.domain.recruit;
+package com.hanium.hfrecruit.domain.Recruit;
 
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
