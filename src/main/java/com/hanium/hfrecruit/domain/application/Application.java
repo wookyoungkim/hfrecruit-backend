@@ -10,9 +10,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder
 @Entity
 public class Application extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,16 +73,5 @@ public class Application extends BaseTimeEntity {
     @JoinColumn(name = "user_no")
     private User user;
 
-    @Builder
-    public Application(Integer bit,String question1,String question2,
-                       String question3,String educationLevel, String militaryService)
-    {
-        this.bit = bit;
-        this.question1 = question1;
-        this.question2 = question2;
-        this.question3 = question3;
-        this.educationLevel = educationLevel;
-        this.militaryService = militaryService;
-    }
 
 }

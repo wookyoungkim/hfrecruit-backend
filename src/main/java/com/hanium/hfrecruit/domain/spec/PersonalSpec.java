@@ -2,16 +2,17 @@ package com.hanium.hfrecruit.domain.spec;
 
 import com.hanium.hfrecruit.domain.user.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class PersonalSpec {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +20,13 @@ public class PersonalSpec {
     private Long personalSpecId;
 
     @Column(nullable = false)
-    private Date certifiedDate;
+    private String certifiedDate;
 
     @Column(nullable = false)
-    private Date authDate;
+    private String authDate;
 
     @Column(nullable = true)
-    private Integer score;
+    private String score;
 
     @ManyToOne
     @JoinColumn(name = "user_no")

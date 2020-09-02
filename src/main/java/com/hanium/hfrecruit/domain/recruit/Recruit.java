@@ -4,16 +4,17 @@ import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyUser;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class Recruit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +28,10 @@ public class Recruit {
     private String recruitContent;
 
     @Column(nullable = false)
-    private Date startDate;
+    private String startDate;
 
     @Column(nullable = false)
-    private Date closedDate;
+    private String closedDate;
 
     @Column(nullable = false)
     private Integer closedBit;
