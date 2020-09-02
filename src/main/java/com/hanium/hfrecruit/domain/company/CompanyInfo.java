@@ -1,7 +1,7 @@
 package com.hanium.hfrecruit.domain.company;
 
 
-import com.hanium.hfrecruit.domain.recruit.Recruit;
+import com.hanium.hfrecruit.domain.Recruit.Recruit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
