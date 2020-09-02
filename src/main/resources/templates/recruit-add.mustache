@@ -1,0 +1,54 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+    <form class="recruit-form mt-3 mx-sm-5 mb-2 justify-content-center">
+        <div class="form-group">
+            <label for="recruitTitleInput">채용공고 제목</label>
+            <input type="title" class="form-control" id="recruitTitleInput"
+                   placeholder="공고 제목을 입력해주세요{.{Recruit.recruitTitle}}">
+        </div>
+        <div class="form-group">
+            <label for="recruitContentInput">채용공고 내용</label>
+            <input type="content" class="form-control" id="recruitContentInput"
+                   placeholder="공고 내용을 입력해주세요{.{Recruit.recruitContent}}">
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group ml-1 mr-5 col-sm-5">
+                <label for="recruitStartInput">공고 시작일</label>
+                <input type="datetime-local" class="form-control" id="recruitStartInput"
+                       placeholder="{.{Recruit.startDate}}">
+            </div>
+            <div class="form-group ml-1 mr-5 col-sm-5">
+                <label for="recruitStartInput">공고 마감일</label>
+                <input type="datetime-local" class="form-control" id="recruitStartInput"
+                       placeholder="{.{Recruit.closedDate}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="recruitQuestion">Question 1</label>
+            <textarea class="form-control" id="recruitQuestion" rows="3">{.{Recruit.question1}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="recruitQuestion">Question 2</label>
+            <textarea class="form-control" id="recruitQuestion" rows="3">{.{Recruit.question2}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="recruitQuestion">Question 3</label>
+            <textarea class="form-control" id="recruitQuestion" rows="1">{.{Recruit.question3}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="recruitQuestion">Question 4</label>
+            <textarea class="form-control" id="recruitQuestion" rows="1">{.{Recruit.question4}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="recruitQuestion">Question 5</label>
+            <textarea class="form-control" id="recruitQuestion" rows="1">{.{Recruit.question5}}</textarea>
+        </div>
+        <div class="submit-button justify-content-center">
+            <a type="submit" class="btn btn-primary" href="#">작성 완료</a>
+        </div>
+    </form>
+</div>
+{{>layout/footer}}

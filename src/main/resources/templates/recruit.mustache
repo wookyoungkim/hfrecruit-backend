@@ -1,0 +1,50 @@
+{{>layout/header}}
+
+<div id="wrapper">
+
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+
+    <div id="job-finder" class="contain-m">
+        <form class="form-inline justify-content-center mt-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Search</button>
+        </form>
+    </div>
+    <div id="jobs">
+        <ul class="list-group mx-sm-3 mb-2 justify-content-center">
+            <a href="recruit-detail">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <ul id="name" style="list-style:none; text-indent: -2em;">
+                        <li>{.{CompanyInfo.companyName}}</li>
+                        <li>{.{Recruit.recruitTitle}}</li>
+                    </ul>
+                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
+                </li>
+            </a>
+            <a href="recruit-detail">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <ul id="name" style="list-style:none; text-indent: -2em;">
+                        <li>{.{CompanyInfo.companyName}}</li>
+                        <li>{.{Recruit.recruitTitle}}</li>
+                    </ul>
+                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
+                </li>
+            </a>
+            <a href="recruit-detail">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <ul id="name" style="list-style:none; text-indent: -2em;">
+                        <li>{.{CompanyInfo.companyName}}</li>
+                        <li>{.{Recruit.recruitTitle}}</li>
+                    </ul>
+                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
+                </li>
+            </a>
+        </ul>
+
+        <div class="mx-sm-3 mb-2">
+            <a class="btn btn-info" type="button" href="recruit-add">채용공고 작성하기</a>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}
