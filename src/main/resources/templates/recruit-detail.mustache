@@ -1,0 +1,30 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+    <div class="recruit-detail mt-3 mx-sm-5 mb-2">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="..." class="card-img" alt="{.{CompanyInfo.companyLogo}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="recruit-company-card-title">{.{CompanyInfo.companyName}}</h5>
+                        <p class="recruit-company-card-text">{.{Recruit.startDate}}~{.{Recruit.closedDate}}</p>
+                        <a type="button" class="btn btn-primary" href="apply">지원하기</a>
+                        <a type="button" class="btn btn-primary" href="#">홈페이지</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header">{.{Recruit.recruitTitle}}</h5>
+            <div class="card-body">
+                <p class="card-text">{.{Recruit.recruitContent}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}
