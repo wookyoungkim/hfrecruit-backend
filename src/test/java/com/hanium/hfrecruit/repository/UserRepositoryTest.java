@@ -4,6 +4,7 @@ import com.hanium.hfrecruit.HfrecruitApplicationTests;
 import com.hanium.hfrecruit.domain.user.Role;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 public class UserRepositoryTest extends HfrecruitApplicationTests {
 
     @Autowired
@@ -36,40 +38,42 @@ public class UserRepositoryTest extends HfrecruitApplicationTests {
 
     }
 
-//    @Test
-//    @Transactional
-//    public void read(){
-//        Optional<User> user = userRepository.findByUserNo((1L));
-//
-//        user.ifPresent(user1 ->{
-//            System.out.println("newUser : " + user1);
-//        });
-//    }
-//
-//    @Test
-//    public void update(){
-//        Optional<User> user = userRepository.findByUserNo(2L);
-//
-//        user.ifPresent(user1 -> {
-//            user1.setUsername("updated_user");
-//
-//            userRepository.save(user1);
-//        });
-//
-//    }
-//
-//    @Test
-//    public void delete(){
-//        Optional<User> user = userRepository.findByUserNo(1L);
-//
-//        assertTrue(user.isPresent());
-//
-//        user.ifPresent(user1 -> {
-//            userRepository.delete(user1);   //delete()는 반환형이 x
-//        });
-//
-//        Optional<User> deletedUser = userRepository.findById(1L);
-//
-//        assertFalse(deletedUser.isPresent());
-//    }
+    @Test
+    @Transactional
+    public void read(){
+        User user = userRepository.findUserByUserNo((1L));
+        Optional<User> users = Optional.ofNullable(user);
+        users.ifPresent(user1 ->{
+            System.out.println("newUser : " + user1);
+        });
+    }
+
+    @Test
+    public void update(){
+        User user = userRepository.findUserByUserNo((2L));
+        Optional<User> users = Optional.ofNullable(user);
+
+        users.ifPresent(user1 -> {
+            user1.setUsername("updated_user");
+
+            userRepository.save(user1);
+        });
+
+    }
+
+    @Test
+    public void delete(){
+        User user = userRepository.findUserByUserNo((2L));
+        Optional<User> users = Optional.ofNullable(user);
+
+        assertTrue(users.isPresent());
+
+        users.ifPresent(user1 -> {
+            userRepository.delete(user1);   //delete()는 반환형이 x
+        });
+
+        Optional<User> deletedUser = userRepository.findById(1L);
+
+        assertFalse(deletedUser.isPresent());
+    }
 }

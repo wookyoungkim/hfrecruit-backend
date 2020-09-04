@@ -77,13 +77,18 @@ public class SampleDataRunner implements CommandLineRunner {
                 .recruit(recruitSample)
                 .build();
         applicationRepository.save(applicationSample);
-        Spec specSample = Spec.builder()
+        Spec specSample1 = Spec.builder()
                 .specName("TOEIC")
                 .institution("ACTFL")
                 .build();
-        specRepository.save(specSample);
+        specRepository.save(specSample1);
+        Spec specSample2 = Spec.builder()
+                .specName("OPIC")
+                .institution("ACTFL")
+                .build();
+        specRepository.save(specSample2);
         PersonalSpec personalSpecSample = PersonalSpec.builder()
-                .spec(specSample)
+                .spec(specSample1)
                 .score("900")
                 .authDate("20200405")
                 .certifiedDate("20210805")

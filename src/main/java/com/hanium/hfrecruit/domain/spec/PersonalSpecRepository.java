@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface PersonalSpecRepository extends JpaRepository <PersonalSpec,Long> {
 
     Optional<PersonalSpec> findByPersonalSpecId(Long PersonalSpecId);
+
+
 }

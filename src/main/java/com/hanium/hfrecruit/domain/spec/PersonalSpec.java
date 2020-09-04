@@ -1,14 +1,12 @@
 package com.hanium.hfrecruit.domain.spec;
 
 import com.hanium.hfrecruit.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 
+@Getter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

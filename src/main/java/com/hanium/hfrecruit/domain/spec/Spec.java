@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +19,7 @@ public class Spec {
     private Long specId;
 
     @Column(nullable = false)
-    private String spceName;
+    private String specName;
 
     @Column(nullable = false)
     private String institution;
@@ -27,9 +27,5 @@ public class Spec {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "spec")
     private List<PersonalSpec> personalSpecs;
 
-    @Builder
-    public Spec(String specName, String institution ) {
-        this.spceName = specName;
-        this.institution = institution;
-    }
+
 }
