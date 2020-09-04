@@ -14,4 +14,9 @@ public class MyPageController {
     public String profile(){
         return "profile";
     }
+
+    @GetMapping("/evaluate")
+    public String evaluate(){
+        return "evaluationPage";
+    }
 }
