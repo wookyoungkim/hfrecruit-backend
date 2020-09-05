@@ -30,6 +30,9 @@ public class User {
     private String email;
 
     @Column(nullable = true)
+    private String address;
+
+    @Column(nullable = true)
     private String college;
 
     @Column(nullable = true)
@@ -40,6 +43,12 @@ public class User {
 
     @Column(nullable = true)
     private Integer gender;
+
+    @Column(nullable = true)
+    private String militaryService;
+
+    @Column(nullable = true)
+    private String educationLevel;
 
     @Enumerated(EnumType.STRING) // (1)
     @Column(nullable = false)
