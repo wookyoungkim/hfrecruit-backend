@@ -3,6 +3,7 @@ package com.hanium.hfrecruit.domain.company;
 
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class CompanyInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

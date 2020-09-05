@@ -2,6 +2,10 @@ package com.hanium.hfrecruit;
 
 import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
+import com.hanium.hfrecruit.domain.company.CompanyInfo;
+import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
+import com.hanium.hfrecruit.domain.company.CompanyUser;
+import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
 import com.hanium.hfrecruit.domain.spec.PersonalSpec;
@@ -17,13 +21,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleDataRunner implements CommandLineRunner {
 
+    private final CompanyInfoRepository companyInfoRepository;
+    private final CompanyUserRepository companyUserRepository;
     private final RecruitRepository recruitRepository;
     private final ApplicationRepository applicationRepository;
     private final SpecRepository specRepository;
     private final PersonalSpecRepository personalSpecRepository;
 
     @Autowired
-    public SampleDataRunner(RecruitRepository recruitRepository, ApplicationRepository applicationRepository, SpecRepository specRepository, PersonalSpecRepository personalSpecRepository) {
+    public SampleDataRunner(RecruitRepository recruitRepository, ApplicationRepository applicationRepository, SpecRepository specRepository, PersonalSpecRepository personalSpecRepository,
+                            CompanyInfoRepository companyInfoRepository, CompanyUserRepository companyUserRepository) {
+        this.companyInfoRepository = companyInfoRepository;
+        this.companyUserRepository = companyUserRepository;
         this.recruitRepository = recruitRepository;
         this.applicationRepository = applicationRepository;
         this.specRepository = specRepository;
@@ -33,7 +42,21 @@ public class SampleDataRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-         Recruit recruitSample = Recruit.builder()
+        CompanyInfo companyInfoSample = CompanyInfo.builder()
+                .companyEmail("company@naver.com")
+                .companyLogo("nothing")
+                .companyName("example_company")
+                .managerId(1)
+                .build();
+        companyInfoRepository.save(companyInfoSample);
+
+        CompanyUser companyUserSample = CompanyUser.builder()
+                .companyInfo(companyInfoSample)
+                .companyUserCode(1)
+                .build();
+        companyUserRepository.save(companyUserSample);
+
+        Recruit recruitSample = Recruit.builder()
                  .recruitTitle("지원서1")
                  .startDate(java.sql.Timestamp.valueOf("2018-09-21 10:53:00.0"))
                  .closedDate(java.sql.Timestamp.valueOf("2020-09-21 10:53:00.0"))
