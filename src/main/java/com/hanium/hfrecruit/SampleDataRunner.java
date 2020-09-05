@@ -35,8 +35,8 @@ public class SampleDataRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
          Recruit recruitSample = Recruit.builder()
                  .recruitTitle("지원서1")
-                 .startDate("20200811")
-                 .closedDate("20200911")
+                 .startDate(java.sql.Timestamp.valueOf("2018-09-21 10:53:00.0"))
+                 .closedDate(java.sql.Timestamp.valueOf("2020-09-21 10:53:00.0"))
                  .recruitContent("안녕하세요 abc회사입니다. 이번 지원에 어쩌구")
                  .closedBit(0)
                  .question1("회사 지원동기는?")

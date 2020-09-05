@@ -3,17 +3,16 @@ package com.hanium.hfrecruit.domain.recruit;
 import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyUser;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Builder
 @Entity
 public class Recruit {
@@ -28,21 +27,18 @@ public class Recruit {
     private String recruitContent;
 
     @Column(nullable = false)
-    private String startDate;
+    private Timestamp startDate;
 
     @Column(nullable = false)
-    private String closedDate;
+    private Timestamp closedDate;
 
-    @Column(nullable = false)
     private Integer closedBit;
 
     @Column(nullable = false)
     private String question1;
 
-    @Column(nullable = false)
     private String question2;
 
-    @Column(nullable = false)
     private String question3;
 
     private String question4;
@@ -52,7 +48,6 @@ public class Recruit {
     @ManyToOne
     @JoinColumn(name = "company_no")
     private CompanyInfo companyInfo;
-
 
     @ManyToOne
     @JoinColumn(name = "company_user_id")
