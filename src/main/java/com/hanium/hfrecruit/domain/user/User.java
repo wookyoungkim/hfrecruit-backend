@@ -64,6 +64,16 @@ public class User {
         this.role = role;
     }
 
+    public void update(String username, String birth, String address, String college, String educationLevel, String militaryService, Integer gender){
+        this.username = username;
+        this.birth = birth;
+        this.address = address;
+        this.college = college;
+        this.educationLevel = educationLevel;
+        this.militaryService = militaryService;
+        this.gender = gender;
+    }
+
     public String getRoleKey(){
         return this.role.getKey();
     }

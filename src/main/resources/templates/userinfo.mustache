@@ -7,6 +7,7 @@
     <div id="application" style="padding:3%">
         <div class="title-card">
             <h3>추가 정보 입력 </h3>
+            <input type="text" class="form-control" id="userNo" value={{userNo}} readonly>
         </div>
         <div>
             <div style="margin:3%; border: #999999">
@@ -14,12 +15,12 @@
                     <form class="justify-content-center mt-4">
                         <div class="form-row" style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-3">
-                                <label for="inputName">이름</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="{.{User.name}}">
+                                <label for="username">이름</label>
+                                <input type="text" class="form-control" id="username" placeholder={{userName}}>
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-3">
-                                <label for="inputBirthDate">생년월일</label>
-                                <input type="date" class="form-control" id="inputBirthDate" placeholder="{.{User.birth}}">
+                                <label for="birth">생년월일</label>
+                                <input type="date" class="form-control" id="birth" placeholder="{.{User.birth}}">
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-3">
                                 <label for="gender">성별</label>
@@ -58,25 +59,25 @@
                         </div>
                         <div class="form-row" style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-5">
-                                <label for="inputAddress">거주지 </label>
-                                <input type="text" class="form-control ml-1" id="inputAddress" placeholder="{.{User.address}}">
+                                <label for="address">거주지 </label>
+                                <input type="text" class="form-control ml-1" id="address" placeholder="{.{User.address}}">
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-5">
-                                <label for="inputAddress">대학교 </label>
-                                <input type="text" class="form-control ml-1" id="inputCollege" placeholder="{.{User.college}}">
+                                <label for="college">대학교 </label>
+                                <input type="text" class="form-control ml-1" id="college" placeholder="{.{User.college}}">
                             </div>
                         </div>
                         <div class="form-row" style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-5">
-                                <label for="inputName">대학졸업여부</label>
-                                <select class="form-control show-tick" >
+                                <label for="educationLevel">대학졸업여부</label>
+                                <select class="form-control show-tick" id="educationLevel">
                                     <option>재학 </option>
                                     <option>졸업 </option>
                                 </select>
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-5">
-                                <label for="inputBirthDate">병역수행여부</label>
-                                <select class="form-control show-tick" >
+                                <label for="militaryService">병역수행여부</label>
+                                <select class="form-control show-tick" id="militaryService">
                                     <option>군필 </option>
                                     <option>미필 </option>
                                     <option>해당사항없음 </option>
@@ -94,7 +95,7 @@
                     </form>
                 </div>
 
-                <a type="button" class="btn btn-primary" style="float: right;margin: 0.5%; color:white" href="#">저장하기</a>
+                <a type="button" id="btn-userInfo-save" class="btn btn-primary" style="float: right;margin: 0.5%; color:white" href="#">저장하기</a>
 
             </div>
         </div>

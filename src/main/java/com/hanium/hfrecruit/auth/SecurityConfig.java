@@ -2,9 +2,11 @@ package com.hanium.hfrecruit.auth;
 
 import com.hanium.hfrecruit.domain.user.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -25,7 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()
-                .userService(customOAuth2UserService);
+                .userService(customOAuth2UserService)
+                .and()
+                .defaultSuccessUrl("/userInfo", true);
     }
 //    private ClientRegistration getRegistration(OAuth2ClientProperties clientProperties, String client) {
 //        if ("google".equals(client)) {
