@@ -13,35 +13,17 @@
     </div>
     <div id="jobs">
         <ul class="list-group mx-sm-3 mb-2 justify-content-center">
+            {{#recruit}}
             <a href="recruit-detail">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <ul id="name" style="list-style:none; text-indent: -2em;">
-                        <li>{.{CompanyInfo.companyName}}</li>
-                        <li>{.{Recruit.recruitTitle}}</li>
-                    </ul>
-                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
+                        <span>{{recruitNo}}</span>
+<!--                        <li>{{!company_no}}</li>-->
+                        <span>{{recruitTitle}}</span>
+                    <span class="badge badge-primary badge-pill">마감 기한 : {{closedDate}}</span>
                 </li>
             </a>
-            <a href="recruit-detail">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <ul id="name" style="list-style:none; text-indent: -2em;">
-                        <li>{.{CompanyInfo.companyName}}</li>
-                        <li>{.{Recruit.recruitTitle}}</li>
-                    </ul>
-                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
-                </li>
-            </a>
-            <a href="recruit-detail">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <ul id="name" style="list-style:none; text-indent: -2em;">
-                        <li>{.{CompanyInfo.companyName}}</li>
-                        <li>{.{Recruit.recruitTitle}}</li>
-                    </ul>
-                    <span class="badge badge-primary badge-pill">마감 기한 : {.{Recruit.closedDate}}</span>
-                </li>
-            </a>
+            {{/recruit}}
         </ul>
-
         <div class="mx-sm-3 mb-2">
             <a class="btn btn-info" type="button" href="/recruit/save">채용공고 작성하기</a>
         </div>

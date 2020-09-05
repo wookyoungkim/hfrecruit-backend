@@ -1,18 +1,20 @@
 package com.hanium.hfrecruit.controller;
 
-import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
-import com.hanium.hfrecruit.dto.RecruitSaveRequestDto;
-import lombok.AllArgsConstructor;
+import com.hanium.hfrecruit.service.RecruitService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @Controller
 public class RecruitPageController {
 
+    private final RecruitService recruitService;
+
     @GetMapping("/recruit")
-    public String recruit(){
+    public String recruit(Model model){
+        model.addAttribute("recruit", recruitService.findAllDesc());
         return "recruit";
     }
 
