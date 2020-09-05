@@ -27,9 +27,9 @@ public class OAuthController {
         return "login";
     }
 
-    @GetMapping({"/loginSuccess", "/hello"})
+    @GetMapping({"/userInfo"})
     public String loginSuccess() {
-        return "hello";
+        return "userInfo";
     }
 
     @GetMapping("/loginFailure")
