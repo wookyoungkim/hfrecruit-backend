@@ -7,10 +7,11 @@
     <div id="application">
         <div class="title-card">
             <h3>지원서 </h3>
+            <input type="text" class="form-control" id="recruitNo" value={{recruit.recruitNo}} readonly>
         </div>
         <div>
             <div class ="recruit-title" style="width:100%; background-color: lightskyblue; height:5rem">
-                {.{Recruit.title}}
+                {{recruit.recruitTitle}}
             </div>
             <div style="margin:3%; border: #999999">
                 <div class="specInfo mt-4 mb-5">
@@ -46,24 +47,24 @@
                             <div class="tab-pane fade show active" id="v-pills-q1" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <h4 id="list-item-2">질문 1</h4>
                                 <p>{{recruit.question1}}</p>
-                                <textarea class="answer" placeholder="답변을 입력하세요" rows="15" style="width: 100%"></textarea>
+                                <textarea class="answer" placeholder="답변을 입력하세요" id="q1Comment" rows="15" style="width: 100%"></textarea>
                             </div>
                             <div class="tab-pane fade" id="v-pills-q2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <h4 id="list-item-2">질문 2</h4>
                                 <p>{{recruit.question2}}</p>
-                                <textarea class="answer" placeholder="답변을 입력하세요" rows="15" style="width: 100%"></textarea>
+                                <textarea class="answer" placeholder="답변을 입력하세요" id="q2Comment" rows="15" style="width: 100%"></textarea>
                             </div>
                             <div class="tab-pane fade" id="v-pills-q3" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <h4 id="list-item-2">질문 3</h4>
                                 <p>{{recruit.question3}}</p>
-                                <textarea class="answer" placeholder="답변을 입력하세요" rows="15" style="width: 100%"></textarea>
+                                <textarea class="answer" placeholder="답변을 입력하세요" id="q3Comment" rows="15" style="width: 100%"></textarea>
 
                             </div>
                             <div class="progress mt-5 mb-5">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                             </div>
                             <div class="submit" >
-                                <a type="button" class="btn btn-primary" style="float: right;margin: 0.5%; color:white" href="#">제출하기 </a>
+                                <a type="button" id="btn-application-save" class="btn btn-primary" style="float: right;margin: 0.5%; color:white" href="#">제출하기 </a>
                                 <a type="button" class="btn btn-warning" style="float: right;margin: 0.5%;" href="#">임시저장 </a>
                             </div>
                         </div>
