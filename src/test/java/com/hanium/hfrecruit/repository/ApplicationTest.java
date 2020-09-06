@@ -20,11 +20,9 @@ public class ApplicationTest {
         //given
         LocalDateTime now = LocalDateTime.of(2019, 12, 6, 0, 0, 0);
         Application application = Application.builder().bit(0)
-                .question1("이 회사에 지원한 동기는?")
-                .question2("대학교 생활 중 가장 뜻깊었던 성취는?")
-                .question3("우리 회사에서 어떤 사람으로 성장하고 싶은지?")
-                .educationLevel("석사졸")
-                .militaryService("육군 만기 전역")
+                .q1Comment("이 회사에 지원한 동기는 이러합니다")
+                .q2Comment("대학교 생활 중 가장 뜻깊었던 성취는 이러합니다")
+                .q3Comment("우리 회사에서 어떤 사람으로 성장하고 싶습니다.")
                 .build();
 
         applicationRepository.save(application);

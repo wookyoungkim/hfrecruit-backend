@@ -68,11 +68,9 @@ public class SampleDataRunner implements CommandLineRunner {
                  .build();
         recruitRepository.save(recruitSample);
         Application applicationSample = Application.builder()
-                .militaryService("군필")
-                .educationLevel("대학졸업")
-                .question1("저는 잘할자신이 있어요")
-                .question2("스펙좋아요")
-                .question3("꼭 뽑아주세요")
+                .q1Comment("저는 잘할자신이 있어요")
+                .q2Comment("스펙좋아요")
+                .q3Comment("꼭 뽑아주세요")
                 .bit(0)
                 .recruit(recruitSample)
                 .build();

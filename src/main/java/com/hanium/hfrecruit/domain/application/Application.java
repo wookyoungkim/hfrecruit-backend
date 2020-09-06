@@ -31,33 +31,13 @@ public class Application extends BaseTimeEntity {
     private Integer bit;
 
     @Column(nullable = false)
-    private String question1;
-
-    @Column(nullable = false)
-    private String question2;
-
-    @Column(nullable = false)
-    private String question3;
-
-    private String question4;
-
-    private String question5;
-
-    @Column(nullable = false)
-    private String educationLevel;
-
-    @Column(nullable = false)
-    private String militaryService;
-
     private String q1Comment;
 
+    @Column(nullable = false)
     private String q2Comment;
 
+    @Column(nullable = false)
     private String q3Comment;
-
-    private String q4Comment;
-
-    private String q5Comment;
 
     private Integer score;
 
@@ -72,6 +52,17 @@ public class Application extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "user_no")
     private User user;
+
+    @Builder
+    public Application(Long applicationId, Integer bit, String q1Comment, String q2Comment, String q3Comment, Recruit recruit, User user) {
+        this.applicationId = applicationId;
+        this.bit = bit;
+        this.q1Comment = q1Comment;
+        this.q2Comment = q2Comment;
+        this.q3Comment = q3Comment;
+        this.recruit = recruit;
+        this.user = user;
+    }
 
 
 }
