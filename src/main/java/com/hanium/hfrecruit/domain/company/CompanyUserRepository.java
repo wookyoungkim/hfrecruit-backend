@@ -9,4 +9,6 @@ import java.util.List;
 public interface CompanyUserRepository extends JpaRepository <CompanyUser,Long> {
     @Override
     List<CompanyUser> findAll();
+
+    CompanyUser getOne(Long aLong);
 }

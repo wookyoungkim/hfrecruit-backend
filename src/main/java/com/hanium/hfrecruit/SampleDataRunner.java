@@ -57,10 +57,10 @@ public class SampleDataRunner implements CommandLineRunner {
         companyUserRepository.save(companyUserSample);
 
         Recruit recruitSample = Recruit.builder()
-                .recruitTitle("지원서1")
+                .recruitTitle("채용공고1")
                 .startDate(java.sql.Timestamp.valueOf("2018-09-21 10:53:00.0"))
                 .closedDate(java.sql.Timestamp.valueOf("2020-09-21 10:53:00.0"))
-                .recruitContent("안녕하세요 abc회사입니다. 이번 지원에 어쩌구")
+                .recruitContent("안녕하세요 abc회사입니다. 이번 지원에 어쩌구 저쩌구")
                 .closedBit(0)
                 .question1("회사 지원동기는?")
                 .question2("대학교 생활 동안 가장 성취감 느낀 일은?")

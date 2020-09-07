@@ -2,6 +2,7 @@ package com.hanium.hfrecruit.service;
 
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
+import com.hanium.hfrecruit.domain.company.CompanyUser;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
 import com.hanium.hfrecruit.dto.*;
@@ -20,13 +21,13 @@ public class RecruitService {
     private final CompanyInfoRepository companyInfoRepository;
 
     @Transactional
-    public Long save(RecruitSaveRequestDto requestDto){
-        return recruitRepository.save(requestDto.toEntity()).getRecruitNo();
+    public Long save(RecruitSaveRequestDto requestDto, CompanyInfo companyInfo, CompanyUser companyUser){
+        return recruitRepository.save(requestDto.toEntity(companyInfo, companyUser)).getRecruitNo();
     }
 
     @Transactional(readOnly = true)
-    public List<RecruitListResponseDto> findAllDesc(){
-        return recruitRepository.findAllDesc().stream()
+    public List<RecruitListResponseDto> findAll(){
+        return recruitRepository.findAll().stream()
                 .map(RecruitListResponseDto::new)
                 .collect(Collectors.toList());
     }
@@ -36,10 +37,6 @@ public class RecruitService {
         return new RecruitResponseDto(recruitRepository.getOne(no));
     }
 
-    @Transactional
-    public CompanyInfo getCompanyNo(Long id, CompanyInfoDto companyInfoDto){
-        return companyInfoRepository.findByCompanyNo(companyInfoDto.toEntity().getCompanyNo());
-    }
 
     @Transactional
     public Long update(Long id, RecruitUpdateRequestDto requestDto) {
