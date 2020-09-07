@@ -14,10 +14,10 @@
     <div id="jobs">
         <ul class="list-group mx-sm-3 mb-2 justify-content-center">
             {{#recruit}}
-            <a href="recruit-detail">
+            <a href="recruit/{{recruitNo}}">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>{{recruitNo}}</span>
-<!--                        <li>{{!company_no}}</li>-->
+                        <span>{{!companyInfo.companyNo}}</span>
                         <span>{{recruitTitle}}</span>
                     <span class="badge badge-primary badge-pill">마감 기한 : {{closedDate}}</span>
                 </li>

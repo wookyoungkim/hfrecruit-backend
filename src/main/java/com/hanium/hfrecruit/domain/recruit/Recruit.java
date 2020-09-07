@@ -56,4 +56,11 @@ public class Recruit {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recruit")
     private List<Application> applicationList;
 
+    /*
+    public String getFormattedClosedDate(){
+        if(closedDate == null){
+            return "";
+        }
+        return closedDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
+    }*/
 }

@@ -16,4 +16,6 @@ public interface RecruitRepository extends JpaRepository <Recruit,Long> {
     List<Recruit> findAllDesc();
 
     Optional<Recruit> findByRecruitNo(Long RecruitNo);
+
+    Recruit getOne(Long aLong);
 }

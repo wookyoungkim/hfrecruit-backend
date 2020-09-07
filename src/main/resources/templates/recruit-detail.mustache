@@ -3,6 +3,7 @@
 <div id="wrapper">
     {{>layout/sidebar}}
     {{>layout/topnavbar}}
+    {{#recruit}}
     <div class="recruit-detail mt-3 mx-sm-5 mb-2">
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -11,20 +12,30 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="recruit-company-card-title">{.{CompanyInfo.companyName}}</h5>
-                        <p class="recruit-company-card-text">{.{Recruit.startDate}}~{.{Recruit.closedDate}}</p>
+                        <h5 class="recruit-company-card-title">{{companyInfo.companyName}}</h5>
+                        <p class="recruit-company-card-text">{{startDate}}~{{closedDate}}</p>
                         <a type="button" class="btn btn-primary" href="apply">지원하기</a>
                         <a type="button" class="btn btn-primary" href="#">홈페이지</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <h5 class="card-header">{.{Recruit.recruitTitle}}</h5>
+        <div class="card mb-3">
+            <h5 class="card-header">{{recruitTitle}}</h5>
             <div class="card-body">
-                <p class="card-text">{.{Recruit.recruitContent}}</p>
+                <p class="card-text">{{recruitContent}}</p>
+                <p class="card-text">질문 1 : {{question1}}</p>
+                <p class="card-text">질문 2 : {{question2}}</p>
+                <p class="card-text">질문 3 : {{question3}}</p>
             </div>
         </div>
+        <div class="card-body justify-content-center">
+            <a type="button" class="btn btn-primary" href="/recruit">목록</a>
+            <a type="button" class="btn btn-danger" href="#">수정</a>
+            <a type="button" class="btn btn-secondary" href="#">삭제</a>
+        </div>
+
     </div>
+    {{/recruit}}
 </div>
 {{>layout/footer}}

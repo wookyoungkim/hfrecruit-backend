@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,8 +19,9 @@ public class RecruitPageController {
         return "recruit";
     }
 
-    @GetMapping("/recruit-detail")
-    public String recruitDetail(){
+    @GetMapping("/recruit/{recruitNo}")
+    public String recruitDetail(@PathVariable Long recruitNo, Model model){
+        model.addAttribute("recruit", recruitService.findOne(recruitNo));
         return "recruit-detail";
     }
 

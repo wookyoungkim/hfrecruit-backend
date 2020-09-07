@@ -1,6 +1,8 @@
 package com.hanium.hfrecruit.controller;
 
 
+import com.hanium.hfrecruit.domain.company.CompanyInfo;
+import com.hanium.hfrecruit.dto.CompanyInfoDto;
 import com.hanium.hfrecruit.dto.RecruitResponseDto;
 import com.hanium.hfrecruit.dto.RecruitSaveRequestDto;
 import com.hanium.hfrecruit.dto.RecruitUpdateRequestDto;
@@ -18,14 +20,19 @@ public class RecruitApiController {
         return recruitService.save(requestDto);
     }
 
-//    @PutMapping("/api/v1/recruit/{id}")
-//    public Long update(@PathVariable Long id, @RequestBody RecruitUpdateRequestDto requestDto){
-//        return recruitService.update(id, requestDto);
-//    }
-//
-//    @GetMapping("/api/v1/recruit/{id}")
-//    public RecruitResponseDto findById (@PathVariable Long id){
-//        return recruitService.findById(id);
+//    @RequestMapping(value="/companyInfo/{no}", method = RequestMethod.GET)
+//    public @ResponseBody
+//    CompanyInfo getCompanyNo(@PathVariable Long no){
+//        return recruitService.getCompanyNo(no);
 //    }
 
+    @RequestMapping("/companyInfo/{id}")
+    public Long getNo(@PathVariable Long id, @RequestBody CompanyInfoDto companyInfoDto){
+        return recruitService.getCompanyNo(id, companyInfoDto).getCompanyNo();
+    }
+
+    @PutMapping("/api/v1/recruit/{id}")
+    public Long update(@PathVariable Long id, @RequestBody RecruitUpdateRequestDto requestDto){
+        return recruitService.update(id, requestDto);
+    }
 }

@@ -46,13 +46,13 @@ public class SampleDataRunner implements CommandLineRunner {
                 .companyEmail("company@naver.com")
                 .companyLogo("nothing")
                 .companyName("example_company")
-                .managerId(1)
+                .managerId(1818)
                 .build();
         companyInfoRepository.save(companyInfoSample);
 
         CompanyUser companyUserSample = CompanyUser.builder()
                 .companyInfo(companyInfoSample)
-                .companyUserCode(1)
+                .companyUserCode(18)
                 .build();
         companyUserRepository.save(companyUserSample);
 

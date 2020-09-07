@@ -1,7 +1,6 @@
 package com.hanium.hfrecruit.dto;
 
-import com.hanium.hfrecruit.domain.company.CompanyInfo;
-import com.hanium.hfrecruit.domain.company.CompanyUser;
+
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -23,13 +24,10 @@ public class RecruitSaveRequestDto {
     private String question3;
     private String question4;
     private String question5;
-    private CompanyInfo companyInfo;
-    private CompanyUser companyUser;
 
     @Builder
     public RecruitSaveRequestDto(String recruitTitle, String recruitContent, Timestamp startDate, Timestamp closedDate,
-                                 String question1, String question2, String question3, String question4, String question5,
-                                 CompanyInfo companyInfo, CompanyUser companyUser) {
+                                 String question1, String question2, String question3, String question4, String question5){
         this.recruitTitle = recruitTitle;
         this.recruitContent = recruitContent;
         this.startDate = startDate;
@@ -39,8 +37,6 @@ public class RecruitSaveRequestDto {
         this.question3 = question3;
         this.question4 = question4;
         this.question5 = question5;
-        this.companyInfo = companyInfo;
-        this.companyUser = companyUser;
     }
 
     public Recruit toEntity() {
@@ -54,8 +50,7 @@ public class RecruitSaveRequestDto {
                 .question3(question3)
                 .question4(question4)
                 .question5(question5)
-                .companyInfo(companyInfo)
-                .companyUser(companyUser)
                 .build();
     }
+
 }
