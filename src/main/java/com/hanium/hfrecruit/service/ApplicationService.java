@@ -1,10 +1,13 @@
 package com.hanium.hfrecruit.service;
 
+import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.dto.ApplicationListResponseDto;
 import com.hanium.hfrecruit.dto.ApplicationSaveRequestDto;
+import com.hanium.hfrecruit.dto.ApplicationUpdateRequestDto;
+import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,5 +33,14 @@ public class ApplicationService {
                 //repository 결과로 넘어온 application stream을 map을 통해 dto로 변환->list로 변환
                 .map(ApplicationListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Long update(Long applicationId, ApplicationUpdateRequestDto requestDto) {
+        Application application = applicationRepository.findByApplicationId(applicationId)
+                .orElseThrow(() -> new IllegalArgumentException("no such application"));
+        application.update(requestDto.getQ1Comment(), requestDto.getQ2Comment(), requestDto.getQ3Comment());
+
+        return applicationId;
     }
 }

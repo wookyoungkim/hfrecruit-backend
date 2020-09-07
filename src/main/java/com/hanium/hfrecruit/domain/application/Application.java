@@ -69,5 +69,10 @@ public class Application extends BaseTimeEntity {
         this.user = user;
     }
 
+    public void update(String q1Comment, String q2Comment, String q3Comment){
+        this.q1Comment = q1Comment;
+        this.q2Comment = q2Comment;
+        this.q3Comment = q3Comment;
+    }
 
 }

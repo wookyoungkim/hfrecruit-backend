@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Getter
 public class ApplicationListResponseDto {
+    private Long applicationId;
     private Integer bit;
     private String q1Comment;
     private String q2Comment;
@@ -22,6 +23,7 @@ public class ApplicationListResponseDto {
     private User user;
 
     public ApplicationListResponseDto(Application entity) {
+        this.applicationId = entity.getApplicationId();
         this.bit = entity.getBit();
         this.q1Comment = entity.getQ1Comment();
         this.q2Comment = entity.getQ2Comment();
