@@ -83,4 +83,13 @@ public class ApplicationPageController {
     public Long update(@PathVariable Long applicationId, @RequestBody ApplicationUpdateRequestDto requestDto){
         return applicationService.update(applicationId, requestDto);
     }
+
+    @ApiOperation(value = "지원서 삭제")
+    @DeleteMapping("/delete/{applicationId}")
+    @ResponseBody
+    public Long delete(@PathVariable Long applicationId){
+        applicationService.delete(applicationId);
+        return applicationId;
+    }
+
 }

@@ -43,4 +43,11 @@ public class ApplicationService {
 
         return applicationId;
     }
+
+    @Transactional
+    public void delete(Long applicationId) {
+        Application application = applicationRepository.findByApplicationId(applicationId)
+                .orElseThrow(() -> new IllegalArgumentException("no such application"));
+        applicationRepository.delete(application);
+    }
 }
