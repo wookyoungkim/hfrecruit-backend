@@ -69,14 +69,14 @@ public class SampleDataRunner implements CommandLineRunner {
                 .companyUser(companyUserSample)
                 .build();
         recruitRepository.save(recruitSample);
-        Application applicationSample = Application.builder()
-                .q1Comment("저는 잘할자신이 있어요")
-                .q2Comment("스펙좋아요")
-                .q3Comment("꼭 뽑아주세요")
-                .bit(0)
-                .recruit(recruitSample)
-                .build();
-        applicationRepository.save(applicationSample);
+//        Application applicationSample = Application.builder()
+//                .q1Comment("저는 잘할자신이 있어요")
+//                .q2Comment("스펙좋아요")
+//                .q3Comment("꼭 뽑아주세요")
+//                .bit(0)
+//                .recruit(recruitSample)
+//                .build();
+//        applicationRepository.save(applicationSample);
         Spec specSample1 = Spec.builder()
                 .specName("TOEIC")
                 .institution("ACTFL")

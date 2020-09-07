@@ -41,6 +41,7 @@ public class Application extends BaseTimeEntity {
 
     private Integer score;
 
+    @Column(nullable = false)
     private Integer passStage;
 
     private Integer passOrFail;
@@ -54,12 +55,16 @@ public class Application extends BaseTimeEntity {
     private User user;
 
     @Builder
-    public Application(Long applicationId, Integer bit, String q1Comment, String q2Comment, String q3Comment, Recruit recruit, User user) {
-        this.applicationId = applicationId;
+    public Application(Integer bit, String q1Comment, String q2Comment, String q3Comment,
+                       Integer score, Integer passStage, Integer passOrFail,
+                       Recruit recruit, User user) {
         this.bit = bit;
         this.q1Comment = q1Comment;
         this.q2Comment = q2Comment;
         this.q3Comment = q3Comment;
+        this.score = score;
+        this.passStage = passStage;
+        this.passOrFail = passOrFail;
         this.recruit = recruit;
         this.user = user;
     }

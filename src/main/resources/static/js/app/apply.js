@@ -7,10 +7,13 @@ var main = {
     },
     save : function () {
         var data = {
-            bit: 0,
+            bit : 0,
             q1Comment : $("#q1Comment").val(),
             q2Comment : $("#q2Comment").val(),
-            q3Comment : $("#q3Comment").val()
+            q3Comment : $("#q3Comment").val(),
+            score : 0,
+            passStage : 0,
+            passOrFail : 0
         };
         var recruitNo = $("#recruitNo").val()
         console.log(data)

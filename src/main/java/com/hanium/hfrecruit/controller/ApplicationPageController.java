@@ -1,6 +1,7 @@
 package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
+import com.hanium.hfrecruit.domain.application.ApplicationRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
 import com.hanium.hfrecruit.domain.user.User;
@@ -26,12 +27,17 @@ public class ApplicationPageController {
     private final ApplicationService applicationService;
     private final RecruitRepository recruitRepository;
     private final UserRepository userRepository;
+    private final ApplicationRepository applicationRepository;
     private final HttpSession httpSession;
 
     @ApiOperation(value = "지원서 리스트 전체 조회 ")
     @GetMapping("/list")
-    public String applicationList(){
-        return "application";
+    public String applicationList(Model model){
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        model.addAttribute("applications", applicationService.findAllDesc(loginUser));
+        return "applicationlist";
     }
 
     @GetMapping("/apply/{recruitNo}")
@@ -52,7 +58,6 @@ public class ApplicationPageController {
                 .orElseThrow(() -> new NoResultException("error"));
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
                 .orElseThrow(() -> new NoResultException("error"));
-
 
         return applicationService.save(dto, loginUser, recruit);
 

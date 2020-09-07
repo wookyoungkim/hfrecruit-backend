@@ -3,11 +3,14 @@ package com.hanium.hfrecruit.service;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
+import com.hanium.hfrecruit.dto.ApplicationListResponseDto;
 import com.hanium.hfrecruit.dto.ApplicationSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -19,5 +22,13 @@ public class ApplicationService {
     //작성한 지원서의 id를 알 수 있도록 getId()를 반환으
     public Long save(ApplicationSaveRequestDto dto, User user, Recruit recruit) {
         return applicationRepository.save(dto.toEntity(user, recruit)).getApplicationId();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ApplicationListResponseDto> findAllDesc(User user){
+        return applicationRepository.findAllByUser(user).stream()
+                //repository 결과로 넘어온 application stream을 map을 통해 dto로 변환->list로 변환
+                .map(ApplicationListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
