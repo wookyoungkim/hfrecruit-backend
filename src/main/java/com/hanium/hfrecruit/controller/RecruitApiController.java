@@ -26,8 +26,8 @@ public class RecruitApiController {
         return recruitService.save(requestDto, companyInfo, companyUser);
     }
 
-    @PutMapping("/api/v1/recruit/{id}")
-    public Long update(@PathVariable Long id, @RequestBody RecruitUpdateRequestDto requestDto){
-        return recruitService.update(id, requestDto);
+    @PutMapping("/api/v1/recruit/update/{recruitNo}")
+    public Long update(@PathVariable Long recruitNo, @RequestBody RecruitUpdateRequestDto requestDto){
+        return recruitService.update(recruitNo, requestDto);
     }
 }

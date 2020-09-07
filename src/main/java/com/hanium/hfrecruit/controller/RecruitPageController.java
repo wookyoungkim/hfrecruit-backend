@@ -4,6 +4,7 @@ import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
 import com.hanium.hfrecruit.domain.company.CompanyUser;
 import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
+import com.hanium.hfrecruit.dto.RecruitResponseDto;
 import com.hanium.hfrecruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -42,5 +43,13 @@ public class RecruitPageController {
     @GetMapping("/recruit/save")
     public String recruitAdd(){
         return "recruit-add";
+    }
+
+    @GetMapping("/recruit/update/{id}")
+    public String recruitUpdate(@PathVariable Long id, Model model){
+        RecruitResponseDto dto = recruitService.findById(id);
+        model.addAttribute("recruit", dto);
+
+        return "recruit-update";
     }
 }

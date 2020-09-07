@@ -63,4 +63,16 @@ public class Recruit {
         }
         return closedDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
     }*/
+    public void update(String recruitTitle, String recruitContent, Timestamp startDate, Timestamp closedDate,
+                       String question1, String question2, String question3, String question4, String question5)  {
+        this.recruitTitle = recruitTitle;
+        this.recruitContent = recruitContent;
+        this.startDate = startDate;
+        this.closedDate = closedDate;
+        this.question1 = question1;
+        this.question2 = question2;
+        this.question3 = question3;
+        this.question4 = question4;
+        this.question5 = question5;
+    }
 }

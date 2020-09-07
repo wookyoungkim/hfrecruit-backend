@@ -7,47 +7,50 @@
 
     <form class="recruit-form mt-3 mx-sm-5 mb-2 justify-content-center">
         <div class="form-group">
+            <input type="hidden" id="recruitNo" value={{recruit.recruitNo}}>
             <label for="recruitTitle">채용공고 제목</label>
             <input type="text" class="form-control" id="recruitTitle"
-                   placeholder="공고 제목을 입력해주세요">
+                   value="{{recruit.recruitTitle}}">
         </div>
         <div class="form-group">
             <label for="recruitContent">채용공고 내용</label>
             <input type="text" class="form-control" id="recruitContent"
-                   placeholder="공고 내용을 입력해주세요">
+                   value="{{recruit.recruitContent}}">
         </div>
         <div class="form-row justify-content-center">
             <div class="form-group ml-1 mr-5 col-sm-5">
                 <label for="startDate">공고 시작일</label>
-                <input type="datetime-local" class="form-control" id="startDate">
+                <input type="datetime-local" class="form-control" id="startDate"
+                       value="{{recruit.startDate}}">
             </div>
             <div class="form-group ml-1 mr-5 col-sm-5">
                 <label for="closedDate">공고 마감일</label>
-                <input type="datetime-local" class="form-control" id="closedDate">
+                <input type="datetime-local" class="form-control" id="closedDate"
+                       value="{{recruit.closedDate}}">
             </div>
         </div>
         <div class="form-group">
             <label for="question1">Question 1</label>
-            <textarea class="form-control" id="question1" rows="3" placeholder="첫번째 질문을 입력해주세요(필수)"></textarea>
+            <textarea class="form-control" id="question1" rows="3">{{recruit.question1}}</textarea>
         </div>
         <div class="form-group">
             <label for="question2">Question 2</label>
-            <textarea class="form-control" id="question2" rows="3" placeholder="두번째 질문을 입력해주세요(선택)"></textarea>
+            <textarea class="form-control" id="question2" rows="3">{{recruit.question2}}</textarea>
         </div>
         <div class="form-group">
             <label for="question3">Question 3</label>
-            <textarea class="form-control" id="question3" rows="1" placeholder="세번째 질문을 입력해주세요(선택)"></textarea>
+            <textarea class="form-control" id="question3" rows="1">{{recruit.question3}}</textarea>
         </div>
         <div class="form-group">
             <label for="question4">Question 4</label>
-            <textarea class="form-control" id="question4" rows="1" placeholder="네번째 질문을 입력해주세요(선택)"></textarea>
+            <textarea class="form-control" id="question4" rows="1">{{!recruit.question4}}</textarea>
         </div>
         <div class="form-group">
             <label for="question5">Question 5</label>
-            <textarea class="form-control" id="question5" rows="1" placeholder="다섯번째 질문을 입력해주세요(선택)"></textarea>
+            <textarea class="form-control" id="question5" rows="1">{{!recruit.question5}}</textarea>
         </div>
         <div class="submit-button">
-            <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+            <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
             <a role="button" class="btn btn-secondary" href="/recruit">취소</a>
         </div>
     </form>

@@ -25,6 +25,15 @@ public class RecruitService {
         return recruitRepository.save(requestDto.toEntity(companyInfo, companyUser)).getRecruitNo();
     }
 
+    @Transactional
+    public Long update(Long recruitNo, RecruitUpdateRequestDto requestDto) {
+        Recruit recruit = recruitRepository.findById(recruitNo)
+                .orElseThrow(()-> new IllegalArgumentException("공고가 없습니다. id="+recruitNo));
+        recruit.update(requestDto.getRecruitTitle(), requestDto.getRecruitContent(), requestDto.getStartDate(), requestDto.getClosedDate(),
+                requestDto.getQuestion1(), requestDto.getQuestion2(), requestDto.getQuestion3(), requestDto.getQuestion4(), requestDto.getQuestion5());
+        return recruitNo;
+    }
+
     @Transactional(readOnly = true)
     public List<RecruitListResponseDto> findAll(){
         return recruitRepository.findAll().stream()
@@ -37,13 +46,9 @@ public class RecruitService {
         return new RecruitResponseDto(recruitRepository.getOne(no));
     }
 
-
-    @Transactional
-    public Long update(Long id, RecruitUpdateRequestDto requestDto) {
-        Recruit recruit = recruitRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("공고가 없습니다. id="+id));
-        return recruit.getRecruitNo();
-//        recruit.update(requestDto.)
+    public RecruitResponseDto findById(Long recruitNo){
+        Recruit entity = recruitRepository.findById(recruitNo)
+                .orElseThrow(()-> new IllegalArgumentException("사용자가 없습니다. id="+recruitNo));
+        return new RecruitResponseDto(entity);
     }
-
 }

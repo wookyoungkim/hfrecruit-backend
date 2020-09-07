@@ -12,8 +12,10 @@ import java.util.Optional;
 public interface RecruitRepository extends JpaRepository <Recruit,Long> {
     Optional<Recruit> findByCompanyInfo(CompanyInfo companyinfo);
 
-    @Query("SELECT p FROM Recruit p ORDER BY p.id DESC")
-    List<Recruit> findAllDesc();
+    Optional<Recruit> findById(Long aLong);
+
+    @Query("SELECT p FROM Recruit p ORDER BY p.id")
+    List<Recruit> findAll();
 
     Optional<Recruit> findByRecruitNo(Long RecruitNo);
 
