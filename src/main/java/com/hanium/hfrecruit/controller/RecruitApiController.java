@@ -30,4 +30,10 @@ public class RecruitApiController {
     public Long update(@PathVariable Long recruitNo, @RequestBody RecruitUpdateRequestDto requestDto){
         return recruitService.update(recruitNo, requestDto);
     }
+
+    @DeleteMapping("/api/v1/recruit/delete/{recruitNo}")
+    public Long delete(@PathVariable Long recruitNo){
+        recruitService.delete(recruitNo);
+        return recruitNo;
+    }
 }

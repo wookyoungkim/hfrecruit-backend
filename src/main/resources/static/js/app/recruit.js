@@ -7,6 +7,9 @@ var recruit = {
         $('#btn-update').on('click', function (){
             _this.update();
         });
+        $('#btn-delete').on('click', function (){
+            _this.delete();
+        });
     },
     save : function (){
         var data = {
@@ -56,6 +59,21 @@ var recruit = {
             alert('채용공고가 수정되었습니다.');
             window.location.href = '/recruit';
         }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    delete : function () {
+        var recruitNo = $('#recruitNo').val();
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/recruit/delete/'+recruitNo,
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8'
+        }).done(function (){
+            alert('채용공고가 삭제되었습니다.');
+            window.location.href = '/recruit';
+        }).fail(function (error){
             alert(JSON.stringify(error));
         });
     }

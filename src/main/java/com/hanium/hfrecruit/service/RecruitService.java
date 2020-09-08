@@ -34,6 +34,13 @@ public class RecruitService {
         return recruitNo;
     }
 
+    @Transactional
+    public void delete(Long recruitNo) {
+        Recruit recruit = recruitRepository.findById(recruitNo)
+                .orElseThrow(()-> new IllegalArgumentException("공고가 없습니다. id="+recruitNo));
+        recruitRepository.delete(recruit);
+    }
+
     @Transactional(readOnly = true)
     public List<RecruitListResponseDto> findAll(){
         return recruitRepository.findAll().stream()
