@@ -42,7 +42,7 @@ public class SpecsPageController {
     }
     @ResponseBody
     @DeleteMapping("/specs/delete/{personalSpecId}")
-    public Long save(@PathVariable Long personalSpecId) {
+    public Long delete(@PathVariable Long personalSpecId) {
         personalSpecService.delete(personalSpecId);
         return personalSpecId;
     }

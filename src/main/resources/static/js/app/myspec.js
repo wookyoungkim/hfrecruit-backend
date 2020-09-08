@@ -32,9 +32,8 @@ var spec = {
     },
     delete : function (){
         var personalSpecId = $('#btn-spec-delete').attr("name");
-        console.log(data);
         $.ajax({
-            type: 'POST',
+            type: 'DELETE',
             url: '/specs/delete/'+personalSpecId,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
