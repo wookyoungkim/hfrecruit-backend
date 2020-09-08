@@ -40,4 +40,10 @@ public class SpecsPageController {
         personalSpecDto.setSpec(specService.findBySpecId(Long.valueOf( (String)params.get("specId"))).toEntity());
         return personalSpecService.save(personalSpecDto);
     }
+    @ResponseBody
+    @DeleteMapping("/specs/delete/{personalSpecId}")
+    public Long save(@PathVariable Long personalSpecId) {
+        personalSpecService.delete(personalSpecId);
+        return personalSpecId;
+    }
 }

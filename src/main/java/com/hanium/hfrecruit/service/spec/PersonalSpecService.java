@@ -1,5 +1,6 @@
 package com.hanium.hfrecruit.service.spec;
 
+import com.hanium.hfrecruit.domain.spec.PersonalSpec;
 import com.hanium.hfrecruit.domain.spec.PersonalSpecRepository;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
@@ -46,5 +47,12 @@ public class PersonalSpecService {
         personalSpecDto.setScore((String)params.get("score"));
         personalSpecDto.setCertifiedDate((String)params.get("certifiedDate"));
         return personalSpecDto;
+    }
+    @Transactional
+    public void delete(Long personalSpecId) {
+        PersonalSpec personalSpec = personalSpecRepository.findByPersonalSpecId(personalSpecId).orElseThrow(
+                () -> new IllegalArgumentException("해당 스펙 ID가 존재하지않습니다.")
+        );
+        personalSpecRepository.delete(personalSpec);
     }
 }
