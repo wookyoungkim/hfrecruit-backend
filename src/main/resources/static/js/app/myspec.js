@@ -18,13 +18,13 @@ var spec = {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: '/specs/save/1',
+            url: '/specs/save',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function (){
             alert('spec added');
-            window.location.href = '/specs/1';
+            window.location.href = '/specs';
         }).fail(function (error){
             alert('error occured');
             alert(JSON.stringify(error));
@@ -39,7 +39,7 @@ var spec = {
             contentType: 'application/json; charset=utf-8',
         }).done(function (){
             alert('spec deleted');
-            window.location.href = '/specs/1';
+            window.location.href = '/specs';
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
