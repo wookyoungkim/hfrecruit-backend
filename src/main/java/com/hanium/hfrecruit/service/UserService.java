@@ -23,7 +23,7 @@ public class UserService {
     public Long update(Long userNo, UserUpdateRequestDto requestDto) {
         User user = userRepository.findByUserNo(userNo)
                 .orElseThrow(() -> new IllegalArgumentException("erroror"));
-        user.update(requestDto.getUsername(), requestDto.getBirth(), requestDto.getAddress(), requestDto.getCollege(), requestDto.getEducationLevel(), requestDto.getMilitaryService(), requestDto.getGender());
+        user.update(requestDto.getUsername(), requestDto.getBirth(), requestDto.getAddress(), requestDto.getCollege(), requestDto.getHighschool(), requestDto.getEducationLevel(), requestDto.getMilitaryService(), requestDto.getGender());
 
         return userNo;
     }

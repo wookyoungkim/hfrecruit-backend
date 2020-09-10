@@ -18,6 +18,7 @@ var userInfo = {
             birth: $('#birth').val(),
             address: $('#address').val(),
             college: $('#college').val(),
+            highschool: $('#highschool').val(),
             educationLevel: $('#educationLevel').val(),
             militaryService: $('#militaryService').val(),
             gender: gender
