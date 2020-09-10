@@ -13,14 +13,14 @@
             <div style="margin:3%; border: #999999">
                 <div class="personalInfo mb-5">
                     <form class="justify-content-center mt-4">
-                        <div class="form-row" style="margin-bottom: 5%">
+                        <div class="form-row needs-validation" novalidate style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-3">
                                 <label for="username">이름</label>
-                                <input type="text" class="form-control" id="username" placeholder={{userName}}>
+                                <input type="text" class="form-control" id="username" value="{{userName}}" required>
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-3">
                                 <label for="birth">생년월일</label>
-                                <input type="date" class="form-control" id="birth" placeholder="{.{User.birth}}">
+                                <input type="date" class="form-control" id="birth" placeholder="{.{User.birth}}" required>
                             </div>
                             <div class="form-group ml-1 mr-5 col-sm-3">
                                 <label for="gender">성별</label>
@@ -37,27 +37,8 @@
 
 
                             </div>
-
-                            <!--이메일은 로그인시 자동으로 받아오니까-->
-<!--                            <div class="form-group ml-1">-->
-<!--                                <label for="inputEmail">email</label>-->
-<!--                                <div class="form-inline">-->
-<!--                                    <input type="text" class="form-control mb-2" id="inputEmail" placeholder="{.{User.email}}">-->
-<!--                                    <div class="input-group mb-2 mr-sm-2">-->
-<!--                                        <div class="input-group-prepend">-->
-<!--                                            <div class="input-group-text">@</div>-->
-<!--                                        </div>-->
-<!--                                        <select class="form-control">-->
-<!--                                            <option>@naver.com </option>-->
-<!--                                            <option>@google.com </option>-->
-<!--                                            <option>@icloud.com </option>-->
-<!--                                            <option>@hanmail.com </option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
                         </div>
-                        <div class="form-row" style="margin-bottom: 5%">
+                        <div class="form-row needs-validation" novalidate style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-3">
                                 <label for="address">거주지 </label>
                                 <input type="text" class="form-control ml-1" id="address" placeholder="{.{User.address}}">
@@ -71,7 +52,7 @@
                                 <input type="text" class="form-control ml-1" id="highschool" placeholder="{.{User.highschool}}">
                             </div>
                         </div>
-                        <div class="form-row" style="margin-bottom: 5%">
+                        <div class="form-row needs-validation" novalidate style="margin-bottom: 5%">
                             <div class="form-group ml-1 mr-5 col-sm-5">
                                 <label for="educationLevel">대학졸업여부</label>
                                 <select class="form-control show-tick" id="educationLevel">
@@ -88,12 +69,15 @@
                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group needs-validation" novalidate>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <input class="form-check-input" type="checkbox" id="gridCheck" required>
                                 <label class="form-check-label" for="gridCheck">
                                     개인정보 제공에 동의합니다.
                                 </label>
+                                <div class="invalid-feedback">
+                                    You must agree before submitting.
+                                </div>
                             </div>
                         </div>
                     </form>
