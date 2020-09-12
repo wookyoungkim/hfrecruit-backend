@@ -24,7 +24,15 @@ public class ApplicationService {
     @Transactional
     //작성한 지원서의 id를 알 수 있도록 getId()를 반환으
     public Long save(ApplicationSaveRequestDto dto, User user, Recruit recruit) {
-        return applicationRepository.save(dto.toEntity(user, recruit)).getApplicationId();
+        Application application = applicationRepository.findByUserAndRecruit(user, recruit);
+
+        if(application == null){
+            return applicationRepository.save(dto.toEntity(user, recruit)).getApplicationId();
+        }
+        else{
+            application.update(dto.getQ1Comment(), dto.getQ2Comment(), dto.getQ3Comment());
+            return application.getApplicationId();
+        }
     }
 
     @Transactional(readOnly = true)
