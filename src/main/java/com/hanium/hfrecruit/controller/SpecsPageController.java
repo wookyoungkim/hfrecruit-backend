@@ -34,7 +34,7 @@ public class SpecsPageController {
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
-
+        model.addAttribute("pageTitle","내 스펙");
         model.addAttribute("user",user);
         model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
         model.addAttribute("specs",specService.findAll());

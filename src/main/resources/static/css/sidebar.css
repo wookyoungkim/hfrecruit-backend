@@ -19,6 +19,7 @@
 }
 
 #sidebar-wrapper {
+    color: white;
     z-index: 1000;
     position: fixed;
     left: 250px;
@@ -27,8 +28,8 @@
     margin-left: -250px;
     overflow-y: auto;
     /* 그라디언트 효과 : 아래 2line */
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    /*background: rgb(34,193,195);*/
+    /*background: linear-gradient(0deg, rgba(34,193,195,0.5) 0%, rgba(253,187,45,0.5) 100%);*/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -67,12 +68,12 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #ffffff;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
+    color: peachpuff;
     background: rgba(255,255,255,0.2);
 }
 
@@ -83,16 +84,18 @@
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 60px;
+    text-align: center;
+    margin-right: 15px;
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #ffffff;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    color: peachpuff;
     background: none;
 }
 
