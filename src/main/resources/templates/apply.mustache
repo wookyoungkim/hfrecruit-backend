@@ -14,19 +14,36 @@
                 {{recruit.recruitTitle}}
             </div>
             <div style="margin:3%; border: #999999">
-                <div class="specInfo mt-4 mb-5">
-                    <div >
-                        <h5>스펙 및 자격증 정보 </h5>
+                <!-- 스펙 리스트 보이기 -->
+                <div class="container card w-70">
+                    <div class="row justify-content-md-between card-header font-weight-bold" style="font-size: larger">
+                        <div class="col-3 text-center align-self-center">
+                            자격증 이름
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            만료일
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            점수
+                        </div>
                     </div>
-                    <div class="form-group mt-4 col-sm-5 mb-5">
-                        <select class="form-control show-tick">
-                            <option value="" selected disabled>스펙 가져오기 </option>
-                            <option>재학 </option>
-                            <option>졸업 </option>
-                        </select>
-                    </div>
+                    {{#mySpecs}}
+                        <div class="row justify-content-md-between card-body border-bottom" style="font-size: large">
+                            <div class="col-3 text-center align-self-center">
+                                {{spec.specName}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{authDate}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{score}}
+                            </div>
+                        </div>
+                    {{/mySpecs}}
                 </div>
-
+                <div class="row justify-content-md-end mt-3 mb-3">
+                    <a class="btn btn-dark" href="/specs">수정하러 가기</a>
+                </div>
                 <div class="answers mt-4" style="position:relative; overflow-y: scroll;">
                     <div>
                         <h5>답변 작성 </h5>

@@ -9,8 +9,8 @@ import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
 import com.hanium.hfrecruit.dto.ApplicationSaveRequestDto;
 import com.hanium.hfrecruit.dto.ApplicationUpdateRequestDto;
-import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
 import com.hanium.hfrecruit.service.ApplicationService;
+import com.hanium.hfrecruit.service.spec.PersonalSpecService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,7 @@ public class ApplicationPageController {
     private final UserRepository userRepository;
     private final ApplicationRepository applicationRepository;
     private final HttpSession httpSession;
+    private final PersonalSpecService personalSpecService;
 
     @ApiOperation(value = "지원서 리스트 전체 조회 ")
     @GetMapping("/list")
@@ -45,10 +46,15 @@ public class ApplicationPageController {
 
     @ApiOperation(value = "지원서 작성")
     @GetMapping("/apply/{recruitNo}")
-    public String apply(@PathVariable Long recruitNo, Model model){
+    public String apply(@PathVariable Long recruitNo, Model model,
+                        @SessionAttribute("user") SessionUser sessionUser){
+        User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
+                () -> new IllegalArgumentException("finding userNo Failed!")
+        );
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("recruit", recruit);
+        model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
 
         return "apply";
     }
