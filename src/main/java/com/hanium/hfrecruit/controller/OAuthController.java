@@ -28,6 +28,7 @@ public class OAuthController {
 
         if(sessionUser != null) {
             model.addAttribute("userName", sessionUser.getName());
+            model.addAttribute("pageTitle", "Home");
 
         }
         return "home";
@@ -45,6 +46,7 @@ public class OAuthController {
                     .orElseThrow(() -> new NoResultException("erroror"));
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
+           model.addAttribute("pageTitle", "추가 정보 입력");
         }
        return "userInfo";
     }

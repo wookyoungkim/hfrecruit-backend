@@ -25,7 +25,8 @@ public class MyPageController {
 
 
     @GetMapping("/mypage")
-    public String mypage(){
+    public String mypage(@SessionAttribute("user") SessionUser sessionUser, Model model){
+        model.addAttribute("pageTitle", "마이페이지");
         return "mypage";
     }
 
@@ -35,6 +36,7 @@ public class MyPageController {
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
         model.addAttribute("user", user);
+        model.addAttribute("pageTitle", "개인정보수정");
 
         return "profile";
     }

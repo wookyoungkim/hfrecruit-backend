@@ -40,6 +40,7 @@ public class ApplicationPageController {
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("applications", applicationService.findAllDesc(loginUser));
+        model.addAttribute("pageTitle", "내 지원서");
         return "applicationlist";
     }
 
@@ -54,6 +55,7 @@ public class ApplicationPageController {
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("recruit", recruit);
         model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
+        model.addAttribute("pageTitle", "지원서 작성하기");
 
         return "apply";
     }
@@ -78,6 +80,7 @@ public class ApplicationPageController {
         Recruit recruit = application.getRecruit();
         model.addAttribute("application", application);
         model.addAttribute("recruit", recruit);
+        model.addAttribute("pageTitle", "지원서 수정하기");
         return "editApplication";
     }
 
