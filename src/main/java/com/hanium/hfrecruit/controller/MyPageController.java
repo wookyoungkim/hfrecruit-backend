@@ -39,10 +39,12 @@ public class MyPageController {
         return "profile";
     }
 
-    @PutMapping("/mypage/{userNo}")
+    @PutMapping("/mypage/infoUpdate")
     @ResponseBody
-    public Long update(@PathVariable Long userNo, @RequestBody UserUpdateRequestDto requestDto){
-        return userService.update(userNo, requestDto);
+    public Long update(@SessionAttribute("user") SessionUser sessionUser, @RequestBody UserUpdateRequestDto requestDto){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        return userService.update(loginUser.getUserNo(), requestDto);
     }
 
     @GetMapping("/evaluate")

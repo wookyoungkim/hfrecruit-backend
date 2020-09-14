@@ -24,11 +24,10 @@ public class OAuthController {
     private final UserRepository userRepository;
 
     @GetMapping({"", "/home"})
-    public String home(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+    public String home(Model model, @SessionAttribute("user") SessionUser sessionUser) {
 
-        if(user != null) {
-            model.addAttribute("userName", user.getName());
+        if(sessionUser != null) {
+            model.addAttribute("userName", sessionUser.getName());
 
         }
         return "home";
@@ -40,22 +39,22 @@ public class OAuthController {
     }
 
     @GetMapping("/userInfo")
-    public String userInfo(Model model) {
-        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-
-        if(sessionUser != null){
+    public String userInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+       if(sessionUser != null){
             User user = userRepository.findByEmail(sessionUser.getEmail())
                     .orElseThrow(() -> new NoResultException("erroror"));
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
         }
-        return "userInfo";
+       return "userInfo";
     }
 
-    @PutMapping("/userInfo/{userNo}")
+    @PutMapping("/userInfo/save")
     @ResponseBody
-    public Long update(@PathVariable Long userNo, @RequestBody UserUpdateRequestDto requestDto){
-        return userService.update(userNo, requestDto);
+    public Long update(@SessionAttribute("user") SessionUser sessionUser, @RequestBody UserUpdateRequestDto requestDto){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        return userService.update(loginUser.getUserNo(), requestDto);
     }
 
     @GetMapping("/loginFailure")

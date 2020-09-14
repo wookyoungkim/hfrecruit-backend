@@ -41,11 +41,10 @@ var userInfo = {
             militaryService: $('#militaryService').val(),
             gender: gender
         };
-        var userNo = $('#userNo').val();
         console.log(data);
         $.ajax({
             type: 'PUT',
-            url: '/userInfo/'+userNo,
+            url: '/userInfo/save',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -74,11 +73,10 @@ var userInfo = {
             militaryService: $('#militaryService').val(),
             gender: gender
         };
-        var userNo = $('#userNo').val();
         console.log(data);
         $.ajax({
             type: 'PUT',
-            url: '/mypage/' + userNo,
+            url: '/mypage/infoUpdate',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)

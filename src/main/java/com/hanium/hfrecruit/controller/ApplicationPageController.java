@@ -36,8 +36,7 @@ public class ApplicationPageController {
 
     @ApiOperation(value = "지원서 리스트 전체 조회 ")
     @GetMapping("/list")
-    public String applicationList(Model model){
-        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+    public String applicationList(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("applications", applicationService.findAllDesc(loginUser));
@@ -62,8 +61,7 @@ public class ApplicationPageController {
     @ApiOperation(value = "지원서 작성 제출")
     @PostMapping("/apply/{recruitNo}")
     @ResponseBody
-    public Long save(@RequestBody ApplicationSaveRequestDto dto, @PathVariable Long recruitNo, HttpSession session){
-        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+    public Long save(@RequestBody ApplicationSaveRequestDto dto, @PathVariable Long recruitNo, HttpSession session, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
