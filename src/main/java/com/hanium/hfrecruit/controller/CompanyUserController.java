@@ -30,11 +30,15 @@ public class CompanyUserController {
     private final HttpSession httpSession;
 
     @GetMapping("/companyInfo")
-    public String companyInfo(Model model) {
-        model.addAttribute("companyInfo", companyInfoRepository.findAll());
+    public String companyInfo(){
         return "companyInfo";
     }
 
+    @GetMapping("/companyUser")
+    public String companyUser(Model model) {
+        model.addAttribute("companyInfo", companyInfoRepository.findAll());
+        return "companyUser";
+    }
 
     @ResponseBody
     @PostMapping("/companyUser/save/{companyNo}")

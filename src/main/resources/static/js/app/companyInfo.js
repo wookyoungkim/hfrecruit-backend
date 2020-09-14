@@ -9,7 +9,7 @@ var companyInfo = {
         var data = {
             companyName: $('#companyName').val(),
             companyEmail: $('#companyEmail').val(),
-            managerId: $('#managerId').val(),
+            managerId: $('#managerId').attr('id'),
             companyLogo: $('#companyLogo').val()
         };
         var companyNo = $('#companyNo').val();

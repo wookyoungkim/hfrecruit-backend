@@ -1,0 +1,31 @@
+{{>layout/header}}
+
+<div id="wrapper">
+
+    {{>layout/sidebar}}
+    <div id="application" style="padding:3%">
+        <div class="mx-sm-5 mb-5">
+            <h3>자신의 회사를 선택해주세요</h3>
+            <select id="selectMyCompany" class="form-control mb-2" id="companyNo">
+                {{#companyInfo}}
+                    <option id="{{companyNo}}">{{companyName}}</option>
+                {{/companyInfo}}
+            </select>
+            <select id="companyUserCode" class="form-control" id="companyUserCode">
+                <option id="1">채용관리자</option>
+                <option id="2">인사담당자</option>
+            </select>
+
+            <button type="button" class="btn btn-primary" style="float: right;margin: 0.5%; color:white"
+                    id="btn-companyUser-save">등록
+            </button>
+        </div>
+        <div class="contain-m mx-sm-5">
+            <h3>기업을 등록하고 싶으신가요?
+                <a type="button" class="btn btn-secondary" href="/companyInfo">기업회원 가입하기</a>
+            </h3>
+        </div>
+    </div>
+</div>
+</div>
+{{>layout/footer}}
