@@ -16,4 +16,8 @@ public class IndexPageController {
         return "index";
     }
 
+    @GetMapping("/evaluation")
+    public String ev(){
+        return "evaluationPage";
+    }
 }

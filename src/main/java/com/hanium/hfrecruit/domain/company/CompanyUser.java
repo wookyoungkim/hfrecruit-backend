@@ -1,14 +1,13 @@
 package com.hanium.hfrecruit.domain.company;
 
 import com.hanium.hfrecruit.domain.recruit.Recruit;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.hanium.hfrecruit.domain.user.User;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +17,6 @@ public class CompanyUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long companyUserId;
-
-    private Integer companyUserCode;
 
     @ManyToOne
     @JoinColumn(name = "company_no")

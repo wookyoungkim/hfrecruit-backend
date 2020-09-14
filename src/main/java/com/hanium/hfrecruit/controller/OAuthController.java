@@ -3,6 +3,8 @@ package com.hanium.hfrecruit.controller;
 import com.hanium.hfrecruit.auth.dto.SessionUser;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
+import com.hanium.hfrecruit.dto.CompanyUserDto;
+import com.hanium.hfrecruit.dto.PersonalSpecDto;
 import com.hanium.hfrecruit.dto.UserResponseDto;
 import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
 import com.hanium.hfrecruit.service.UserService;
@@ -14,11 +16,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
 public class OAuthController {
     private final HttpSession httpSession;
+
     @Autowired
     private UserService userService;
     private final UserRepository userRepository;
