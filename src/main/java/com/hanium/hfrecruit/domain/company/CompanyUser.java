@@ -18,6 +18,9 @@ public class CompanyUser {
     @Id
     private Long companyUserId;
 
+    @Column(nullable = false)
+    private Integer companyUserCode;
+
     @ManyToOne
     @JoinColumn(name = "company_no")
     private CompanyInfo companyInfo;

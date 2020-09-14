@@ -20,11 +20,4 @@ public class CompanyUserService {
     public Long save(CompanyUserDto companyUserDto, CompanyInfo companyInfo) {
         return companyUserRepository.save(companyUserDto.toEntity(companyInfo)).getCompanyUserId();
     }
-
-    public CompanyUserDto createWithParams(HashMap<String,Object> params) {
-        CompanyUserDto companyUserDto = new CompanyUserDto();
-        companyUserDto.setCompanyUserCode(1);
-        companyUserDto.setCompanyUserId((Long) params.get("companyUserId"));
-        return companyUserDto;
-    }
 }

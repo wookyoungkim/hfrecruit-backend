@@ -29,8 +29,8 @@ public class CompanyInfoDto {
         this.companyEmail = entity.getCompanyEmail();
         this.managerId = entity.getManagerId();
         this.companyLogo = entity.getCompanyLogo();
-        //this.companyUsersList = entity.getCompanyUsersList();
-        //this.recruits = entity.getRecruits();
+        this.companyUsersList = entity.getCompanyUsersList();
+        this.recruits = entity.getRecruits();
     }
 
     public CompanyInfo toEntity(){
@@ -40,8 +40,8 @@ public class CompanyInfoDto {
                 .companyEmail(companyEmail)
                 .managerId(managerId)
                 .companyLogo(companyLogo)
-                //.companyUsersList(companyUsersList)
-                //.recruits(recruits)
+                .companyUsersList(companyUsersList)
+                .recruits(recruits)
                 .build();
     }
 }

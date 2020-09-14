@@ -1,31 +1,29 @@
-var companyInfo = {
+var companyUser = {
     init : function () {
         var _this = this;
-        $('#btn-companyInfo-save').on('click', function (){
+        $('#btn-companyUser-save').on('click', function (){
             _this.save();
         });
     },
     save : function (){
         var data = {
-            companyName: $('#companyName').val(),
-            companyEmail: $('#companyEmail').val(),
-            managerId: $('#managerId').val(),
-            companyLogo: $('#companyLogo').val()
+            companyNo: $('#selectMyCompany option:selected').attr('id'),
+            companyUserCode: $('#companyUserCode option:selected').attr('id')
         };
-        var companyNo = $('#companyNo').val();
+        var companyNo = $('#selectMyCompany option:selected').attr('id')
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: '/companyInfo/save',
+            url: '/companyUser/save/'+companyNo,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function (){
-            alert('기업등록이 완료되었습니다.');
+            alert('기업 회원 등록이 완료되었습니다.');
             window.location.href = '/';
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
     }
 };
-companyInfo.init();
+companyUser.init();

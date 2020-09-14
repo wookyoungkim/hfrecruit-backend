@@ -37,7 +37,7 @@ public class CompanyUserController {
 
 
     @ResponseBody
-    @PostMapping("/companyUser/save")
+    @PostMapping("/companyUser/save/{companyNo}")
     public Long CompanyUserSave(@SessionAttribute("user") SessionUser sessionUser, @RequestBody CompanyUserDto companyUserDto, @PathVariable Long companyNo) {
  //       User loginUser = userRepository.findByEmail(sessionUser.getEmail());
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo(companyNo);

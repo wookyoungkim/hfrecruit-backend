@@ -52,6 +52,7 @@ public class SampleDataRunner implements CommandLineRunner {
 
         CompanyUser companyUserSample = CompanyUser.builder()
                 .companyInfo(companyInfoSample)
+                .companyUserCode(2)
                 .build();
         companyUserRepository.save(companyUserSample);
 
