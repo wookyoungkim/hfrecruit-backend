@@ -4,18 +4,23 @@
 
     {{>layout/sidebar}}
     {{>layout/topnavbar}}
+    <style>
+        .jumbo {
+           background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(/img/job_interview.png);
 
+        }
+    </style>
     <div id="page-content-wrapper">
 
         <div class="container-fluid">
-            <div class="jumbotron">
+            <div class="jumbotron jumbo text-white bg-cover">
                 <div class="container">
-                    <h1 class="display-4">Hello, world!</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <hr class="my-4">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    <h2 class="display-4">부정행위로부터 안전한 채용</h2>
+                    <p class="lead">hyperledger fabric 을 활용한 블록체인 채용 플랫폼</p>
+                    <hr class="my-4" style="background: white">
+                    <p>기업회원과 구직자 모두 안전한 채용 프로세스를 보장합니다.</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                        <a class="btn btn-primary btn-lg" href="/recruit" role="button">채용 공고 보러가기</a>
                     </p>
                 </div>
             </div>
