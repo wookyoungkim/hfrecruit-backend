@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "recruits")
 @Entity
 public class CompanyUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

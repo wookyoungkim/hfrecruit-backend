@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "personalSpecs")
 @Entity
 @Table(name = "user")
 public class User {

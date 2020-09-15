@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Builder
+@ToString(exclude = "applicationList")
 @Entity
 public class Recruit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,4 +76,20 @@ public class Recruit {
         this.question4 = question4;
         this.question5 = question5;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Recruit{" +
+//                "recruitNo=" + recruitNo +
+//                ", recruitTitle='" + recruitTitle +
+//                ", recruitContent='" + recruitContent +
+//                ", startDate='" + startDate +
+//                ", closedDate='" + closedDate +
+//                ", question1='" + question1 +
+//                ", question2='" + question2 +
+//                ", question3='" + question3 +
+//                ", question4='" + question4 +
+//                ", question5='" + question5 +
+//                '}';
+//    }
 }

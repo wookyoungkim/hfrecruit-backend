@@ -2,10 +2,7 @@ package com.hanium.hfrecruit.domain.company;
 
 
 import com.hanium.hfrecruit.domain.recruit.Recruit;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"companyUsersList", "recruits"})
 @Builder
 public class CompanyInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +35,15 @@ public class CompanyInfo {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyInfo")
     private List<Recruit> recruits;
+
+//    @Override
+//    public String toString() {
+//        return "CompanyInfo{" +
+//                "companyNo=" + companyNo +
+//                ", companyName='" + companyName +
+//                ", companyEmail=" + companyEmail +
+//                ", managerId=" + managerId +
+//                ", companyLogo=" + companyLogo +
+//                '}';
+//    }
 }
