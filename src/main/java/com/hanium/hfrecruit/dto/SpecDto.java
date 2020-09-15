@@ -2,10 +2,12 @@ package com.hanium.hfrecruit.dto;
 
 import com.hanium.hfrecruit.domain.spec.PersonalSpec;
 import com.hanium.hfrecruit.domain.spec.Spec;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Getter
 public class SpecDto {
     private Long specId;
