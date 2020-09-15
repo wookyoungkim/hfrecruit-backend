@@ -1,10 +1,13 @@
 package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
+import com.hanium.hfrecruit.domain.application.Application;
+import com.hanium.hfrecruit.domain.application.ApplicationQueryRepository;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
 import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
 import com.hanium.hfrecruit.service.UserService;
+import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,11 +26,21 @@ public class MyPageController {
     @Autowired
     private UserService userService;
     private final UserRepository userRepository;
+    private final ApplicationQueryRepository applicationQueryRepository;
 
 
     @GetMapping("/mypage")
     public String mypage(@SessionAttribute("user") SessionUser sessionUser, Model model){
+        User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
+                () -> new IllegalArgumentException("finding userNo Failed!")
+        );
+        List<Application> activeApplication = applicationQueryRepository.findActiveByRecruit(user.getUserNo());
+        System.out.println(user.getUserNo());
+        System.out.println(activeApplication);
+        Integer active = activeApplication.size();
         model.addAttribute("pageTitle", "마이페이지");
+        model.addAttribute("user", user);
+        model.addAttribute("activeApplication", active);
         return "mypage";
     }
 
