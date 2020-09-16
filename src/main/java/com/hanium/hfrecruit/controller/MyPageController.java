@@ -34,13 +34,13 @@ public class MyPageController {
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
-        List<Application> activeApplication = applicationQueryRepository.findActiveByRecruit(user.getUserNo());
-        System.out.println(user.getUserNo());
-        System.out.println(activeApplication);
-        Integer active = activeApplication.size();
+        Integer active = applicationQueryRepository.findActiveByRecruit(user.getUserNo()).size();
+        Integer writing = applicationQueryRepository.findWritingApplication(user.getUserNo()).size();
+
         model.addAttribute("pageTitle", "마이페이지");
         model.addAttribute("user", user);
         model.addAttribute("activeApplication", active);
+        model.addAttribute("writingApplication", writing);
         return "userMypage";
     }
 

@@ -77,7 +77,7 @@ var main = {
             q1Comment : $("#q1Comment").val(),
             q2Comment : $("#q2Comment").val(),
             q3Comment : $("#q3Comment").val(),
-            applied : 0
+            applied : 1
         };
         var applicationId = $("#applicationId").val();
         console.log(data)
@@ -100,7 +100,7 @@ var main = {
             q1Comment : $("#q1Comment").val(),
             q2Comment : $("#q2Comment").val(),
             q3Comment : $("#q3Comment").val(),
-            applied : 1
+            applied : 0
         };
         var applicationId = $("#applicationId").val();
         console.log(data)

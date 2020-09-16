@@ -23,7 +23,20 @@ public class ApplicationQueryRepository {
                 .innerJoin(qRecruit.recruit)
                 .on(qApplication.recruit.eq(qRecruit.recruit))
                 .where(qApplication.application.user.userNo.eq(userNo),
+                        qApplication.application.applied.eq(1),
                         qRecruit.recruit.closedBit.eq(0))
+                .fetch();
+
+        return fetched;
+    }
+
+    public List<Application> findWritingApplication(Long userNo){
+        QApplication qApplication = QApplication.application;
+
+        List<Application> fetched = query
+                .selectFrom(qApplication.application)
+                .where(qApplication.application.user.userNo.eq(userNo),
+                        qApplication.application.applied.eq(0))
                 .fetch();
 
         return fetched;
