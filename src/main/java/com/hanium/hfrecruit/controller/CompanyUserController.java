@@ -43,7 +43,7 @@ public class CompanyUserController {
     @ResponseBody
     @PostMapping("/companyUser/save/{companyNo}")
     public Long CompanyUserSave(@SessionAttribute("user") SessionUser sessionUser, @RequestBody CompanyUserDto companyUserDto, @PathVariable Long companyNo) {
- //       User loginUser = userRepository.findByEmail(sessionUser.getEmail());
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo(companyNo);
         return companyUserService.save(companyUserDto, companyInfo);
     }
