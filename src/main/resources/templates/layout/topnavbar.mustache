@@ -4,12 +4,21 @@
         background-color: #5e72e4!important;
         opacity: 90%;
     }
+    @media (max-width: 580px) {
+        #search{
+            display: none;
+        }
+    }
+    #titleText {
+        font-weight: 200;
+        font-size: 2rem;
+    }
 </style>
-<div id="page-content-wrapper" style="padding: 0">
+<div id="page-content-wrapper" style="padding: 0; position: relative">
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom justify-content-md-between">
-        <a class="navbar-brand ml-2" style="font-weight: 700; font-size: 2rem;">{{pageTitle}}</a>
+        <a class="navbar-brand ml-2" id="titleText">{{pageTitle}}</a>
         <!--mustache 문법으로 {.{pageTtitle}.} 해야함-->
-        <form class="form-inline">
+        <form class="form-inline" id="search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
         </form>

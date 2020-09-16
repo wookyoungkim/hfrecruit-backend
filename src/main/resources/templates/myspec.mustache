@@ -6,42 +6,49 @@
     {{>layout/topnavbar}}
     <!--  my spec page  -->
 <!--    https://asfirstalways.tistory.com/295-->
-    <form class="mt-3 mx-sm-5 mb-2 justify-content-center">
-        <div class="form-row justify-content-center">
-            <div class="form-group ml-1 mr-5 col-sm-5">
-                <label for="specId">스펙</label>
-                <select id="selectSpecId" class="form-control" id="specId">
-                    {{#specs}}
-                    <option id="{{specId}}">{{specName}}</option>
-                    {{/specs}}
-                </select>
-            </div>
-            <div class="form-group ml-1 mr-5 col-sm-5">
-                <label for="score">점수</label>
-                <input type="text" class="form-control" id="score"
-                       placeholder="점수">
-            </div>
+    <div class="card m-4 shadow p-3 mb-5 bg-white rounded">
+        <h4 class="title">당신의 스펙을 등록하세요.</h4>
+        <div class="card-body">
+            <form class="mt-3 mx-sm-5 mb-2 justify-content-center">
+                <div class="form-row justify-content-center">
+                    <div class="form-group ml-1 mr-5 col-sm-5">
+                        <label for="specId">스펙</label>
+                        <select id="selectSpecId" class="form-control" id="specId">
+                            {{#specs}}
+                                <option id="{{specId}}">{{specName}}</option>
+                            {{/specs}}
+                        </select>
+                    </div>
+                    <div class="form-group ml-1 mr-5 col-sm-5">
+                        <label for="score">점수</label>
+                        <input type="text" class="form-control" id="score"
+                               placeholder="점수">
+                    </div>
+                </div>
+                <div class="form-row justify-content-center">
+                    <div class="form-group ml-1 mr-5 col-sm-5">
+                        <label for="certifiedDate">취득일</label>
+                        <input type="date" class="form-control" id="certifiedDate"
+                               placeholder="">
+                    </div>
+                    <div class="form-group ml-1 mr-5 col-sm-5">
+                        <label for="authDate">만료일</label>
+                        <input type="date" class="form-control" id="authDate"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <button type="button" class="btn btn-primary mr-5" id="btn-spec-save"><i class="fas fa-plus-square mr-1"></i>등록</button>
+                </div>
+            </form>
         </div>
-        <div class="form-row justify-content-center">
-            <div class="form-group ml-1 mr-5 col-sm-5">
-                <label for="certifiedDate">취득일</label>
-                <input type="date" class="form-control" id="certifiedDate"
-                       placeholder="">
-            </div>
-            <div class="form-group ml-1 mr-5 col-sm-5">
-                <label for="authDate">만료일</label>
-                <input type="date" class="form-control" id="authDate"
-                       placeholder="">
-            </div>
-        </div>
-        <div class="row justify-content-end">
-            <button type="button" class="btn btn-primary mr-5" id="btn-spec-save"><i class="fas fa-plus-square mr-1"></i>등록</button>
-        </div>
-    </form>
+    </div>
+
+
 
     <br style="border: 1px solid darkgrey">
-    <div class="container card w-70">
-        <div class="row justify-content-md-between card-header font-weight-bold" style="font-size: larger">
+    <div class="container card shadow mb-5 bg-white">
+        <div class="row justify-content-md-between card-header" style="font-size: larger">
             <div class="col-3 text-center align-self-center">
                 자격증 이름
             </div>
@@ -51,7 +58,7 @@
             <div class="col-3 text-center align-self-center">
                 점수
             </div>
-            <div class="col-1 text-center align-self-center">
+            <div class="col-2 text-center align-self-center">
 
             </div>
         </div>
@@ -66,8 +73,10 @@
             <div class="col-3 text-center align-self-center">
                 {{score}}
             </div>
-            <div class="col-1">
-                <button class="btn btn-danger" id="btn-spec-delete" name="{{personalSpecId}}">삭제</button>
+            <div class="col-2">
+                <button class="btn btn-danger" id="btn-spec-delete" name="{{personalSpecId}}">
+                    <i class="fas fa-minus-square"></i> 삭제
+                </button>
             </div>
         </div>
         {{/mySpecs}}
