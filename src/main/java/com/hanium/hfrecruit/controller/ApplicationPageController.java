@@ -79,7 +79,7 @@ public class ApplicationPageController {
         model.addAttribute("recruit", recruit);
         model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
         model.addAttribute("pageTitle", "지원서 작성하기");
-
+        model.addAttribute("userProfile",user);
         return "apply";
     }
 

@@ -1,21 +1,69 @@
 {{>layout/header}}
+<style>
+    h6 {
+        color: gray;
+        font-weight: bold;
+    }
+
+</style>
 
 <div id="wrapper">
 
     {{>layout/sidebar}}
-
+    {{>layout/topnavbar}}
     <div id="application">
-        <div class="title-card">
-            <h3>지원서 </h3>
-            <input type="hidden" class="form-control" id="recruitNo" value={{recruit.recruitNo}} readonly>
-        </div>
+<!--        <div class="title-card">-->
+<!--            <h3>지원서 </h3>-->
+<!--            <input type="hidden" class="form-control" id="recruitNo" value={{recruit.recruitNo}} readonly>-->
+<!--        </div>-->
         <div>
             <div class ="recruit-title" style="width:100%; background-color: lightskyblue; height:5rem">
                 {{recruit.recruitTitle}}
             </div>
-            <div style="margin:3%; border: #999999">
+            <div style="margin: 1.5rem">
+                <div class="card shadow" style="margin: 1.25rem">
+                    <div class="card-header">
+                        <h4>내 프로필</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-md-between m-4">
+                            <div class="cols-4">
+                                <h6>이름</h6>
+                                <h4>{{userProfile.username}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>이메일</h6>
+                                <h4>{{userProfile.email}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>주소</h6>
+                                <h4>{{#userProfile.address}}{{userProfile.address}}{{/userProfile.address}}
+                                    {{^userProfile.address}}입력하지 않음{{/userProfile.address}}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-between m-4">
+                            <div class="cols-4">
+                                <h6>성별</h6>
+                                <h4>{{#userProfile.gender}}{{userProfile.gender}}{{/userProfile.gender}}
+                                    {{^userProfile.gender}}입력하지 않음{{/userProfile.gender}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>생일</h6>
+                                <h4>{{#userProfile.birth}}{{userProfile.birth}}{{/userProfile.birth}}
+                                    {{^userProfile.birth}}입력하지 않음{{/userProfile.birth}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>대학</h6>
+                                <h4>{{#userProfile.college}}{{userProfile.college}}{{/userProfile.college}}
+                                    {{^userProfile.college}}입력하지 않음{{/userProfile.college}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 스펙 리스트 보이기 -->
-                <div class="container card w-70">
+                <div class="container card w-70 mt-lg-5">
                     <div class="row justify-content-md-between card-header font-weight-bold" style="font-size: larger">
                         <div class="col-3 text-center align-self-center">
                             자격증 이름
