@@ -41,7 +41,7 @@ public class MyPageController {
         model.addAttribute("pageTitle", "마이페이지");
         model.addAttribute("user", user);
         model.addAttribute("activeApplication", active);
-        return "mypage";
+        return "userMypage";
     }
 
     @GetMapping("/profile")
