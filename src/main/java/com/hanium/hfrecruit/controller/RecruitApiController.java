@@ -26,15 +26,6 @@ public class RecruitApiController {
     private final UserRepository userRepository;
     private final CompanyUserRepository companyUserRepository;
     private final CompanyInfoRepository companyInfoRepository;
-/*
-    public Long save(@RequestBody ApplicationSaveRequestDto dto, @PathVariable Long recruitNo, HttpSession session){
-        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
-                .orElseThrow(() -> new NoResultException("error"));
-        Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
-                .orElseThrow(() -> new NoResultException("error"));
-
-        return applicationService.save(dto, loginUser, recruit);*/
 
     @PostMapping("/api/v1/recruit")
     public Long save(@RequestBody RecruitSaveRequestDto requestDto, @SessionAttribute("user") SessionUser sessionUser){

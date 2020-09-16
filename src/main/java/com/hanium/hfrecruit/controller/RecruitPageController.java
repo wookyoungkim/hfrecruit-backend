@@ -31,7 +31,7 @@ public class RecruitPageController {
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo((long) 1);  //임시로 넣어둔 것!!
         model.addAttribute("companyInfo", companyInfo);
         model.addAttribute("companyUser", companyUser);
-        model.addAttribute("pageTitle", "공고리스트보기");
+        model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
     }
 
@@ -40,7 +40,6 @@ public class RecruitPageController {
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("recruit", recruitService.findOne(recruitNo));
-
         CompanyUser companyUser = companyUserRepository.getOne((long) 1);   //이거 로그인 유저 되면 바꿔야함
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo((long) 1);  //임시로 넣어둔 것!!
         model.addAttribute("companyInfo", companyInfo);
@@ -50,7 +49,8 @@ public class RecruitPageController {
     }
 
     @GetMapping("/recruit/save")
-    public String recruitAdd(){
+    public String recruitAdd(Model model){
+        model.addAttribute("pageTitle", "채용 공고 작성하기");
         return "recruit-add";
     }
 
@@ -58,7 +58,6 @@ public class RecruitPageController {
     public String recruitUpdate(@PathVariable Long id, Model model){
         RecruitResponseDto dto = recruitService.findById(id);
         model.addAttribute("recruit", dto);
-
         return "recruit-update";
     }
 }
