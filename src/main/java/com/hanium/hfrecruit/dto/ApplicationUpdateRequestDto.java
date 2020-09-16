@@ -11,12 +11,14 @@ public class ApplicationUpdateRequestDto {
     private String q1Comment;
     private String q2Comment;
     private String q3Comment;
+    private Integer applied;
 
 
     @Builder
-    public ApplicationUpdateRequestDto(String q1Comment, String q2Comment,String q3Comment){
+    public ApplicationUpdateRequestDto(String q1Comment, String q2Comment,String q3Comment, Integer applied){
         this.q1Comment = q1Comment;
         this.q2Comment = q2Comment;
         this.q3Comment = q3Comment;
+        this.applied = applied;
     }
 }

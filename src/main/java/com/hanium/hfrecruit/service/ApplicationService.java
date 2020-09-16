@@ -30,7 +30,7 @@ public class ApplicationService {
             return applicationRepository.save(dto.toEntity(user, recruit)).getApplicationId();
         }
         else{
-            application.update(dto.getQ1Comment(), dto.getQ2Comment(), dto.getQ3Comment());
+            application.update(dto.getQ1Comment(), dto.getQ2Comment(), dto.getQ3Comment(), dto.getApplied());
             return application.getApplicationId();
         }
     }
@@ -47,7 +47,7 @@ public class ApplicationService {
     public Long update(Long applicationId, ApplicationUpdateRequestDto requestDto) {
         Application application = applicationRepository.findByApplicationId(applicationId)
                 .orElseThrow(() -> new IllegalArgumentException("no such application"));
-        application.update(requestDto.getQ1Comment(), requestDto.getQ2Comment(), requestDto.getQ3Comment());
+        application.update(requestDto.getQ1Comment(), requestDto.getQ2Comment(), requestDto.getQ3Comment(), requestDto.getApplied());
 
         return applicationId;
     }

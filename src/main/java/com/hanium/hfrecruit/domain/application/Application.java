@@ -46,6 +46,8 @@ public class Application extends BaseTimeEntity {
 
     private Integer passOrFail;
 
+    private Integer applied;
+
     @ManyToOne
     @JoinColumn(name = "recruit_no")
     private Recruit recruit;
@@ -56,7 +58,7 @@ public class Application extends BaseTimeEntity {
 
     @Builder
     public Application(Integer bit, String q1Comment, String q2Comment, String q3Comment,
-                       Integer score, Integer passStage, Integer passOrFail,
+                       Integer score, Integer passStage, Integer passOrFail, Integer applied,
                        Recruit recruit, User user) {
         this.bit = bit;
         this.q1Comment = q1Comment;
@@ -65,14 +67,16 @@ public class Application extends BaseTimeEntity {
         this.score = score;
         this.passStage = passStage;
         this.passOrFail = passOrFail;
+        this.applied = applied;
         this.recruit = recruit;
         this.user = user;
     }
 
-    public void update(String q1Comment, String q2Comment, String q3Comment){
+    public void update(String q1Comment, String q2Comment, String q3Comment, Integer applied){
         this.q1Comment = q1Comment;
         this.q2Comment = q2Comment;
         this.q3Comment = q3Comment;
+        this.applied = applied;
     }
 
 }

@@ -21,11 +21,12 @@ public class ApplicationSaveRequestDto {
     private Integer score;
     private Integer passStage;
     private Integer passOrFail;
+    private Integer applied;
     private Recruit recruit;
     private User user;
 
     public ApplicationSaveRequestDto(Integer bit, String q1Comment, String q2Comment, String q3Comment,
-                                     Integer score, Integer passStage, Integer passOrFail,
+                                     Integer score, Integer passStage, Integer passOrFail, Integer applied,
                                      Recruit recruit, User user){
         this.bit = bit;
         this.q1Comment = q1Comment;
@@ -34,6 +35,7 @@ public class ApplicationSaveRequestDto {
         this.score = score;
         this.passStage = passStage;
         this.passOrFail = passOrFail;
+        this.applied = applied;
         this.recruit = recruit;
         this.user = user;
     }
@@ -47,6 +49,7 @@ public class ApplicationSaveRequestDto {
                 .score(score)
                 .passStage(passStage)
                 .passOrFail(passOrFail)
+                .applied(applied)
                 .recruit(recruit)
                 .user(user)
                 .build();

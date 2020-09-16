@@ -27,7 +27,8 @@ var main = {
             q3Comment : $("#q3Comment").val(),
             score : 0,
             passStage : 0,
-            passOrFail : 0
+            passOrFail : 0,
+            applied : 1
         };
         var recruitNo = $("#recruitNo").val()
         console.log(data)
@@ -54,7 +55,8 @@ var main = {
             q3Comment : $("#q3Comment").val(),
             score : 0,
             passStage : 0,
-            passOrFail : 0
+            passOrFail : 0,
+            applied : 0
         };
         var recruitNo = $("#recruitNo").val()
 
@@ -74,7 +76,8 @@ var main = {
         var data = {
             q1Comment : $("#q1Comment").val(),
             q2Comment : $("#q2Comment").val(),
-            q3Comment : $("#q3Comment").val()
+            q3Comment : $("#q3Comment").val(),
+            applied : 0
         };
         var applicationId = $("#applicationId").val();
         console.log(data)
@@ -96,7 +99,8 @@ var main = {
         var data = {
             q1Comment : $("#q1Comment").val(),
             q2Comment : $("#q2Comment").val(),
-            q3Comment : $("#q3Comment").val()
+            q3Comment : $("#q3Comment").val(),
+            applied : 1
         };
         var applicationId = $("#applicationId").val();
         console.log(data)
