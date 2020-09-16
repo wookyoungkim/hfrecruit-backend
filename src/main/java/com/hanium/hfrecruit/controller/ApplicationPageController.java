@@ -2,6 +2,7 @@ package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
 import com.hanium.hfrecruit.domain.application.Application;
+import com.hanium.hfrecruit.domain.application.ApplicationQueryRepository;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,6 +35,7 @@ public class ApplicationPageController {
     private final ApplicationRepository applicationRepository;
     private final HttpSession httpSession;
     private final PersonalSpecService personalSpecService;
+    private final ApplicationQueryRepository applicationQueryRepository;
 
     @ApiOperation(value = "지원서 리스트 전체 조회 ")
     @GetMapping("/list")
@@ -42,6 +45,26 @@ public class ApplicationPageController {
         model.addAttribute("applications", applicationService.findAllDesc(loginUser));
         model.addAttribute("pageTitle", "내 지원서");
         return "applicationlist";
+    }
+    @ApiOperation(value = "지원서 리스트 전체 조회 ")
+    @GetMapping("/list/writing")
+    public String applicationWritingList(Model model, @SessionAttribute("user") SessionUser sessionUser){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        List<Application> applications = applicationQueryRepository.findWritingApplication(loginUser.getUserNo());
+        model.addAttribute("applications", applications);
+        model.addAttribute("pageTitle", "작성중인 지원서");
+        return "application-list-writing";
+    }
+    @ApiOperation(value = "지원서 리스트 전체 조회 ")
+    @GetMapping("/list/active")
+    public String applicationActiveList(Model model, @SessionAttribute("user") SessionUser sessionUser){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        List<Application> applications = applicationQueryRepository.findActiveByRecruit(loginUser.getUserNo());
+        model.addAttribute("applications", applications);
+        model.addAttribute("pageTitle", "진행중인 지원서");
+        return "application-list-active";
     }
 
     @ApiOperation(value = "지원서 작성")
