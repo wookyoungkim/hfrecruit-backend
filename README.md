@@ -1,6 +1,20 @@
-## hf-recruit backend
+## hyperledger fabric 을 활용한 블록체인 기반 채용 평가 플랫폼
 
-springboot 2.x
+### 멘티
+조연우(팀장),김우경,최상현
 
-app start 한 뒤 react-app 으로!
+---
+#### dependencies
+- querydsl
+- mariaDB
+- swagger UI
+- oauth2 client
+- spring security
+- junit
+- mustache
+- lombok
+
+
+
+
 
