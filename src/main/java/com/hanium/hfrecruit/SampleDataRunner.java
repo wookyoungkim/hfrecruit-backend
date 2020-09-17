@@ -56,6 +56,7 @@ public class SampleDataRunner implements CommandLineRunner {
 
         CompanyInfo companyInfoSample = CompanyInfo.builder()
                 .companyEmail("company@naver.com")
+                .companyPage("http://naver.com")
                 .companyLogo("nothing")
                 .companyName("example_company")
                 .managerId(1)

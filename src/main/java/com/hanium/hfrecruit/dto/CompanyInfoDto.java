@@ -17,6 +17,7 @@ public class CompanyInfoDto {
     private Long companyNo;
     private String companyName;
     private String companyEmail;
+    private String companyPage;
     private Integer managerId;
     private String companyLogo;
     private List<CompanyUser> companyUsersList;
@@ -27,6 +28,7 @@ public class CompanyInfoDto {
         this.companyNo = entity.getCompanyNo();
         this.companyName = entity.getCompanyName();
         this.companyEmail = entity.getCompanyEmail();
+        this.companyPage = entity.getCompanyPage();
         this.managerId = entity.getManagerId();
         this.companyLogo = entity.getCompanyLogo();
         this.companyUsersList = entity.getCompanyUsersList();
@@ -38,6 +40,7 @@ public class CompanyInfoDto {
                 .companyNo(companyNo)
                 .companyName(companyName)
                 .companyEmail(companyEmail)
+                .companyPage(companyPage)
                 .managerId(managerId)
                 .companyLogo(companyLogo)
                 .companyUsersList(companyUsersList)

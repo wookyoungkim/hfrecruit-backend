@@ -20,11 +20,14 @@
                             <label for="companyEmail">기업이메일</label>
                             <input type="text" class="form-control" id="companyEmail" placeholder="이메일을 입력해주세요">
                         </div>
+                        <div class="form-group ml-1 mr-5 col-sm-3">
+                            <label for="companyPage">기업페이지</label>
+                            <input type="text" class="form-control" id="companyPage" placeholder="ex) http://@@@.com">
+                        </div>
                     </div>
                     <div class="form-row" style="margin-bottom: 5%">
                         <div class="form-group ml-1 mr-5 col-sm-5">
                             <label for="managerId">관리자이메일</label>
-
                             <select id="selectManager" class="form-control mb-2" id="managerId">
                                 {{#companyUser}}
                                     <option id="{{companyUserId}}">{{user.email}}</option>

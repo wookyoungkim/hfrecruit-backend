@@ -25,6 +25,9 @@ public class CompanyInfo {
     private String companyEmail;
 
     @Column(nullable = false)
+    private String companyPage;
+
+    @Column(nullable = false)
     private Integer managerId;
 
     @Column(nullable = false)
