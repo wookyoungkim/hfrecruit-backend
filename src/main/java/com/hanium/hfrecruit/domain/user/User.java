@@ -43,7 +43,7 @@ public class User {
     private String birth;
 
     @Column(nullable = true)
-    private Integer gender;
+    private String gender;
 
     @Column(nullable = true)
     private String militaryService;
@@ -65,7 +65,7 @@ public class User {
         this.role = role;
     }
 
-    public void update(String username, String birth, String address, String college, String highschool, String educationLevel, String militaryService, Integer gender){
+    public void update(String username, String birth, String address, String college, String highschool, String educationLevel, String militaryService, String gender){
         this.username = username;
         this.birth = birth;
         this.address = address;

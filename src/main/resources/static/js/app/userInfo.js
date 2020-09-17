@@ -25,7 +25,7 @@ var userInfo = {
     },
     save : function (){
         var check_count = document.getElementsByName("gender").length;
-        var gender = 0;
+        var gender = "";
         for (var i=0; i<check_count; i++) {
             if (document.getElementsByName("gender")[i].checked == true) {
                 gender = document.getElementsByName("gender")[i].value;
@@ -57,7 +57,7 @@ var userInfo = {
     },
     update : function () {
         var check_count = document.getElementsByName("gender").length;
-        var gender = 0;
+        var gender = "";
         for (var i=0; i<check_count; i++) {
             if (document.getElementsByName("gender")[i].checked == true) {
                 gender = document.getElementsByName("gender")[i].value;

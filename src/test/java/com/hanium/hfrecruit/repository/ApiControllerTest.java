@@ -42,7 +42,7 @@ public class ApiControllerTest {
         String expectedCollege = "hongik";
         String expectedEdu = "대졸";
         String expectedMil = "미필";
-        Integer expectedGender = 1;
+        String expectedGender = "여";
 
         UserUpdateRequestDto requestDto = UserUpdateRequestDto.builder()
                 .username(expectedUsername)

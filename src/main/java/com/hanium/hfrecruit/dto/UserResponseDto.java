@@ -17,7 +17,7 @@ public class UserResponseDto {
     private String educationLevel;
     private String highschool;
     private String birth;
-    private Integer gender;
+    private String gender;
 
     public UserResponseDto(User entity) {
         this.userNo = entity.getUserNo();

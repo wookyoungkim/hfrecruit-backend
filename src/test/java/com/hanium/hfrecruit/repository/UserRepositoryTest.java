@@ -29,7 +29,7 @@ public class UserRepositoryTest extends HfrecruitApplicationTests {
         user.setCollege("test3");
         user.setEmail("test3");
         user.setBirth("980903");
-        user.setGender(1);
+        user.setGender("여");
         user.setRole(role);
 
         User newUser = userRepository.save(user);
