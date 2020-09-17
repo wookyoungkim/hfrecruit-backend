@@ -17,8 +17,9 @@
 <!--            <input type="hidden" class="form-control" id="recruitNo" value={{recruit.recruitNo}} readonly>-->
 <!--        </div>-->
         <div>
-            <div class ="recruit-title" style="width:100%; background-color: lightskyblue; height:5rem">
+            <div class ="recruit-title" style="font-size: 1.5em; padding: 3% 3%  3%;">
                 {{recruit.recruitTitle}}
+                <hr style="margin:0">
             </div>
             <div style="margin: 1.5rem">
                 <div class="card shadow" style="margin: 1.25rem">
@@ -37,7 +38,7 @@
                             </div>
                             <div class="cols-4">
                                 <h6>주소</h6>
-                                <h4>{{#userProfile.address}}{{userProfile.address}}{{/userProfile.address}}
+                                <h4>{{userProfile.address}}
                                     {{^userProfile.address}}입력하지 않음{{/userProfile.address}}
                                 </h4>
                             </div>
@@ -45,17 +46,17 @@
                         <div class="row justify-content-md-between m-4">
                             <div class="cols-4">
                                 <h6>성별</h6>
-                                <h4>{{#userProfile.gender}}{{userProfile.gender}}{{/userProfile.gender}}
+                                <h4>{{userProfile.gender}}
                                     {{^userProfile.gender}}입력하지 않음{{/userProfile.gender}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>생일</h6>
-                                <h4>{{#userProfile.birth}}{{userProfile.birth}}{{/userProfile.birth}}
+                                <h4>{{userProfile.birth}}
                                     {{^userProfile.birth}}입력하지 않음{{/userProfile.birth}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>대학</h6>
-                                <h4>{{#userProfile.college}}{{userProfile.college}}{{/userProfile.college}}
+                                <h4>{{userProfile.college}}
                                     {{^userProfile.college}}입력하지 않음{{/userProfile.college}}</h4>
                             </div>
                         </div>
