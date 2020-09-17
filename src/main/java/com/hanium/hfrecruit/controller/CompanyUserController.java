@@ -12,6 +12,7 @@ import com.hanium.hfrecruit.dto.CompanyInfoDto;
 import com.hanium.hfrecruit.dto.CompanyUserDto;
 import com.hanium.hfrecruit.service.CompanyInfoService;
 import com.hanium.hfrecruit.service.CompanyUserService;
+import com.hanium.hfrecruit.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class CompanyUserController {
     private final CompanyInfoRepository companyInfoRepository;
     private final CompanyUserRepository companyUserRepository;
     private final UserRepository userRepository;
-    private final HttpSession httpSession;
+    private final UserService userService;
 
     @GetMapping("/companyInfo")
     public String companyInfo(Model model) {
@@ -50,6 +51,7 @@ public class CompanyUserController {
     public Long CompanyUserSave(@SessionAttribute("user") SessionUser sessionUser, @RequestBody CompanyUserDto companyUserDto, @PathVariable Long companyNo) {
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo(companyNo);
+        userService.updateRole(loginUser.getUserNo());
         return companyUserService.save(companyUserDto, companyInfo, loginUser);
     }
 
