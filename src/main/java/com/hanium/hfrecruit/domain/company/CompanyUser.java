@@ -22,6 +22,10 @@ public class CompanyUser {
     @Column(nullable = false)
     private Integer companyUserCode;
 
+    @OneToOne
+    @JoinColumn(name = "email")
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "company_no")
     private CompanyInfo companyInfo;

@@ -12,6 +12,9 @@ import com.hanium.hfrecruit.domain.spec.PersonalSpec;
 import com.hanium.hfrecruit.domain.spec.PersonalSpecRepository;
 import com.hanium.hfrecruit.domain.spec.Spec;
 import com.hanium.hfrecruit.domain.spec.SpecRepository;
+import com.hanium.hfrecruit.domain.user.Role;
+import com.hanium.hfrecruit.domain.user.User;
+import com.hanium.hfrecruit.domain.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +26,7 @@ public class SampleDataRunner implements CommandLineRunner {
 
     private final CompanyInfoRepository companyInfoRepository;
     private final CompanyUserRepository companyUserRepository;
+    private final UserRepository userRepository;
     private final RecruitRepository recruitRepository;
     private final ApplicationRepository applicationRepository;
     private final SpecRepository specRepository;
@@ -30,9 +34,10 @@ public class SampleDataRunner implements CommandLineRunner {
 
     @Autowired
     public SampleDataRunner(RecruitRepository recruitRepository, ApplicationRepository applicationRepository, SpecRepository specRepository, PersonalSpecRepository personalSpecRepository,
-                            CompanyInfoRepository companyInfoRepository, CompanyUserRepository companyUserRepository) {
+                            CompanyInfoRepository companyInfoRepository, CompanyUserRepository companyUserRepository, UserRepository userRepository) {
         this.companyInfoRepository = companyInfoRepository;
         this.companyUserRepository = companyUserRepository;
+        this.userRepository = userRepository;
         this.recruitRepository = recruitRepository;
         this.applicationRepository = applicationRepository;
         this.specRepository = specRepository;
@@ -42,17 +47,25 @@ public class SampleDataRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        User userSample = User.builder()
+                .email("dusdnWkd")
+                .name("dusdn")
+                .role(Role.COMPANYUSER)
+                .build();
+        userRepository.save(userSample);
+
         CompanyInfo companyInfoSample = CompanyInfo.builder()
                 .companyEmail("company@naver.com")
                 .companyLogo("nothing")
                 .companyName("example_company")
-                .managerId(1818)
+                .managerId(1)
                 .build();
         companyInfoRepository.save(companyInfoSample);
 
         CompanyUser companyUserSample = CompanyUser.builder()
                 .companyInfo(companyInfoSample)
                 .companyUserCode(2)
+                .user(userSample)
                 .build();
         companyUserRepository.save(companyUserSample);
 

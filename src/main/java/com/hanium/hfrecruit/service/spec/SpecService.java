@@ -22,14 +22,14 @@ public class SpecService {
     public List<SpecDto> findAll() {
         return specRepository.findAll().stream().map(SpecDto::new).collect(Collectors.toList());
     }
+
     public SpecDto findBySpecId(Long specId) {
         return new SpecDto(specRepository.findBySpecId(specId));
-}
+    }
 
-    public List<String> findAllBySpecId(List<PersonalSpecDto> personalSpecDtos){
+    public List<String> findAllBySpecId(List<PersonalSpecDto> personalSpecDtos) {
         List<String> specNames = new ArrayList<>();
-        for(int i = 0 ; i<personalSpecDtos.size(); i++)
-        {
+        for (int i = 0; i < personalSpecDtos.size(); i++) {
             specNames.add(specRepository.findBySpecId(personalSpecDtos.get(i).getSpec().getSpecId()).getSpecName());
         }
         return specNames;

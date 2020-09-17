@@ -3,6 +3,7 @@ package com.hanium.hfrecruit.controller;
 import com.hanium.hfrecruit.auth.dto.SessionUser;
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
+import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
@@ -26,17 +27,21 @@ public class CompanyUserController {
     private final CompanyUserService companyUserService;
     private final CompanyInfoService companyInfoService;
     private final CompanyInfoRepository companyInfoRepository;
+    private final CompanyUserRepository companyUserRepository;
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
     @GetMapping("/companyInfo")
-    public String companyInfo(){
+    public String companyInfo(Model model) {
+        model.addAttribute("companyInfo", companyInfoRepository.findAll());
+        model.addAttribute("companyUser", companyUserRepository.findAll());
         return "companyInfo";
     }
 
     @GetMapping("/companyUser")
     public String companyUser(Model model) {
         model.addAttribute("companyInfo", companyInfoRepository.findAll());
+        model.addAttribute("companyUser", companyUserRepository.findAll());
         return "companyUser";
     }
 
@@ -45,7 +50,7 @@ public class CompanyUserController {
     public Long CompanyUserSave(@SessionAttribute("user") SessionUser sessionUser, @RequestBody CompanyUserDto companyUserDto, @PathVariable Long companyNo) {
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo(companyNo);
-        return companyUserService.save(companyUserDto, companyInfo);
+        return companyUserService.save(companyUserDto, companyInfo, loginUser);
     }
 
     @ResponseBody
