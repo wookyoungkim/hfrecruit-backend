@@ -13,8 +13,9 @@
         $("#wrapper").toggleClass("toggled");
     });
     $(document).ready(function(){
-        $("#nav ul.menu li").click(function(){
-            $("ul",this).toggle("dropdown");
+        $("#nav ul.sub").hide();
+        $("#menu1").click(function(){
+            $("#hide_sidebar").slideToggle("toggled");
         });
     });
 </script>

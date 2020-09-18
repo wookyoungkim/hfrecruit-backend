@@ -16,39 +16,43 @@
                     </svg>
                 </a>
                 <a type="button" href="/mypage">이름{{!name}}</a>
-
+                <a class="haha" id="menu1" role="button" data-toggle="dropmenu" href="#" aria-haspopup="false" aria-expanded="true">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </a>
                 <div id="nav">
                     <ul class="menu">
                         <li class="dropdown">
-                            <a id="menu1" role="button" data-toggle="dropmenu" href="#" aria-haspopup="false" aria-expanded="true">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                </svg>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="menu1">
-                                <li><a id="btn-logoutbar" href="#">로그아웃</a></li>
+
+                            <ul class="sub" id="hide_sidebar">
+                                <li class="mt-lg-2"><a id="btn-logoutbar" href="#">로그아웃</a></li>
                                 <li><a href="/mypage">마이페이지</a></li>
                                 <li><a href="/profile">회원정보수정</a></li>
                                 <li><a href="#">회원탈퇴</a></li>
                             </ul>
+
                         </li>
                     </ul>
                 </div>
             </li>
         </div>
-        <li class="mt-lg-2">
-            <a href="/about"><i class="fas fa-sign"></i> 이용 안내</a>
-        </li>
-        <li>
-            <a href="/recruit"><i class="fas fa-table"></i> 채용 공고</a>
-        </li>
-        <li>
-            <a href="/application/list"><i class="fas fa-user-tie"></i> 지원서</a>
-        </li>
-        <li>
-            <a href="/specs"><i class="fas fa-user-graduate"></i> 스펙</a>
-        </li>
+        <div class = "tw_hf_side">
+            <li class="mt-lg-2">
+                <a href="/about"><i class="fas fa-sign"></i> 이용 안내</a>
+            </li>
+            <li>
+                <a href="/recruit"><i class="fas fa-table"></i> 채용 공고</a>
+            </li>
+            <li>
+                <a href="/application/list"><i class="fas fa-user-tie"></i> 지원서</a>
+            </li>
+            <li>
+                <a href="/specs"><i class="fas fa-user-graduate"></i> 스펙</a>
+            </li>
+        </div>
 
     </ul>
 </div>
 <!-- /#sidebar-wrapper -->
+
