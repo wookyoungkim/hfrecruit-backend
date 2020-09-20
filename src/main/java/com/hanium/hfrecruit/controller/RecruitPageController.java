@@ -52,15 +52,24 @@ public class RecruitPageController {
     @GetMapping("/recruit/save")
     public String recruitAdd(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
+        if(loginUser.getRole().equals(Role.USER)){
+            throw new IllegalArgumentException("권한이 없습니다.");
+        }
         model.addAttribute("pageTitle", "채용 공고 작성하기");
         return "recruit-add";
     }
 
     @GetMapping("/recruit/update/{id}")
-    public String recruitUpdate(@PathVariable Long id, Model model){
-        RecruitResponseDto dto = recruitService.findById(id);
-        model.addAttribute("recruit", dto);
-        model.addAttribute("pageTitle", dto.getRecruitTitle()+" 수정");
+    public String recruitUpdate(@PathVariable Long id, Model model, @SessionAttribute("user") SessionUser sessionUser){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
+        RecruitResponseDto recruitResponseDto = recruitService.findById(id);
+        if(companyUserRepository.findByCompanyUserEmail(loginUser.getEmail())
+                .getRecruits()
+                .stream().noneMatch(recruit -> recruit.getRecruitNo().equals(recruitResponseDto.getRecruitNo()))){
+            throw new IllegalArgumentException("권한이 없습니다.");
+        }
+        model.addAttribute("recruit", recruitResponseDto);
+        model.addAttribute("pageTitle", recruitResponseDto.getRecruitTitle()+" 수정");
         return "recruit-update";
     }
 }

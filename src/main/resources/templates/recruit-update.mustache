@@ -21,12 +21,13 @@
             <div class="form-group ml-1 mr-5 col-sm-5">
                 <label for="startDate">공고 시작일</label>
                 <input type="datetime-local" class="form-control" id="startDate"
-                       value="{{recruit.startDate}}">
+                       value="{{#formatting}}{{recruit.startDate}}{{/formatting}}">
             </div>
             <div class="form-group ml-1 mr-5 col-sm-5">
                 <label for="closedDate">공고 마감일</label>
                 <input type="datetime-local" class="form-control" id="closedDate"
-                       value="{{recruit.closedDate}}">
+                       value="{{#formatting}}{{recruit.startDate}}{{/formatting}}">
+                {{#formatting}}{{recruit.startDate}}{{/formatting}}
             </div>
         </div>
         <div class="form-group">
