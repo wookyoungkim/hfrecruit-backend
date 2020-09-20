@@ -34,13 +34,19 @@ public class CompanyUserController {
 
     @GetMapping("/companyInfo")
     public String companyInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         model.addAttribute("companyUser", loginUser.getEmail());
         return "companyInfo";
     }
 
     @GetMapping("/companyUser")
-    public String companyUser(Model model) {
+    public String companyUser(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         model.addAttribute("companyInfo", companyInfoRepository.findAll());
         model.addAttribute("companyUser", companyUserRepository.findAll());
         return "companyUser";

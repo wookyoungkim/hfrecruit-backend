@@ -30,7 +30,7 @@ public class MyPageController {
 
 
     @GetMapping("/mypage")
-    public String mypage(@SessionAttribute("user") SessionUser sessionUser, Model model){
+    public String mypage(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
@@ -39,19 +39,20 @@ public class MyPageController {
 
         model.addAttribute("pageTitle", "마이페이지");
         model.addAttribute("user", user);
+        model.addAttribute("sideUser", user);
         model.addAttribute("activeApplication", active);
         model.addAttribute("writingApplication", writing);
         return "userMypage";
     }
 
     @GetMapping("/profile")
-    public String profile(@SessionAttribute("user") SessionUser sessionUser, Model model){
+    public String profile(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
         model.addAttribute("user", user);
+        model.addAttribute("sideUser", user);
         model.addAttribute("pageTitle", "개인정보수정");
-
         return "profile";
     }
 
@@ -64,7 +65,9 @@ public class MyPageController {
     }
 
     @GetMapping("/evaluate")
-    public String evaluate(){
+    public String evaluate(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
         return "evaluationPage";
     }
 }

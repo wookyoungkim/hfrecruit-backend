@@ -20,8 +20,6 @@ public class SpecsPageController {
     private final SpecService specService;
     private final UserRepository userRepository;
 
-
-
     @Autowired
     public SpecsPageController(PersonalSpecService personalSpecService, SpecService specService,UserRepository userRepository) {
         this.personalSpecService = personalSpecService;
@@ -30,7 +28,10 @@ public class SpecsPageController {
     }
 
     @GetMapping("/specs")
-    public String index(Model model, @SessionAttribute("user") SessionUser sessionUser){
+    public String index(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );

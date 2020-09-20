@@ -29,13 +29,11 @@ public class OAuthController {
 
     @GetMapping({"", "/home"})
     public String home(Model model, @SessionAttribute("user") SessionUser sessionUser) {
-
         if(sessionUser != null) {
-            model.addAttribute("userName", sessionUser.getName());
+            model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
             model.addAttribute("pageTitle", "Home");
-
         }
-        return "home";
+       return "home";
     }
 
     @GetMapping("/login")
@@ -51,8 +49,9 @@ public class OAuthController {
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
            model.addAttribute("pageTitle", "추가 정보 입력");
-        }
-       return "userInfo";
+           model.addAttribute("sideUser", user);
+       }
+        return "userInfo";
     }
 
     @PutMapping("/userInfo/save")

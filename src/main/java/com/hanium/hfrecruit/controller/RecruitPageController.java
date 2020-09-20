@@ -32,7 +32,10 @@ public class RecruitPageController {
 
 
     @GetMapping("/recruit")
-    public String recruit(Model model, @SessionAttribute("user") SessionUser sessionUser){
+    public String recruit(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         model.addAttribute("recruit", recruitRepository.findAll());
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                    .orElseThrow(() -> new NoResultException("No user!"));
@@ -41,7 +44,10 @@ public class RecruitPageController {
     }
 
     @GetMapping("/recruit/{recruitNo}")
-    public String recruitDetail(@PathVariable Long recruitNo, Model model){
+    public String recruitDetail(@PathVariable Long recruitNo, Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("recruit", recruit);
@@ -50,7 +56,10 @@ public class RecruitPageController {
     }
 
     @GetMapping("/recruit/save")
-    public String recruitAdd(Model model, @SessionAttribute("user") SessionUser sessionUser){
+    public String recruitAdd(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         if(loginUser.getRole().equals(Role.USER)){
             throw new IllegalArgumentException("권한이 없습니다.");
@@ -60,7 +69,10 @@ public class RecruitPageController {
     }
 
     @GetMapping("/recruit/update/{id}")
-    public String recruitUpdate(@PathVariable Long id, Model model, @SessionAttribute("user") SessionUser sessionUser){
+    public String recruitUpdate(@PathVariable Long id, Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         RecruitResponseDto recruitResponseDto = recruitService.findById(id);
         if(companyUserRepository.findByCompanyUserEmail(loginUser.getEmail())
