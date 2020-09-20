@@ -10,7 +10,7 @@ var companyInfo = {
             companyName: $('#companyName').val(),
             companyEmail: $('#companyEmail').val(),
             companyPage: $('#companyPage').val(),
-            managerId: $('#selectManager option:selected').attr('id'),
+            managerId: $('#managerId').val(),
             companyLogo: $('#companyLogo').val()
         };
         var companyNo = $('#companyNo').val();
@@ -23,7 +23,7 @@ var companyInfo = {
             data: JSON.stringify(data)
         }).done(function (){
             alert('기업등록이 완료되었습니다.');
-            window.location.href = '/';
+            window.location.href = '/companyUser';
         }).fail(function (error){
             alert(JSON.stringify(error));
         });

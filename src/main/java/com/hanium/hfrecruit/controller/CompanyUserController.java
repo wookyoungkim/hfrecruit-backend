@@ -33,9 +33,9 @@ public class CompanyUserController {
     private final UserService userService;
 
     @GetMapping("/companyInfo")
-    public String companyInfo(Model model) {
-        model.addAttribute("companyInfo", companyInfoRepository.findAll());
-        model.addAttribute("companyUser", companyUserRepository.findAll());
+    public String companyInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
+        model.addAttribute("companyUser", loginUser.getEmail());
         return "companyInfo";
     }
 

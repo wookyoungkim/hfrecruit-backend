@@ -59,7 +59,7 @@ public class SampleDataRunner implements CommandLineRunner {
                 .companyPage("http://naver.com")
                 .companyLogo("nothing")
                 .companyName("example_company")
-                .managerId(1)
+                .managerId("dusdnWkd")
                 .build();
         companyInfoRepository.save(companyInfoSample);
 
