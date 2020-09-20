@@ -1,6 +1,9 @@
 var recruit = {
     init : function () {
         var _this = this;
+        $('#move-recruit-save').on('click', function (){
+            _this.check_role();
+        })
         $('#btn-save').on('click', function (){
             _this.save();
         });
@@ -13,7 +16,7 @@ var recruit = {
     },
     save : function (){
         var data = {
-            closedDate: $('#closedDate').val(),
+            closedDate: $('#closedDate').val().slice(0,19),
             question1: $('#question1').val(),
             question2: $('#question2').val(),
             question3: $('#question3').val(),
@@ -21,7 +24,7 @@ var recruit = {
             question5: $('#question5').val(),
             recruitContent: $('#recruitContent').val(),
             recruitTitle: $('#recruitTitle').val(),
-            startDate: $('#startDate').val()
+            startDate: $('#startDate').val().slice(0,19)
         };
         $.ajax({
             type: 'POST',
@@ -36,6 +39,16 @@ var recruit = {
             alert(JSON.stringify(error));
         });
     },
+    check_role : function(){
+        $.ajax({
+            type: 'GET',
+            url: '/recruit/save',
+            contentType: 'application/json; charset=utf-8'
+        }).fail(function(error){
+            alert('기업유저만 채용공고를 등록할 수 있습니다')
+            window.location.href = '/recruit';
+        });
+    },
     update : function () {
         var data = {
             closedDate: $('#closedDate').val(),
@@ -46,8 +59,14 @@ var recruit = {
             question5: $('#question5').val(),
             recruitContent: $('#recruitContent').val(),
             recruitTitle: $('#recruitTitle').val(),
-            startDate: $('#startDate').val()
+            startDate: $('#startDate').val(),
+            "formatting": function (){
+                return function(t, render){
+                    return render(t).substr(0,10)+'T'+render(t).substr(11,8);
+                }
+            }
         };
+        console.log(data);
         var recruitNo = $('#recruitNo').val();
         $.ajax({
             type: 'PUT',
@@ -59,7 +78,7 @@ var recruit = {
             alert('채용공고가 수정되었습니다.');
             window.location.href = '/recruit';
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert('입력 값이 옳지 않습니다. 다시 입력해주세요.');
         });
     },
     delete : function () {
