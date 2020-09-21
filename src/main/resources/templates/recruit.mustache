@@ -11,21 +11,34 @@
             <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Search</button>
         </form>
     </div>
-    <div id="jobs">
-        <ul class="list-group mx-sm-3 mb-2 justify-content-center shadow p-3 mb-5 bg-white rounded">
+    <div id="jobs" >
+        <div class="mx-sm-3 justify-content-center shadow p-3 mb-3 bg-white rounded">
+        <table class="table mb-0">
+            <thead>
+            <tr>
+                <th scope="col" class="text-center">번호</th>
+                <th scope="col" class="text-center">회사명</th>
+                <th scope="col" class="text-center">공고명</th>
+                <th scope="col" class="text-center">마감일</th>
+            </tr>
+            </thead>
+            <tbody>
             {{#recruit}}
-            <a href="recruit/{{recruitNo}}">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{{recruitNo}}</span>
-                        <span>{{companyInfo.companyName}}</span>
-                        <span>{{recruitTitle}}</span>
-                    <span class="badge badge-primary badge-pill">마감 기한 : {{closedDate}}</span>
-                </li>
-            </a>
+                <a href="recruit/{{recruitNo}}">
+                    <tr class="text-center">
+                        <th scope="row">{{recruitNo}}</th>
+                        <td>{{companyInfo.companyName}}</td>
+                        <td>{{recruitTitle}}</td>
+                        <td><span class="badge badge-pill badge-primary">마감 기한 : {{closedDate}}</span></td>
+                    </tr>
+                </a>
             {{/recruit}}
-        </ul>
+            </tbody>
+        </table>
+        </div>
         <div class="mx-sm-3 mb-2">
-            <a class="btn btn-info font-weight-bold" type="button" id="move-recruit-save" href="/recruit/save"><i class="fas fa-pencil-ruler"></i> 채용공고 작성하기</a>
+            <a class="btn btn-info font-weight-bold" type="button" id="move-recruit-save" href="/recruit/save"><i
+                    class="fas fa-pencil-ruler"></i> 채용공고 작성하기</a>
         </div>
     </div>
 </div>
