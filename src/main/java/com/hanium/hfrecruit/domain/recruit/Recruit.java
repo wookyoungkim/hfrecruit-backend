@@ -33,6 +33,7 @@ public class Recruit {
     @Column(nullable = false)
     private Timestamp closedDate;
 
+    @Column(nullable = false)
     private Integer closedBit;
 
     @Column(nullable = false)
