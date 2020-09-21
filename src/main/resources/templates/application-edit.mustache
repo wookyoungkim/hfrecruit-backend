@@ -59,17 +59,31 @@
                     </div>
                 </div>
 
-                <div class="specInfo mt-4 mb-5">
-                    <div >
-                        <h5>스펙 및 자격증 정보 </h5>
+                <div class="container card w-70 mt-lg-5">
+                    <div class="row justify-content-md-between card-header font-weight-bold" style="font-size: larger">
+                        <div class="col-3 text-center align-self-center">
+                            자격증 이름
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            만료일
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            점수
+                        </div>
                     </div>
-                    <div class="form-group mt-4 col-sm-5 mb-5">
-                        <select class="form-control show-tick">
-                            <option value="" selected disabled>스펙 가져오기 </option>
-                            <option>재학 </option>
-                            <option>졸업 </option>
-                        </select>
-                    </div>
+                    {{#mySpecs}}
+                        <div class="row justify-content-md-between card-body border-bottom" style="font-size: large">
+                            <div class="col-3 text-center align-self-center">
+                                {{spec.specName}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{authDate}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{score}}
+                            </div>
+                        </div>
+                    {{/mySpecs}}
                 </div>
 
                 <div class="answers mt-4" style="position:relative; overflow-y: scroll;">
