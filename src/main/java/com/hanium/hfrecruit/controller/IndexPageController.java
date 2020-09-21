@@ -35,6 +35,6 @@ public class IndexPageController {
         model.addAttribute("sideUser", loginUser);
 
         model.addAttribute("pageTitle", "평가");
-        return "evaluationPage";
+        return "evaluation";
     }
 }

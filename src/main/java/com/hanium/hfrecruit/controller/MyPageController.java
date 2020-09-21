@@ -1,13 +1,11 @@
 package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
-import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.application.ApplicationQueryRepository;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
 import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
 import com.hanium.hfrecruit.service.UserService;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -68,6 +65,6 @@ public class MyPageController {
     public String evaluate(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
-        return "evaluationPage";
+        return "evaluation";
     }
 }

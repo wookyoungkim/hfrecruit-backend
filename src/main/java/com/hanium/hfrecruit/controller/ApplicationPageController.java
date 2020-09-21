@@ -86,6 +86,7 @@ public class ApplicationPageController {
         model.addAttribute("pageTitle", "작성중인 지원서");
         return "application-list-writing";
     }
+
     @ApiOperation(value = "진행중인지원서 리스트 전체 조회 ")
     @GetMapping("/list/active")
     public String applicationActiveList(Model model, @SessionAttribute("user") SessionUser sessionUser){
@@ -155,5 +156,29 @@ public class ApplicationPageController {
         applicationService.delete(applicationId);
         return applicationId;
     }
+
+    @ApiOperation(value = "지원서 평가하기")
+    @GetMapping("/evaluate/{applicationId}")
+    public String evaluate(@PathVariable Long applicationId, Model model,@SessionAttribute("user") SessionUser sessionUser){
+        User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
+                () -> new IllegalArgumentException("finding userNo Failed!")
+        );
+        model.addAttribute("sideUser", user);
+
+        Application application = applicationRepository.findByApplicationId(applicationId).orElseThrow(
+                () -> new IllegalArgumentException("finding userNo Failed!")
+        );
+        User applicant = application.getUser();
+        Recruit recruit = application.getRecruit();
+
+        model.addAttribute("pageTitle", application.getRecruit().getRecruitTitle());
+        model.addAttribute("recruit", recruit);
+        model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
+        model.addAttribute("applicantProfile",applicant);
+        model.addAttribute("application", application);
+        return "evaluation";
+    }
+
+
 
 }
