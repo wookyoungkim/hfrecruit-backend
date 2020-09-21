@@ -50,6 +50,7 @@ public class SampleDataRunner implements CommandLineRunner {
         User userSample = User.builder()
                 .email("dusdnWkd")
                 .name("dusdn")
+                .userState(1)
                 .role(Role.COMPANYUSER)
                 .build();
         userRepository.save(userSample);

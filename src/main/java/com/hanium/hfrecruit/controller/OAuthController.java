@@ -62,6 +62,14 @@ public class OAuthController {
         return userService.update(loginUser.getUserNo(), requestDto);
     }
 
+    @PutMapping("/user/delete")
+    @ResponseBody
+    public Long withdrawal(@SessionAttribute("user") SessionUser sessionUser){
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        return userService.withdrawal(loginUser.getUserNo());
+    }
+
     @GetMapping("/loginFailure")
     public String loginFailure() {
         return "loginFailure";
