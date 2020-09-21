@@ -2,26 +2,22 @@ var userInfo = {
     init : function () {
         var _this = this;
         'use strict';
-        // window.addEventListener('load', function() {
-        //     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        //     var forms = document.getElementsByClassName('needs-validation');
-        //     // Loop over them and prevent submission
-        //     var validation = Array.prototype.filter.call(forms, function(form) {
-        //         form.addEventListener('submit', function(event) {
-        //             if (form.checkValidity() === false) {
-        //                 event.preventDefault();
-        //                 event.stopPropagation();
-        //             }
-        //             form.classList.add('was-validated');
-        //         }, false);
-        //     });
-        // }, false);
         $('#btn-userInfo-save').on('click', function (){
-            _this.save();
+            if(_this.check()===true) {
+                _this.save();
+            }
         });
         $('#btn-userInfo-update').on('click', function (){
             _this.update();
         });
+    },
+    check: function () {
+        if (document.getElementById("gridCheck").checked === false) {
+            alert('개인정보제공 동의가 필요합니다.');
+            return false;
+        }else{
+            return true;
+        }
     },
     save : function (){
         var check_count = document.getElementsByName("gender").length;
