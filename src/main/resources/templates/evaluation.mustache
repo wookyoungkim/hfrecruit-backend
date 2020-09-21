@@ -1,0 +1,146 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div style="margin:3%; border: #999999">
+            <div class="card shadow" style="margin: 1.25rem">
+                <div class="card-header">
+                    <h4 style="float: left">내 프로필</h4>
+                    <div class="row justify-content-md-end">
+                        <a class="btn btn-dark" href="/profile">수정하기</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-md-between m-4">
+                        <div class="cols-4">
+                            <h6>이름</h6>
+                            <h4>{{applicantProfile.username}}</h4>
+                        </div>
+                        <div class="cols-4">
+                            <h6>이메일</h6>
+                            <h4>{{applicantProfile.email}}</h4>
+                        </div>
+                        <div class="cols-4">
+                            <h6>주소</h6>
+                            <h4>{{applicantProfile.address}}
+                                {{^applicantProfile.address}}입력하지 않음{{/applicantProfile.address}}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-between m-4">
+                        <div class="cols-4">
+                            <h6>성별</h6>
+                            <h4>{{applicantProfile.gender}}
+                                {{^applicantProfile.gender}}입력하지 않음{{/applicantProfile.gender}}</h4>
+                        </div>
+                        <div class="cols-4">
+                            <h6>생일</h6>
+                            <h4>{{applicantProfile.birth}}
+                                {{^applicantProfile.birth}}입력하지 않음{{/applicantProfile.birth}}</h4>
+                        </div>
+                        <div class="cols-4">
+                            <h6>대학</h6>
+                            <h4>{{applicantProfile.college}}
+                                {{^applicantProfile.college}}입력하지 않음{{/applicantProfile.college}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- 스펙 리스트 보이기 -->
+            <div class="container card w-70 mt-lg-5 mb-5">
+                    <div class="row justify-content-md-between card-header font-weight-bold" style="font-size: larger">
+                        <div class="col-3 text-center align-self-center">
+                            자격증 이름
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            만료일
+                        </div>
+                        <div class="col-3 text-center align-self-center">
+                            점수
+                        </div>
+                    </div>
+                    {{#mySpecs}}
+                        <div class="row justify-content-md-between card-body border-bottom" style="font-size: large">
+                            <div class="col-3 text-center align-self-center">
+                                {{spec.specName}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{authDate}}
+                            </div>
+                            <div class="col-3 text-center align-self-center">
+                                {{score}}
+                            </div>
+                        </div>
+                    {{/mySpecs}}
+                </div>
+            <div class="mt-4" style="position:relative;">
+                    <div>
+                        <h5>답변 확인 </h5>
+                    </div>
+                    <div >
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="width: 100%">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#v-pills-q1" role="tab" aria-controls="pills-home" aria-selected="true">질문 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#v-pills-q2" role="tab" aria-controls="pills-profile" aria-selected="false">질문 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#v-pills-q3" role="tab" aria-controls="pills-contact" aria-selected="false">질문 3</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content " id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-q1" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <h4 id="list-item-2">질문 1</h4>
+                                <label for="q1Comment">{{recruit.question1}}</label>
+                                <textarea class="form-control mb-5" id="q1Comment" rows="15" readonly>>{{application.q1Comment}}</textarea>
+
+                                <label>답변1</label>
+                                <textarea class="form-control mb-5" id="eval1" rows="3"></textarea>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-q2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <h4 id="list-item-2">질문 2</h4>
+                                <label for="q2Comment">{{recruit.question2}}</label>
+                                <textarea class="form-control mb-5" id="q2Comment" rows="15" readonly>>{{application.q2Comment}}</textarea>
+
+                                <label>답변2</label>
+                                <textarea class="form-control mb-5" id="eval2" rows="3"></textarea>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-q3" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <h4 id="list-item-2">질문 3</h4>
+                                <label for="q3Comment">{{recruit.question2}}</label>
+                                <textarea class="form-control mb-5" id="q3Comment" rows="15" readonly>>{{application.q3Comment}}</textarea>
+
+                                <label>답변3</label>
+                                <textarea class="form-control mb-5" id="eval3" rows="3"></textarea>
+
+                            </div>
+                            <div>
+                                <label>합/불합 처리</label>
+                                <div>
+                                    <select class="col-md-4 custom-select" id="passOrFail">
+                                        <option>합격</option>
+                                        <option>불합격</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div >
+                                <a type="button" id="btn-application-evaluate" class="btn btn-warning" style="float: right;margin-bottom: 5%;" href="#">평가 등록하기 </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+
+
+{{>layout/footer}}
