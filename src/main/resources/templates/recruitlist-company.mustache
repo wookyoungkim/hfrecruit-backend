@@ -1,0 +1,32 @@
+{{>layout/header}}
+
+<div id="wrapper">
+
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+
+    <div id="job-finder" class="contain-m">
+        <form class="form-inline justify-content-center mt-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Search</button>
+        </form>
+    </div>
+    <div id="jobs">
+        <ul class="list-group mx-sm-3 mb-2 justify-content-center shadow p-3 mb-5 bg-white rounded">
+            {{#recruits}}
+                <a href="/application/list/{{recruitNo}}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{recruitNo}}</span>
+                        <span>{{companyInfo.companyName}}</span>
+                        <span>{{recruitTitle}}</span>
+                        <span class="badge badge-primary badge-pill">마감 기한 : {{closedDate}}</span>
+                    </li>
+                </a>
+            {{/recruits}}
+        </ul>
+        <div class="mx-sm-3 mb-2">
+            <a class="btn btn-info font-weight-bold" type="button" id="move-recruit-save" href="/recruit/save"><i class="fas fa-pencil-ruler"></i> 채용공고 작성하기</a>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

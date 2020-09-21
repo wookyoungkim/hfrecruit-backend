@@ -17,6 +17,8 @@ public interface RecruitRepository extends JpaRepository <Recruit,Long> {
     @Query("SELECT p FROM Recruit p ORDER BY p.id")
     List<Recruit> findAll();
 
+    List<Recruit> findAllByCompanyInfo(CompanyInfo companyInfo);
+
     Optional<Recruit> findByRecruitNo(Long RecruitNo);
 
     Recruit getOne(Long aLong);
