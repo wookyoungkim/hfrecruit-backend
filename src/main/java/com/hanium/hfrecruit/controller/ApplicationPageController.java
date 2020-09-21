@@ -20,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,7 +45,7 @@ public class ApplicationPageController {
         model.addAttribute("pageTitle", "내 지원서");
         return "applicationlist";
     }
-    @ApiOperation(value = "지원서 리스트 전체 조회 ")
+    @ApiOperation(value = "작성중인 지원서 리스트 전체 조회 ")
     @GetMapping("/list/writing")
     public String applicationWritingList(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
@@ -57,7 +56,7 @@ public class ApplicationPageController {
         model.addAttribute("pageTitle", "작성중인 지원서");
         return "application-list-writing";
     }
-    @ApiOperation(value = "지원서 리스트 전체 조회 ")
+    @ApiOperation(value = "진행중인지원서 리스트 전체 조회 ")
     @GetMapping("/list/active")
     public String applicationActiveList(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
@@ -69,7 +68,7 @@ public class ApplicationPageController {
         return "application-list-active";
     }
 
-    @ApiOperation(value = "지원서 작성")
+    @ApiOperation(value = "지원서 작성하기")
     @GetMapping("/apply/{recruitNo}")
     public String apply(@PathVariable Long recruitNo, Model model,
                         @SessionAttribute("user") SessionUser sessionUser){
@@ -83,7 +82,7 @@ public class ApplicationPageController {
         model.addAttribute("mySpecs",personalSpecService.findAllSpecByUserNo(user.getUserNo()));
         model.addAttribute("pageTitle", "지원서 작성하기");
         model.addAttribute("userProfile",user);
-        return "apply";
+        return "application-apply";
     }
 
     @ApiOperation(value = "지원서 작성 제출")
@@ -109,7 +108,7 @@ public class ApplicationPageController {
         model.addAttribute("application", application);
         model.addAttribute("recruit", recruit);
         model.addAttribute("pageTitle", "지원서 수정하기");
-        return "editApplication";
+        return "application-edit";
     }
 
     @ApiOperation(value = "지원서 수정 제출")
