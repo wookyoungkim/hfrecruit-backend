@@ -7,10 +7,11 @@
     <div id="page-content-wrapper">
         <div style="margin:3%; border: #999999">
             <div class="card shadow" style="margin: 1.25rem">
+                <input type="hidden" class="form-control" id="applicationId" value={{application.applicationId}} readonly>
+                <input type="hidden" class="form-control" id="recruitNo" value={{recruit.recruitNo}} readonly>
                 <div class="card-header">
-                    <h4 style="float: left">내 프로필</h4>
+                    <h4 style="float: left">지원자 정보</h4>
                     <div class="row justify-content-md-end">
-                        <a class="btn btn-dark" href="/profile">수정하기</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -99,7 +100,7 @@
                                 <textarea class="form-control mb-5" id="q1Comment" rows="15" readonly>>{{application.q1Comment}}</textarea>
 
                                 <label>답변1</label>
-                                <textarea class="form-control mb-5" id="eval1" rows="3"></textarea>
+                                <textarea class="form-control mb-5" id="q1Feedback" rows="3"></textarea>
                             </div>
                             <div class="tab-pane fade" id="v-pills-q2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <h4 id="list-item-2">질문 2</h4>
@@ -107,7 +108,7 @@
                                 <textarea class="form-control mb-5" id="q2Comment" rows="15" readonly>>{{application.q2Comment}}</textarea>
 
                                 <label>답변2</label>
-                                <textarea class="form-control mb-5" id="eval2" rows="3"></textarea>
+                                <textarea class="form-control mb-5" id="q2Feedback" rows="3"></textarea>
                             </div>
                             <div class="tab-pane fade" id="v-pills-q3" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <h4 id="list-item-2">질문 3</h4>
@@ -115,7 +116,7 @@
                                 <textarea class="form-control mb-5" id="q3Comment" rows="15" readonly>>{{application.q3Comment}}</textarea>
 
                                 <label>답변3</label>
-                                <textarea class="form-control mb-5" id="eval3" rows="3"></textarea>
+                                <textarea class="form-control mb-5" id="q3Feedback" rows="3"></textarea>
 
                             </div>
                             <div>

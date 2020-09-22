@@ -4,10 +4,7 @@ import com.hanium.hfrecruit.domain.application.Application;
 import com.hanium.hfrecruit.domain.application.ApplicationRepository;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
-import com.hanium.hfrecruit.dto.ApplicationListResponseDto;
-import com.hanium.hfrecruit.dto.ApplicationSaveRequestDto;
-import com.hanium.hfrecruit.dto.ApplicationUpdateRequestDto;
-import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
+import com.hanium.hfrecruit.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,5 +54,15 @@ public class ApplicationService {
         Application application = applicationRepository.findByApplicationId(applicationId)
                 .orElseThrow(() -> new IllegalArgumentException("no such application"));
         applicationRepository.delete(application);
+    }
+
+    @Transactional
+    public Long evaluate(Long applicationId, EvaluationSaveRequestDto requestDto) {
+        Application application = applicationRepository.findByApplicationId(applicationId)
+                .orElseThrow(() -> new IllegalArgumentException("no such application"));
+        application.evaluate(requestDto.getBit(), requestDto.getQ1Feedback(), requestDto.getQ2Feedback(), requestDto.getQ3Feedback(),
+                requestDto.getScore(), requestDto.getPassStage(), requestDto.getPassOrFail());
+
+        return applicationId;
     }
 }

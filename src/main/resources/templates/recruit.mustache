@@ -25,7 +25,8 @@
             <tbody>
             {{#recruit}}
                 <a href="recruit/{{recruitNo}}">
-                    <tr class="text-center">
+                    <tr class="text-center" style = "cursor:pointer;" onClick = "location.href='recruit/{{recruitNo}}'"
+                        onMouseOver = " window.status = 'recruit/{{recruitNo}}' " onMouseOut = " window.status = '' ">
                         <th scope="row">{{recruitNo}}</th>
                         <td>{{companyInfo.companyName}}</td>
                         <td>{{recruitTitle}}</td>
