@@ -20,6 +20,7 @@
                 <th scope="col" class="text-center">회사명</th>
                 <th scope="col" class="text-center">공고명</th>
                 <th scope="col" class="text-center">마감일</th>
+                <th scope="col" class="text-center">남은시간</th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                         <td>{{companyInfo.companyName}}</td>
                         <td>{{recruitTitle}}</td>
                         <td><span class="badge badge-pill badge-primary">마감 기한 : {{closedDate}}</span></td>
+                        <td id="closeBit"><span class="badge badge-pill badge-danger">{{closedBit}}</span></td>
                     </tr>
             {{/recruit}}
             </tbody>

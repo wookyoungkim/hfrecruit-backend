@@ -48,7 +48,15 @@ public class RecruitPageController {
         for(Recruit recruit: closedRecruits){
             recruitService.updateBit(recruit.getRecruitNo());
         }
-        model.addAttribute("recruit", recruitRepository.findAll());
+        List<Recruit> allRecruits = recruitRepository.findAll();
+//        for(Recruit recruit : allRecruits){
+//            if(recruit.getClosedBit()==1){
+//                model.addAttribute("remain", "마감");
+//            }else{
+//                model.addAttribute("remain", "진행중");
+//            }
+//        }
+        model.addAttribute("recruit", allRecruits);
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
     }

@@ -1,10 +1,7 @@
 var recruit = {
     init : function () {
         var _this = this;
-        var timeZoneOffset = new Date().getTimezoneOffset()*60000;
-    //    let today = new Date(Date.now()-timeZoneOffset);
-  //      console.log(today.toISOString().slice(0,16));
-//        _this.check_time();
+        _this.closeChecker();
         $('#move-recruit-save').on('click', function (){
             _this.check_role();
         });
@@ -12,26 +9,37 @@ var recruit = {
             _this.check_writer();
         });
         $('#btn-save').on('click', function (){
-            _this.save();
+            if(_this.check_time()) {
+                _this.save();
+            }
         });
         $('#btn-update').on('click', function (){
-            _this.update();
+            if(_this.check_time()) {
+                _this.update();
+            }
         });
         $('#btn-delete').on('click', function (){
             _this.delete();
         });
     },
-    table : function (data){
-        var table = document.getElementById('')
-        for (var i=0;i<data.length;i++){
-            i++;
-            table.innerHTML += i;
+    closeChecker : function (){
+        if($('#closeBit').val()===1){
+            document.getElementById("closeBit").value = "마감";
+        }else {
+            document.getElementById("closeBit").value = "진행중";
         }
     },
+    check_time : function (){
+        var start = $('#startDate').val();
+        var close = $('#closedDate').val();
+        if(start>close) {
+            alert('시간 입력이 올바르지 않습니다.');
+            return false;
+        }else return true;
+    },
     save : function (){
-        var timeZoneOffset = new Date().getTimezoneOffset()*60000;
         var data = {
-            closedDate: $('#closedDate').val()-timeZoneOffset,
+            closedDate: $('#closedDate').val(),
             question1: $('#question1').val(),
             question2: $('#question2').val(),
             question3: $('#question3').val(),
