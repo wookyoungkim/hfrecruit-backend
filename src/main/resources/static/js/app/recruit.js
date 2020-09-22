@@ -1,15 +1,41 @@
 var recruit = {
     init : function () {
         var _this = this;
+        _this.closeChecker();
+        $('#move-recruit-save').on('click', function (){
+            _this.check_role();
+        });
+        $('#move-recruit-update').on('click', function (){
+            _this.check_writer();
+        });
         $('#btn-save').on('click', function (){
-            _this.save();
+            if(_this.check_time()) {
+                _this.save();
+            }
         });
         $('#btn-update').on('click', function (){
-            _this.update();
+            if(_this.check_time()) {
+                _this.update();
+            }
         });
         $('#btn-delete').on('click', function (){
             _this.delete();
         });
+    },
+    closeChecker : function (){
+        if($('#closeBit').val()===1){
+            document.getElementById("closeBit").value = "마감";
+        }else {
+            document.getElementById("closeBit").value = "진행중";
+        }
+    },
+    check_time : function (){
+        var start = $('#startDate').val();
+        var close = $('#closedDate').val();
+        if(start>close) {
+            alert('시간 입력이 올바르지 않습니다.');
+            return false;
+        }else return true;
     },
     save : function (){
         var data = {
@@ -36,6 +62,27 @@ var recruit = {
             alert(JSON.stringify(error));
         });
     },
+    check_role : function(){
+        $.ajax({
+            type: 'GET',
+            url: '/recruit/save',
+            contentType: 'application/json; charset=utf-8'
+        }).fail(function(error){
+            alert('기업유저만 채용공고를 등록할 수 있습니다')
+            window.location.href = '/recruit';
+        });
+    },
+    check_writer : function(){
+        var id = $('#recruitNo').val();
+        $.ajax({
+            type: 'GET',
+            url: '/recruit/update/'+id,
+            contentType: 'application/json; charset=utf-8'
+        }).fail(function(error){
+            alert('작성자만 수정할 수 있습니다.')
+            window.location.href = '/recruit/'+id;
+        });
+    },
     update : function () {
         var data = {
             closedDate: $('#closedDate').val(),
@@ -59,22 +106,26 @@ var recruit = {
             alert('채용공고가 수정되었습니다.');
             window.location.href = '/recruit';
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert('입력 값이 옳지 않습니다. 다시 입력해주세요.');
         });
     },
-    delete : function () {
-        var recruitNo = $('#recruitNo').val();
-
+    "formatting": function () {
+        return function (rawDate){
+            return rawDate.toISOString();
+        }
+    },
+    delete : function(){
+        var id = $('#recruitNo').val();
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/recruit/delete/'+recruitNo,
-            dataType: 'json',
-            contentType: 'application/json; charset-utf-8'
+            url: '/api/v1/recruit/delete/'+id,
+            contentType: 'application/json; charset=utf-8'
         }).done(function (){
             alert('채용공고가 삭제되었습니다.');
             window.location.href = '/recruit';
-        }).fail(function (error){
-            alert(JSON.stringify(error));
+        }).fail(function(error){
+            alert('작성자만 삭제할 수 있습니다.')
+            window.location.href = '/recruit/'+id;
         });
     }
 };

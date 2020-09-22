@@ -16,14 +16,15 @@ public class CompanyUserDto {
     private Long companyUserId;
     private Integer companyUserCode;
     private CompanyInfo companyInfo;
-    private User user;
+    private String companyUserEmail;
 
     @Builder
     public CompanyUserDto(CompanyUser entity){
         this.companyUserId = entity.getCompanyUserId();
         this.companyUserCode = entity.getCompanyUserCode();
         this.companyInfo = entity.getCompanyInfo();
-        this.user = entity.getUser();
+        this.companyUserEmail = entity.getCompanyUserEmail();
+//        this.user = entity.getUser();
     }
 
     public CompanyUser toEntity(CompanyInfo companyInfo, User user){
@@ -31,7 +32,8 @@ public class CompanyUserDto {
                 .companyUserId(companyUserId)
                 .companyUserCode(companyUserCode)
                 .companyInfo(companyInfo)
-                .user(user)
+                .companyUserEmail(user.getEmail())
+                //.user(user)
                 .build();
     }
 }

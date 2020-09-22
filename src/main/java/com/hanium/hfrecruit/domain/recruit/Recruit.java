@@ -33,6 +33,7 @@ public class Recruit {
     @Column(nullable = false)
     private Timestamp closedDate;
 
+    @Column(nullable = false)
     private Integer closedBit;
 
     @Column(nullable = false)
@@ -75,6 +76,10 @@ public class Recruit {
         this.question3 = question3;
         this.question4 = question4;
         this.question5 = question5;
+    }
+
+    public void updateBit(int closedBit) {
+        this.closedBit = closedBit;
     }
 
 //    @Override

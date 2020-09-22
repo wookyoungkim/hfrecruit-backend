@@ -21,19 +21,15 @@ import java.util.HashMap;
 @Controller
 @RequiredArgsConstructor
 public class OAuthController {
-    private final HttpSession httpSession;
-
     @Autowired
     private UserService userService;
     private final UserRepository userRepository;
 
     @GetMapping({"", "/home"})
     public String home(Model model, @SessionAttribute("user") SessionUser sessionUser) {
-
-        if(sessionUser != null) {
-            model.addAttribute("userName", sessionUser.getName());
+        if (sessionUser != null) {
+            model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
             model.addAttribute("pageTitle", "Home");
-
         }
         return "home";
     }
@@ -43,24 +39,40 @@ public class OAuthController {
         return "login";
     }
 
-    @GetMapping("/userInfo")
+    @GetMapping("/loginsuccessed")
     public String userInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
-       if(sessionUser != null){
-            User user = userRepository.findByEmail(sessionUser.getEmail())
-                    .orElseThrow(() -> new NoResultException("erroror"));
+        User user = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("erroror"));
+        model.addAttribute("sideUser", user);
+        if (user.getUserState() == 0){
+            return "login-failure";
+        }
+        if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null && user.getMilitaryService() == null) {
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
-           model.addAttribute("pageTitle", "추가 정보 입력");
+            model.addAttribute("pageTitle", "추가 정보 입력");
+            return "userinfo";
+
         }
-       return "userInfo";
+        else {
+            return "/";
+        }
     }
 
     @PutMapping("/userInfo/save")
     @ResponseBody
-    public Long update(@SessionAttribute("user") SessionUser sessionUser, @RequestBody UserUpdateRequestDto requestDto){
+    public Long update(@SessionAttribute("user") SessionUser sessionUser, @RequestBody UserUpdateRequestDto requestDto) {
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
         return userService.update(loginUser.getUserNo(), requestDto);
+    }
+
+    @PutMapping("/user/delete")
+    @ResponseBody
+    public Long withdrawal(@SessionAttribute("user") SessionUser sessionUser) {
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("error"));
+        return userService.withdrawal(loginUser.getUserNo());
     }
 
     @GetMapping("/loginFailure")

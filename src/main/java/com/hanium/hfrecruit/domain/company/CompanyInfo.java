@@ -28,7 +28,7 @@ public class CompanyInfo {
     private String companyPage;
 
     @Column(nullable = false)
-    private Integer managerId;
+    private String managerId;
 
     @Column(nullable = false)
     private String companyLogo;

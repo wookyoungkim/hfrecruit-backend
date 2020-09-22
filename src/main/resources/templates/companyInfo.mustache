@@ -10,7 +10,7 @@
     <div>
         <div style="margin:3%; border: #999999">
             <div class="companyInfo mb-5">
-                <form class="justify-content-center mt-4">
+                <form class="needs-validation" style="margin-top: 4%" novalidate>
                     <div class="form-row" style="margin-bottom: 5%">
                         <div class="form-group ml-1 mr-5 col-sm-3">
                             <label for="companyName">기업명</label>
@@ -28,11 +28,7 @@
                     <div class="form-row" style="margin-bottom: 5%">
                         <div class="form-group ml-1 mr-5 col-sm-5">
                             <label for="managerId">관리자이메일</label>
-                            <select id="selectManager" class="form-control mb-2" id="managerId">
-                                {{#companyUser}}
-                                    <option id="{{companyUserId}}">{{user.email}}</option>
-                                {{/companyUser}}
-                            </select>
+                            <input type="text" class="form-control ml-1" id="managerId" value="{{companyUser}}">
                         </div>
                         <div class="form-group ml-1 mr-5 col-sm-5">
                             <label for="companyLogo">기업로고</label>
@@ -42,8 +38,8 @@
                     </div>
                     <div class="form-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="personal-info" id="gridCheck">
                                 개인정보 제공에 동의합니다.
                             </label>
                         </div>
@@ -56,4 +52,5 @@
         </div>
     </div>
 </div>
+
 {{>layout/footer}}

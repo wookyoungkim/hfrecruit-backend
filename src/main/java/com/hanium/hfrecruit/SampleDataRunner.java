@@ -50,23 +50,31 @@ public class SampleDataRunner implements CommandLineRunner {
         User userSample = User.builder()
                 .email("dusdnWkd")
                 .name("dusdn")
+                .userState(1)
                 .role(Role.COMPANYUSER)
                 .build();
         userRepository.save(userSample);
+        User userSample2 = User.builder()
+                .email("dnrud")
+                .name("dnruddl")
+                .userState(1)
+                .role(Role.USER)
+                .build();
+        userRepository.save(userSample2);
 
         CompanyInfo companyInfoSample = CompanyInfo.builder()
                 .companyEmail("company@naver.com")
                 .companyPage("http://naver.com")
                 .companyLogo("nothing")
                 .companyName("example_company")
-                .managerId(1)
+                .managerId("dusdnWkd")
                 .build();
         companyInfoRepository.save(companyInfoSample);
 
         CompanyUser companyUserSample = CompanyUser.builder()
                 .companyInfo(companyInfoSample)
                 .companyUserCode(2)
-                .user(userSample)
+                .companyUserEmail(userSample.getEmail())
                 .build();
         companyUserRepository.save(companyUserSample);
 
@@ -83,14 +91,24 @@ public class SampleDataRunner implements CommandLineRunner {
                 .companyUser(companyUserSample)
                 .build();
         recruitRepository.save(recruitSample);
-//        Application applicationSample = Application.builder()
-//                .q1Comment("저는 잘할자신이 있어요")
-//                .q2Comment("스펙좋아요")
-//                .q3Comment("꼭 뽑아주세요")
-//                .bit(0)
-//                .recruit(recruitSample)
-//                .build();
-//        applicationRepository.save(applicationSample);
+
+        Application applicationSample = Application.builder()
+                .q1Comment("저는 잘할자신이 있어요")
+                .q2Comment("스펙좋아요")
+                .q3Comment("꼭 뽑아주세요")
+                .q1Feedback("굿")
+                .q2Feedback("입")
+                .q3Feedback("니다")
+                .bit(0)
+                .passStage(0)
+                .score(0)
+                .passOrFail(0)
+                .applied(1)
+                .recruit(recruitSample)
+                .user(userSample2)
+                .build();
+        applicationRepository.save(applicationSample);
+
         Spec specSample1 = Spec.builder()
                 .specName("TOEIC")
                 .institution("ACTFL")

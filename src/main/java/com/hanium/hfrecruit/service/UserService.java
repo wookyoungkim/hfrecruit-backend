@@ -42,4 +42,15 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("erroror"));
         return new UserResponseDto(entity);
     }
+
+    @Transactional
+    public Long withdrawal(Long userNo) {
+        User user = userRepository.findByUserNo(userNo)
+                .orElseThrow(() -> new IllegalArgumentException("erroror"));
+        System.out.println(user.getUsername() + user.getUserState());
+        user.withdrawal(0);
+        System.out.println(user.getUsername() + user.getUserState());
+
+        return userNo;
+    }
 }

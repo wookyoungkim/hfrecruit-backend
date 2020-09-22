@@ -51,6 +51,9 @@ public class User {
     @Column(nullable = true)
     private String educationLevel;
 
+    @Column(nullable = false)
+    private Integer userState;
+
     @Enumerated(EnumType.STRING) // (1)
     @Column(nullable = false)
     private Role role;
@@ -59,9 +62,10 @@ public class User {
     private List<PersonalSpec> personalSpecs;
 
     @Builder
-    public User(String name, String email, Role role) {
+    public User(String name, String email, Integer userState,  Role role) {
         this.username = name;
         this.email = email;
+        this.userState = userState;
         this.role = role;
     }
 
@@ -79,6 +83,8 @@ public class User {
     public void updateRole(Role role){
         this.role = role;
     }
+
+    public void withdrawal(Integer userState){ this.userState = userState; }
 
     public String getRoleKey(){
         return this.role.getKey();
