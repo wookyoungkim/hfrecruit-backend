@@ -30,13 +30,14 @@
             <div class="form-row">
                 <div class="form-group ml-1 mr-5 col-sm-3">
                     <label for="gender">성별</label>
+                    <input type="hidden" class="form-control" id="userGender" value={{user.gender}} readonly>
                     <div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="gender" id="Mgender" value="남">
+                            <input class="form-check-input" type="checkbox" name="gender" id="gender" value="남">
                             <label class="form-check-label" for="inlineCheckbox1">남</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="gender" id="Fgender" value="여">
+                            <input class="form-check-input" type="checkbox" name="gender" id="gender" value="여">
                             <label class="form-check-label" for="inlineCheckbox2">여</label>
                         </div>
                     </div>
@@ -72,3 +73,14 @@
 
 
 {{>layout/footer}}
+<script>
+    var gender = $('#userGender').val();
+    console.log(gender);
+    $('input:checkbox[name="gender"]').each(function() {
+
+        if(this.value == gender){
+            this.checked = true;
+        }
+    });
+
+</script>
