@@ -48,7 +48,7 @@ public class ApplicationPageController {
         if(loginUser.getRole() == Role.USER){
             model.addAttribute("applications", applicationService.findAllDesc(loginUser));
             model.addAttribute("pageTitle", "내 지원서");
-            return "applicationlist";
+            return "application-list";
         }
         else{
             CompanyUser companyUser = companyUserRepository.findByCompanyUserEmail(loginUser.getEmail());
@@ -56,6 +56,19 @@ public class ApplicationPageController {
             model.addAttribute("pageTitle", "우리 회사 전체 공고");
             return "recruitlist-company";
         }
+    }
+
+    @ApiOperation(value = "내가 쓴 지원서 검색")
+    @GetMapping("/search")
+    public String searchRecruit(@RequestParam String keyword, Model model, @SessionAttribute("user") SessionUser sessionUser){
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
+        List<Application> applicationList = applicationRepository.findAllByRecruitCompanyInfoCompanyNameOrRecruitRecruitTitleContaining(sideUser.getUserNo(), keyword);
+        System.out.println(applicationList);
+        model.addAttribute("applications", applicationList);
+        model.addAttribute("pageTitle", "' "+keyword+" '"+"로 검색한 지원서");
+        return "application-list";
     }
 
     @ApiOperation(value = "작성중인 지원서 리스트 전체 조회 ")
