@@ -5,6 +5,8 @@ import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
 import com.hanium.hfrecruit.domain.company.CompanyUser;
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
+import com.hanium.hfrecruit.domain.user.Role;
+import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,13 @@ public class RecruitService {
         Recruit recruit = recruitRepository.findById(recruitNo)
                 .orElseThrow(()-> new IllegalArgumentException("공고가 없습니다. id="+recruitNo));
         recruitRepository.delete(recruit);
+    }
+
+    @Transactional
+    public void updateBit(Long recruitNo){
+        Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
+                .orElseThrow(()-> new IllegalArgumentException("공고가 없습니다. id="+recruitNo));
+        recruit.updateBit(1);
     }
 
     @Transactional(readOnly = true)

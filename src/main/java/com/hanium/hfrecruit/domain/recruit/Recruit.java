@@ -78,6 +78,10 @@ public class Recruit {
         this.question5 = question5;
     }
 
+    public void updateBit(int closedBit) {
+        this.closedBit = closedBit;
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Recruit{" +

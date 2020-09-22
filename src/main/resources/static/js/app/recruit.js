@@ -1,10 +1,10 @@
 var recruit = {
     init : function () {
         var _this = this;
-        // var timeZoneOffset = new Date().getTimezoneOffset()*60000;
-        // let today = new Date(Date.now()-timeZoneOffset);
-        // console.log(today.toISOString().slice(0,16));
-        // _this.check_time();
+        var timeZoneOffset = new Date().getTimezoneOffset()*60000;
+    //    let today = new Date(Date.now()-timeZoneOffset);
+  //      console.log(today.toISOString().slice(0,16));
+//        _this.check_time();
         $('#move-recruit-save').on('click', function (){
             _this.check_role();
         });
@@ -21,11 +21,6 @@ var recruit = {
             _this.delete();
         });
     },
-    // check_time : function (){
-    //     var table = document.getElementById('table_link')
-    //     for()
-    //
-    // }
     table : function (data){
         var table = document.getElementById('')
         for (var i=0;i<data.length;i++){
@@ -34,8 +29,9 @@ var recruit = {
         }
     },
     save : function (){
+        var timeZoneOffset = new Date().getTimezoneOffset()*60000;
         var data = {
-            closedDate: $('#closedDate').val(),
+            closedDate: $('#closedDate').val()-timeZoneOffset,
             question1: $('#question1').val(),
             question2: $('#question2').val(),
             question3: $('#question3').val(),

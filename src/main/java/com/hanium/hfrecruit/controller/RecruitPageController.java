@@ -19,7 +19,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -36,7 +40,14 @@ public class RecruitPageController {
     public String recruit(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
-
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> closedRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().before(Timestamp.valueOf(current)))
+                .collect(Collectors.toList());
+        for(Recruit recruit: closedRecruits){
+            recruitService.updateBit(recruit.getRecruitNo());
+        }
         model.addAttribute("recruit", recruitRepository.findAll());
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
