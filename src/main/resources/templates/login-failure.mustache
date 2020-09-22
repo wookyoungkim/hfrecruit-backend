@@ -1,0 +1,19 @@
+{{>layout/header}}
+
+<div id="wrapper">
+
+    {{>layout/sidebar}}
+
+    <div id="page-content-wrapper" style="text-align: center ">
+        <div style="margin-top:10%">
+            <img src="/images/notfound.png">
+            <h3>이미 탈퇴한 회원입니다.</h3>
+        </div>
+    </div>
+</div>
+
+<script language="JavaScript">
+    setTimeout("location.href='/logout'",3000);
+</script>
+
+{{>layout/footer}}

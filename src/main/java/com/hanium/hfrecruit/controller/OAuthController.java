@@ -44,11 +44,14 @@ public class OAuthController {
         User user = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("erroror"));
         model.addAttribute("sideUser", user);
+        if (user.getUserState() == 0){
+            return "login-failure";
+        }
         if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null && user.getMilitaryService() == null) {
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
             model.addAttribute("pageTitle", "추가 정보 입력");
-            return "userInfo";
+            return "userinfo";
 
         }
         else {
