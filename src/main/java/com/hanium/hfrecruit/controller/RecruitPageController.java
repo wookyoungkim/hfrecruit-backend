@@ -38,8 +38,6 @@ public class RecruitPageController {
         model.addAttribute("sideUser", sideUser);
 
         model.addAttribute("recruit", recruitRepository.findAll());
-        User loginUser = userRepository.findByEmail(sessionUser.getEmail())
-                   .orElseThrow(() -> new NoResultException("No user!"));
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
     }
@@ -71,9 +69,6 @@ public class RecruitPageController {
 
     @GetMapping("/recruit/update/{id}")
     public String recruitUpdate(@PathVariable Long id, Model model, @SessionAttribute("user") SessionUser sessionUser) {
-        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
-        model.addAttribute("sideUser", sideUser);
-
         User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
         RecruitResponseDto recruitResponseDto = recruitService.findById(id);
         if(companyUserRepository.findByCompanyUserEmail(loginUser.getEmail())
@@ -81,6 +76,9 @@ public class RecruitPageController {
                 .stream().noneMatch(recruit -> recruit.getRecruitNo().equals(recruitResponseDto.getRecruitNo()))){
             throw new IllegalArgumentException("권한이 없습니다.");
         }
+        model.addAttribute("sideUser", loginUser);
+        model.addAttribute("startDate", recruitResponseDto.getStartDate().toLocalDateTime());
+        model.addAttribute("closeDate", recruitResponseDto.getClosedDate().toLocalDateTime());
         model.addAttribute("recruit", recruitResponseDto);
         model.addAttribute("pageTitle", recruitResponseDto.getRecruitTitle()+" 수정");
         return "recruit-update";

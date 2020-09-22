@@ -1,6 +1,10 @@
 var recruit = {
     init : function () {
         var _this = this;
+        // var timeZoneOffset = new Date().getTimezoneOffset()*60000;
+        // let today = new Date(Date.now()-timeZoneOffset);
+        // console.log(today.toISOString().slice(0,16));
+        // _this.check_time();
         $('#move-recruit-save').on('click', function (){
             _this.check_role();
         });
@@ -17,9 +21,21 @@ var recruit = {
             _this.delete();
         });
     },
+    // check_time : function (){
+    //     var table = document.getElementById('table_link')
+    //     for()
+    //
+    // }
+    table : function (data){
+        var table = document.getElementById('')
+        for (var i=0;i<data.length;i++){
+            i++;
+            table.innerHTML += i;
+        }
+    },
     save : function (){
         var data = {
-            closedDate: $('#closedDate').val().slice(0,19),
+            closedDate: $('#closedDate').val(),
             question1: $('#question1').val(),
             question2: $('#question2').val(),
             question3: $('#question3').val(),
@@ -27,7 +43,7 @@ var recruit = {
             question5: $('#question5').val(),
             recruitContent: $('#recruitContent').val(),
             recruitTitle: $('#recruitTitle').val(),
-            startDate: $('#startDate').val().slice(0,19)
+            startDate: $('#startDate').val()
         };
         $.ajax({
             type: 'POST',
@@ -73,14 +89,8 @@ var recruit = {
             question5: $('#question5').val(),
             recruitContent: $('#recruitContent').val(),
             recruitTitle: $('#recruitTitle').val(),
-            startDate: $('#startDate').val(),
-            "formatting": function (){
-                return function(t, render){
-                    return render(t).substr(0,10)+'T'+render(t).substr(11,8);
-                }
-            }
+            startDate: $('#startDate').val()
         };
-        console.log(data);
         var recruitNo = $('#recruitNo').val();
         $.ajax({
             type: 'PUT',
@@ -94,6 +104,11 @@ var recruit = {
         }).fail(function (error) {
             alert('입력 값이 옳지 않습니다. 다시 입력해주세요.');
         });
+    },
+    "formatting": function () {
+        return function (rawDate){
+            return rawDate.toISOString();
+        }
     },
     delete : function(){
         var id = $('#recruitNo').val();
