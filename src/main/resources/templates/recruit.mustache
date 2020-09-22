@@ -6,8 +6,8 @@
     {{>layout/topnavbar}}
 
     <div id="job-finder" class="contain-m">
-        <form class="form-inline justify-content-center mt-2">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline justify-content-center mt-2" action="/recruit/search" method="GET">
+            <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="keyword">
             <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Search</button>
         </form>
     </div>

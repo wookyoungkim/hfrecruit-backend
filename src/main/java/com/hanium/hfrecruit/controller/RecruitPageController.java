@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -83,5 +84,17 @@ public class RecruitPageController {
         model.addAttribute("recruit", recruitResponseDto);
         model.addAttribute("pageTitle", recruitResponseDto.getRecruitTitle()+" 수정");
         return "recruit-update";
+    }
+
+    @GetMapping("/recruit/search")
+    public String searchRecruit(@RequestParam String keyword, Model model, @SessionAttribute("user") SessionUser sessionUser){
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+
+        List<Recruit> recruitList = recruitRepository.findAllByCompanyInfoCompanyNameOrRecruitContentOrRecruitTitleContaining(keyword);
+        System.out.println(recruitList);
+        model.addAttribute("recruit", recruitList);
+        model.addAttribute("pageTitle", "' "+keyword+" '"+"로 검색한 공고");
+        return "recruit";
     }
 }
