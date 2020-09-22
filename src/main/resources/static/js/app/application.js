@@ -28,7 +28,13 @@ var main = {
             score : 0,
             passStage : 0,
             passOrFail : 0,
-            applied : 1
+            applied : 1,
+            q1Feedback: "",
+            q2Feedback: "",
+            q3Feedback: "",
+            score: 0,
+            passStage: 0,
+            passOrFail: 0
         };
         var recruitNo = $("#recruitNo").val()
         console.log(data)
@@ -56,7 +62,13 @@ var main = {
             score : 0,
             passStage : 0,
             passOrFail : 0,
-            applied : 0
+            applied : 0,
+            q1Feedback: "",
+            q2Feedback: "",
+            q3Feedback: "",
+            score: 0,
+            passStage: 0,
+            passOrFail: 0
         };
         var recruitNo = $("#recruitNo").val()
 

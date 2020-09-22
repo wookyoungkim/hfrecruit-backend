@@ -39,6 +39,15 @@ public class Application extends BaseTimeEntity {
     @Column(nullable = false)
     private String q3Comment;
 
+    @Column(nullable = false)
+    private String q1Feedback;
+
+    @Column(nullable = false)
+    private String q2Feedback;
+
+    @Column(nullable = false)
+    private String q3Feedback;
+
     private Integer score;
 
     @Column(nullable = false)
@@ -59,6 +68,7 @@ public class Application extends BaseTimeEntity {
     @Builder
     public Application(Integer bit, String q1Comment, String q2Comment, String q3Comment,
                        Integer score, Integer passStage, Integer passOrFail, Integer applied,
+                       String q1Feedback, String q2Feedback, String q3Feedback,
                        Recruit recruit, User user) {
         this.bit = bit;
         this.q1Comment = q1Comment;
@@ -68,6 +78,9 @@ public class Application extends BaseTimeEntity {
         this.passStage = passStage;
         this.passOrFail = passOrFail;
         this.applied = applied;
+        this.q1Feedback = q1Feedback;
+        this.q2Feedback = q2Feedback;
+        this.q3Feedback = q3Feedback;
         this.recruit = recruit;
         this.user = user;
     }
@@ -77,6 +90,16 @@ public class Application extends BaseTimeEntity {
         this.q2Comment = q2Comment;
         this.q3Comment = q3Comment;
         this.applied = applied;
+    }
+
+    public void evaluate(Integer bit, String q1Feedback, String q2Feedback, String q3Feedback, Integer score, Integer passStage, Integer passOrFail){
+        this.bit = bit;
+        this.q1Feedback = q1Feedback;
+        this.q2Feedback = q2Feedback;
+        this.q3Feedback = q3Feedback;
+        this.score = score;
+        this.passStage = passStage;
+        this.passOrFail = passOrFail;
     }
 
 }
