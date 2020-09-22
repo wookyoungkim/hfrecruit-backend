@@ -39,19 +39,21 @@ public class OAuthController {
         return "login";
     }
 
-    @GetMapping("/userInfo")
+    @GetMapping("/loginsuccessed")
     public String userInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
-        if (sessionUser != null) {
-            User user = userRepository.findByEmail(sessionUser.getEmail())
-                    .orElseThrow(() -> new NoResultException("erroror"));
-            if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null && user.getMilitaryService() == null)
-                return "/";
+        User user = userRepository.findByEmail(sessionUser.getEmail())
+                .orElseThrow(() -> new NoResultException("erroror"));
+        model.addAttribute("sideUser", user);
+        if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null && user.getMilitaryService() == null) {
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
             model.addAttribute("pageTitle", "추가 정보 입력");
-            model.addAttribute("sideUser", user);
+            return "userInfo";
+
         }
-        return "userInfo";
+        else {
+            return "/";
+        }
     }
 
     @PutMapping("/userInfo/save")

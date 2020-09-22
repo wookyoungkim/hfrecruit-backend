@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService)
                 .and()
-                .defaultSuccessUrl("/userInfo", true);
+                .defaultSuccessUrl("/loginsuccessed", true);
     }
 //    private ClientRegistration getRegistration(OAuth2ClientProperties clientProperties, String client) {
 //        if ("google".equals(client)) {
