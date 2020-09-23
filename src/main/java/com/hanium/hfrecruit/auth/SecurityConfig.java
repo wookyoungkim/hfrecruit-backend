@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests() // (3)
                 .antMatchers("/", "/css/**","/images/**","/js/**","/h2-console/**").permitAll()
                 .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .antMatchers("/user/login").permitAll()
                 .anyRequest().authenticated() // (5)
                 .and()
                 .logout()
@@ -29,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService)
                 .and()
+                .loginPage("/user/login")
                 .defaultSuccessUrl("/loginsuccessed", true);
     }
 //    private ClientRegistration getRegistration(OAuth2ClientProperties clientProperties, String client) {
