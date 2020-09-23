@@ -23,11 +23,19 @@
                         <div class="card-header" style="height: 3.5rem; padding:0.5rem">
                             <h4 style="float: left">{{recruit.recruitTitle}}</h4>
                             <input type="hidden" class="form-control" id="applicationId" value={{applicationId}} readonly>
-                            <span class="badge badge-secondary badge-pill" style="float: right">{{recruit.closedBit}}</span>
+                            {{#passStage}}
+                                <span class="badge badge-primary badge-pill" style="float: right">평가완료</span>
+                            {{/passStage}}
+                            {{^passStage}}
+                                <span class="badge badge-secondary badge-pill" style="float: right">평가전</span>
+                            {{/passStage}}
+
                         </div>
                         <div class="card-content" style="padding:0.5rem">
                             <div>
-                                <span class="badge badge-success badge-pill">{{passStage}}</span>
+                            {{#passOrFail}}<span id="passOrFail" class="badge badge-pill" style="color:white" value={{passOrFail}}></span>{{/passOrFail}}
+                            {{^passOrFail}}<span id="passOrFail" class="badge badge-pill" style="color:white" value=-1></span>{{/passOrFail}}
+
                             </div>
                             <div>
                                 <div style="position: absolute; bottom: 2px" >Sun Jul 26 2020</div>
@@ -50,3 +58,21 @@
 
 
 {{>layout/footer}}
+<script>
+
+    var passOrFail = document.getElementById("passOrFail").value;
+    console.log(passOrFail);
+    if(passOrFail == 1){
+        document.getElementById("passOrFail").style.background = "blue";
+        document.getElementById("passOrFail").innerHTML = '합격';
+    }
+    else if(passOrFail == 0){
+        document.getElementById("passOrFail").style.background = "red";
+        document.getElementById("passOrFail").innerHTML= '불합격';
+    }
+    else{
+        document.getElementById("passOrFail").style.background = "green";
+        document.getElementById("passOrFail").innerHTML= '평가중';
+    }
+
+</script>
