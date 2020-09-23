@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Component
 public class SampleDataRunner implements CommandLineRunner {
@@ -65,7 +67,7 @@ public class SampleDataRunner implements CommandLineRunner {
         CompanyInfo companyInfoSample = CompanyInfo.builder()
                 .companyEmail("company@naver.com")
                 .companyPage("http://naver.com")
-                .companyLogo("1")
+                .companyLogo((long) 1)
                 .companyName("example_company")
                 .managerId("dusdnWkd")
                 .build();
@@ -80,8 +82,8 @@ public class SampleDataRunner implements CommandLineRunner {
 
         Recruit recruitSample = Recruit.builder()
                 .recruitTitle("채용공고1")
-                .startDate(java.sql.Timestamp.valueOf("2018-09-21 10:53:00.0"))
-                .closedDate(java.sql.Timestamp.valueOf("2020-09-21 10:53:00.0"))
+                .startDate(LocalDateTime.parse("2018-07-14T17:45:55"))
+                .closedDate(LocalDateTime.parse("2018-07-14T17:45:55"))
                 .recruitContent("안녕하세요 abc회사입니다. 이번 지원에 어쩌구 저쩌구")
                 .closedBit(null)
                 .question1("회사 지원동기는?")

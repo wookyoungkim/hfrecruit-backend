@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-<div id="wrapper" onload="autoIncrement();">
+<div id="wrapper" onload="autoIncrement();" onload="formatting();">
 
     {{>layout/sidebar}}
     {{>layout/topnavbar}}
@@ -30,7 +30,7 @@
                         <td class="autoInc"></td>
                         <td>{{companyInfo.companyName}}</td>
                         <td>{{recruitTitle}}</td>
-                        <td><span class="badge badge-pill badge-primary">마감 기한 : {{closedDate}}</span></td>
+                        <td class="cut"><span class="badge badge-pill badge-primary" id="cuts">{{closedDate}}</span></td>
                         <td>
                             {{#closedBit}}<span class="badge badge-pill badge-danger" id="closeBit">마감{{/closedBit}}</span>
                             {{^closedBit}}<span class="badge badge-pill badge-info" id="closeBit">진행중{{/closedBit}}</span>
@@ -47,6 +47,18 @@
     </div>
 </div>
 <script>
+    function formatting(startnum) {
+        var init = startnum;
+        var td_list = document.getElementsByClassName("cut");
+        for(var i=0; i<td_list.length; i++){
+            init++;
+            var template = document.getElementById('cuts').innerHTML;
+            td_list[i].innerHTML = template.slice(2, 4)+'년 ' + template.slice(5, 7) +'월 '+ template.slice(8, 10) +'일 '+ template.slice(11, 13)+'시 '+template.slice(14, 16)+'분';
+        }
+    }
+    formatting(0);
+</script>
+<script>
     function autoIncrement(startnum){
         var init = startnum;
         var td_list = document.getElementsByClassName("autoInc");
@@ -56,14 +68,5 @@
         }
     }
     autoIncrement(0);
-</script>
-<script>
-        function closeChecker() {
-            if (document.getElementById('closeBit').innerHTML === "1") {
-                document.getElementById('closeBit').innerHTML = "마감";
-            } else {
-                document.getElementById("closeBit").innerHTML = "진행중";
-            }
-        }
 </script>
 {{>layout/footer}}

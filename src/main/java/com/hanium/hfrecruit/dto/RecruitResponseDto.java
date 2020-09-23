@@ -17,8 +17,8 @@ public class RecruitResponseDto {
     private Long recruitNo;
     private String recruitTitle;
     private String recruitContent;
-    private Timestamp startDate;
-    private Timestamp closedDate;
+    private LocalDateTime startDate;
+    private LocalDateTime closedDate;
     private String question1;
     private String question2;
     private String question3;
