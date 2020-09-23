@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,13 +50,16 @@ public class RecruitPageController {
             recruitService.updateBit(recruit.getRecruitNo());
         }
         List<Recruit> allRecruits = recruitRepository.findAll();
+//        List<ArrayList<String>> closers = new ArrayList<ArrayList<String>>();
+//        ArrayList<String> closer = new ArrayList<>();
 //        for(Recruit recruit : allRecruits){
 //            if(recruit.getClosedBit()==1){
-//                model.addAttribute("remain", "마감");
+//                model.addAttribute("remain", null);
 //            }else{
 //                model.addAttribute("remain", "진행중");
 //            }
 //        }
+        //model.addAttribute("remain", closers.add(closer));
         model.addAttribute("recruit", allRecruits);
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";

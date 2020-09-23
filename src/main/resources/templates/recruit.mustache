@@ -30,7 +30,10 @@
                         <td>{{companyInfo.companyName}}</td>
                         <td>{{recruitTitle}}</td>
                         <td><span class="badge badge-pill badge-primary">마감 기한 : {{closedDate}}</span></td>
-                        <td id="closeBit"><span class="badge badge-pill badge-danger">{{closedBit}}</span></td>
+                        <td>
+                            {{#closedBit}}<span class="badge badge-pill badge-danger" id="closeBit">마감{{/closedBit}}</span>
+                            {{^closedBit}}<span class="badge badge-pill badge-info" id="closeBit">진행중{{/closedBit}}</span>
+                        </td>
                     </tr>
             {{/recruit}}
             </tbody>
@@ -42,4 +45,13 @@
         </div>
     </div>
 </div>
+<script>
+        function closeChecker() {
+            if (document.getElementById('closeBit').innerHTML === "1") {
+                document.getElementById('closeBit').innerHTML = "마감";
+            } else {
+                document.getElementById("closeBit").innerHTML = "진행중";
+            }
+        }
+</script>
 {{>layout/footer}}

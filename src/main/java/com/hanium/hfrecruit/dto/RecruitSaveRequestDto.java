@@ -57,7 +57,7 @@ public class RecruitSaveRequestDto {
                 .question3(question3)
                 .question4(question4)
                 .question5(question5)
-                .closedBit(0)
+                .closedBit(null)
                 .companyInfo(companyInfo)
                 .companyUser(companyUser)
                 .build();

@@ -1,7 +1,7 @@
 var recruit = {
     init : function () {
         var _this = this;
-        _this.closeChecker();
+        //_this.closeChecker();
         $('#move-recruit-save').on('click', function (){
             _this.check_role();
         });
@@ -21,13 +21,6 @@ var recruit = {
         $('#btn-delete').on('click', function (){
             _this.delete();
         });
-    },
-    closeChecker : function (){
-        if($('#closeBit').val()===1){
-            document.getElementById("closeBit").value = "마감";
-        }else {
-            document.getElementById("closeBit").value = "진행중";
-        }
     },
     check_time : function (){
         var start = $('#startDate').val();
