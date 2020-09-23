@@ -12,25 +12,29 @@
         <form style="align-self: center; padding: 30px" >
             <div class="form-group">
                 <label for="username">이름</label>
-                <input type="text" class="form-control" id="username" value="{{user.username}}">
+                {{#user.username}}<input type="text" class="form-control" id="username" value="{{user.username}}">{{/user.username}}
+                {{^user.username}}<input type="text" class="form-control" id="username">{{/user.username}}
             </div>
 
             <div class="form-group">
                 <label for="birth">생년월일</label>
-                <input type="date" class="form-control" id="birth" value="{{user.birth}}">
+                {{#user.birth}}<input type="date" class="form-control" id="birth" value="{{user.birth}}">{{/user.birth}}
+                {{^user.birth}}<input type="date" class="form-control" id="birth">{{/user.birth}}
             </div>
             <div class="form-group">
                 <label for="birth">주소</label>
-                <input type="text" class="form-control" id="address" placeholder="Enter your address" value="{{user.address}}">
+                {{#user.address}}<input type="text" class="form-control" id="address" placeholder="Enter your address" value="{{user.address}}">{{/user.address}}
+                {{^user.address}}<input type="text" class="form-control" id="address" placeholder="Enter your address">{{/user.address}}
             </div>
             <div class="form-group">
                 <label for="college">대학교</label>
-                <input type="text" class="form-control" id="college" placeholder="Enter your college" value="{{user.college}}">
+                {{#user.college}}<input type="text" class="form-control" id="college" placeholder="Enter your college" value="{{user.college}}">{{/user.college}}
+                {{^user.college}}<input type="text" class="form-control" id="college" placeholder="Enter your college">{{/user.college}}
             </div>
             <div class="form-row">
                 <div class="form-group ml-1 mr-5 col-sm-3">
                     <label for="gender">성별</label>
-                    <input type="hidden" class="form-control" id="userGender" value={{user.gender}} readonly>
+                    {{#user.gender}}<input type="hidden" class="form-control" id="userGender" value={{user.gender}} readonly>{{/user.gender}}
                     <div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="gender" id="gender" value="남">
@@ -60,7 +64,8 @@
             </div>
             <div class="form-group">
                 <label for="highschool">고등학교</label>
-                <input type="text" class="form-control" id="highschool" placeholder="Enter your highschool" value="{{user.highschool}}">
+                {{#user.highschool}}<input type="text" class="form-control" id="highschool" placeholder="Enter your highschool" value="{{user.highschool}}">{{/user.highschool}}
+                {{^user.highschool}}<input type="text" class="form-control" id="highschool" placeholder="Enter your highschool">{{/user.highschool}}
             </div>
             <div class="form-group small text-muted">
                 All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.

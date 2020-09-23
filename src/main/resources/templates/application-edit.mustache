@@ -34,7 +34,7 @@
                             </div>
                             <div class="cols-4">
                                 <h6>주소</h6>
-                                <h4>{{sideUser.address}}
+                                <h4>{{#sideUser.address}}{{sideUser.address}}{{/sideUser.address}}
                                     {{^sideUser.address}}입력하지 않음{{/sideUser.address}}
                                 </h4>
                             </div>
@@ -42,17 +42,17 @@
                         <div class="row justify-content-md-between m-4">
                             <div class="cols-4">
                                 <h6>성별</h6>
-                                <h4>{{sideUser.gender}}
+                                <h4>{{#sideUser.gender}}{{sideUser.gender}}{{/sideUser.gender}}
                                     {{^sideUser.gender}}입력하지 않음{{/sideUser.gender}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>생일</h6>
-                                <h4>{{sideUser.birth}}
+                                <h4>{{#sideUser.birth}}{{sideUser.birth}}{{/sideUser.birth}}
                                     {{^sideUser.birth}}입력하지 않음{{/sideUser.birth}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>대학</h6>
-                                <h4>{{sideUser.college}}
+                                <h4>{{#sideUser.college}}{{sideUser.college}}{{/sideUser.college}}
                                     {{^sideUser.college}}입력하지 않음{{/sideUser.college}}</h4>
                             </div>
                         </div>
