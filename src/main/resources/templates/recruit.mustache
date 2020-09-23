@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-<div id="wrapper">
+<div id="wrapper" onload="autoIncrement();">
 
     {{>layout/sidebar}}
     {{>layout/topnavbar}}
@@ -26,7 +26,8 @@
             <tbody>
             {{#recruit}}
                     <tr class="text-center" style="cursor:pointer;" onClick="location.href='/recruit/{{recruitNo}}'" onMouseOver="window.status='recruit/{{recruitNo}}'" onMouseOut="window.status=''">
-                        <th scope="row">{{recruitNo}}</th>
+<!--                        <th scope="row">{{!recruitNo}}</th>-->
+                        <td class="autoInc"></td>
                         <td>{{companyInfo.companyName}}</td>
                         <td>{{recruitTitle}}</td>
                         <td><span class="badge badge-pill badge-primary">마감 기한 : {{closedDate}}</span></td>
@@ -45,6 +46,17 @@
         </div>
     </div>
 </div>
+<script>
+    function autoIncrement(startnum){
+        var init = startnum;
+        var td_list = document.getElementsByClassName("autoInc");
+        for(var i=0; i<td_list.length; i++){
+            init++;
+            td_list[i].innerHTML= i+1;
+        }
+    }
+    autoIncrement(0);
+</script>
 <script>
         function closeChecker() {
             if (document.getElementById('closeBit').innerHTML === "1") {
