@@ -1,0 +1,71 @@
+{{>layout/header}}
+
+<div id="wrapper" onload="autoIncrement();" onload="formatting();">
+
+    {{>layout/sidebar}}
+    {{>layout/topnavbar}}
+
+    <div id="job-finder" class="contain-m">
+        <form class="form-inline justify-content-center mt-2" action="/recruit/search" method="GET">
+            <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="keyword">
+            <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Search</button>
+        </form>
+    </div>
+    <div id="jobs" >
+        <div class="mx-sm-3 justify-content-center shadow p-3 mb-3 bg-white rounded">
+            <table class="table mb-0" id="table_link">
+                <thead>
+                <tr>
+                    <th scope="col" class="text-center">번호</th>
+                    <th scope="col" class="text-center">회사명</th>
+                    <th scope="col" class="text-center">공고명</th>
+                    <th scope="col" class="text-center">마감일</th>
+                    <th scope="col" class="text-center">남은시간</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#recruit}}
+                    <tr class="text-center" style="cursor:pointer;" onClick="location.href='/recruit/{{recruitNo}}'" onMouseOver="window.status='recruit/{{recruitNo}}'" onMouseOut="window.status=''">
+                        <td class="autoInc"></td>
+                        <td>{{companyInfo.companyName}}</td>
+                        <td>{{recruitTitle}}</td>
+                        <td class="cut"><span class="badge badge-pill badge-primary" id="cuts">{{closedDate}}</span></td>
+                        <td>
+                            {{#closedBit}}<span class="badge badge-pill badge-danger" id="closeBit">마감{{/closedBit}}</span>
+                            {{^closedBit}}<span class="badge badge-pill badge-info" id="closeBit">진행중{{/closedBit}}</span>
+                        </td>
+                    </tr>
+                {{/recruit}}
+                </tbody>
+            </table>
+        </div>
+        <div class="mx-sm-3 mb-2">
+            <a class="btn btn-info font-weight-bold" type="button" id="move-recruit-save" href="/recruit/save"><i
+                    class="fas fa-pencil-ruler"></i> 채용공고 작성하기</a>
+        </div>
+    </div>
+</div>
+<script>
+    function formatting(startnum) {
+        var init = startnum;
+        var td_list = document.getElementsByClassName("cut");
+        for(var i=0; i<td_list.length; i++){
+            init++;
+            var template = document.getElementById('cuts').innerHTML;
+            td_list[i].innerHTML = template.slice(2, 4)+'년 ' + template.slice(5, 7) +'월 '+ template.slice(8, 10) +'일 '+ template.slice(11, 13)+'시 '+template.slice(14, 16)+'분';
+        }
+    }
+    formatting(0);
+</script>
+<script>
+    function autoIncrement(startnum){
+        var init = startnum;
+        var td_list = document.getElementsByClassName("autoInc");
+        for(var i=0; i<td_list.length; i++){
+            init++;
+            td_list[i].innerHTML= i+1;
+        }
+    }
+    autoIncrement(0);
+</script>
+{{>layout/footer}}

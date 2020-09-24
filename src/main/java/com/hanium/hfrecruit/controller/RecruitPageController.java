@@ -42,18 +42,38 @@ public class RecruitPageController {
     public String recruit(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
-        LocalDateTime current = LocalDateTime.now();
-        List<Recruit> closedRecruits = recruitRepository.findAll()
-                .stream()
-                .filter(recruit -> recruit.getClosedDate().isBefore(current))
-                .collect(Collectors.toList());
-        for(Recruit recruit: closedRecruits){
-            recruitService.updateBit(recruit.getRecruitNo());
-        }
         List<Recruit> allRecruits = recruitRepository.findAll();
         model.addAttribute("recruit", allRecruits);
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
+    }
+
+    @GetMapping("/recruit-active")
+    public String recruitActive(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> activeRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isAfter(current))
+                .collect(Collectors.toList());
+        model.addAttribute("recruit", activeRecruits);
+        model.addAttribute("pageTitle", "진행 중인 채용 공고");
+        return "recruit-active";
+    }
+
+    @GetMapping("/recruit-done")
+    public String recruitDone(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> doneRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isBefore(current))
+                .collect(Collectors.toList());
+        model.addAttribute("recruit", doneRecruits);
+        model.addAttribute("pageTitle", "마감된 채용 공고");
+        return "recruit-active";
     }
 
     @GetMapping("/recruit/{recruitNo}")

@@ -1,8 +1,11 @@
 package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
+import com.hanium.hfrecruit.domain.recruit.Recruit;
+import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
+import com.hanium.hfrecruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 public class IndexPageController {
     private final HttpSession httpSession;
     private final UserRepository userRepository;
+    private final RecruitRepository recruitRepository;
+    private final RecruitService recruitService;
+
 //    RestController 는 page를 리턴안함.
     @GetMapping("/")
     public String index(Model model) {
@@ -26,6 +35,15 @@ public class IndexPageController {
             model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
         }
         model.addAttribute("pageTitle", "Home");
+
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> closedRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isBefore(current))
+                .collect(Collectors.toList());
+        for(Recruit recruit: closedRecruits){
+            recruitService.updateBit(recruit.getRecruitNo());
+        }
         return "index";
     }
 

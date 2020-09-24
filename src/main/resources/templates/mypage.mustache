@@ -4,57 +4,71 @@
     {{>layout/sidebar}}
     {{>layout/topnavbar}}
     <div id="mypage">
-        <div class="title-card">
-            <b>마이페이지</b>
-            <a class="btn btn-primary btn-right" id="btn-logout" href="#" role="button">로그아웃</a>
-        </div>
-        <div class="welcome-card text-center">
-            <div class="welcome-card-body">
-                <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
-                <p class="welcome-card-text">회원님은 {{user.role}}입니다.</p>
-            </div>
-        </div>
-        {{!#role.company}}
-        <div class="container">
-            <div class="mypage-wrapper">
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace">전체 채용공고</span>
-                    <span class="text">{{!all-recruit}}</span>
-                </a>
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace">마감된 채용공고</span>
-                    <span class="text">{{!closed-recruit}}</span>
-                </a>
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace" href="#">진행중인 채용공고</span>
-                    <span class="text">{{!active-recruit}}</span>
-                </a>
-            </div>
-            <a type="button" class="btn btn-outline-warning" href="#">정보 수정하기</a>
-            <a type="button" class="btn btn-outline-danger" href="#">탈퇴하기</a>
-        </div>
-        {{!/role.company}}
         <br>
-        {{!#role.person}}
-        <div class="container">
-            <div class="mypage-wrapper">
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace">진행중인 지원서</span>
-                    <span class="text">{{activeApplication}}</span>
-                </a>
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace">작성중인 지원서</span>
-                    <span class="text">{{!writing-resume}}</span>
-                </a>
-                <a type="button" class="btn btn-outline-secondary" href="#">
-                    <span class="text-monospace">내 스펙보기</span>
-                    <span class="text">{{!spec}}</span>
-                </a>
+        {{#checker}}
+            <div class="welcome-card text-center">
+                <div class="welcome-card-body">
+                    <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
+                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{company}} {{role}}</span>입니다.</div>
+                </div>
             </div>
-            <a type="button" class="btn btn-outline-warning" href="/profile">정보 수정하기</a>
-            <a type="button" class="btn btn-outline-danger" href="#">탈퇴하기</a>
-        </div>
-        {{!/role.person}}
+            <div class="container">
+                <div class="mypage-wrapper mx-5">
+                    <a type="button" class="btn btn-secondary btn-lg btn-block font-weight-bold" href="/recruit" style="line-height: 200%; margin-bottom: 2%;">
+                        <div style="text-align: left;" class="ml-3">전체 채용공고
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{allRecruits}}</div>
+                        </div>
+                    </a>
+                    <div class="btn-group btn-block">
+                    <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-done" style="line-height: 200%; margin-bottom: 3%;">
+                        <div style="text-align: left;" class="ml-3">마감된 채용공고
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{allRecruits}}</div>
+                        </div>
+                    </a>
+                    <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-active" style="line-height: 200%; margin-bottom: 3%;">
+                        <div style="text-align: left;" class="ml-3">진행중인 채용공고
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">
+                                {{#doneRecruits}}{{doneRecruits}}{{/doneRecruits}}
+                                {{^doneRecruits}}0{{/doneRecruits}}
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    <a class="btn btn-warning" type="button" href="/companyInfo">
+                        <i class="fas fa-pencil-ruler"></i> 기업 정보 수정하기</a>
+                </div>
+            </div>
+        {{/checker}}
+        {{^checker}}
+            <div class="welcome-card text-center">
+                <div class="welcome-card-body">
+                    <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
+                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{role}}</span>입니다.</div>
+                </div>
+            </div>
+            <div class="container" >
+                <div class="mypage-wrapper mx-5">
+                    <div class="btn-group btn-block">
+                    <a type="button" class="btn btn-dark btn-lg font-weight-bold" href="/application/list/active" style="line-height: 200%; margin-bottom: 2%;">
+                        <div style="text-align: left;" class="ml-3">진행중인 지원서
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{activeApplications}}</div>
+                        </div>
+                    </a>
+                    <a type="button" class="btn btn-secondary btn-lg font-weight-bold" href="/application/list/writing" style="line-height: 200%; margin-bottom: 2%;">
+                        <div style="text-align: left;" class="ml-3">작성중인 지원서
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{writingApplications}}</div>
+                        </div>
+                    </a>
+                    </div>
+                    <a type="button" class="btn btn-outline-dark btn-lg btn-block font-weight-bold" href="/specs" style="line-height: 200%; margin-bottom: 3%;">
+                        <div style="text-align: center;" class="ml-3">내 스펙보기</div>
+                    </a>
+                    <a class="btn btn-warning" type="button" href="/profile">
+                        <i class="fas fa-pencil-ruler"></i> 개인 정보 수정하기
+                    </a>
+                </div>
+            </div>
+        {{/checker}}
     </div>
 </div>
 {{>layout/footer}}
