@@ -114,7 +114,13 @@ public class CompanyUserController {
 
     @PutMapping("/mypage/company-info-update/{companyNo}")
     @ResponseBody
-    public Long update(@PathVariable Long companyNo, @RequestBody CompanyInfoUpdateDto requestDto){
+    public Long companyInfoUpdate(@PathVariable Long companyNo, @RequestBody CompanyInfoUpdateDto requestDto){
         return companyInfoService.update(companyNo, requestDto);
+    }
+
+    @PutMapping("/companyUser/update/{companyUserNo}")
+    @ResponseBody
+    public Long companyUserUpdate(@PathVariable Long companyUserNo, @RequestBody CompanyUserUpdateDto requestDto){
+        return companyUserService.update(companyUserNo, requestDto);
     }
 }

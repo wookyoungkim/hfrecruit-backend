@@ -32,4 +32,7 @@ public class CompanyUser {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyUser")
     private List<Recruit> recruits;
 
+    public void update(Integer companyUserCode) {
+        this.companyUserCode = companyUserCode;
+    }
 }
