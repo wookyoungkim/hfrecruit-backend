@@ -1,6 +1,7 @@
 package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
+import com.hanium.hfrecruit.domain.user.Role;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
 import com.hanium.hfrecruit.dto.CompanyUserDto;
@@ -47,17 +48,17 @@ public class OAuthController {
         User user = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("erroror"));
         model.addAttribute("sideUser", user);
-        if (user.getUserState() == 0){
+        if (user.getUserState() == 0) {
             return "login-failure";
         }
-        if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null && user.getMilitaryService() == null) {
+        if (user.getAddress() == null && user.getBirth() == null && user.getCollege() == null
+                && user.getEducationLevel() == null && user.getGender() == null && user.getHighschool() == null
+                && user.getMilitaryService() == null && user.getRole()==Role.USER) {
             model.addAttribute("userNo", user.getUserNo());
             model.addAttribute("userName", user.getUsername());
             model.addAttribute("pageTitle", "추가 정보 입력");
             return "userinfo";
-
-        }
-        else {
+        } else {
             return "/";
         }
     }
