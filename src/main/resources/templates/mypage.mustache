@@ -9,30 +9,38 @@
             <div class="welcome-card text-center">
                 <div class="welcome-card-body">
                     <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
-                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{company}} {{role}}</span>입니다.</div>
+                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{company}} {{role}}</span>입니다.
+                    </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="mypage-wrapper mx-5">
-                    <a type="button" class="btn btn-secondary btn-lg btn-block font-weight-bold" href="/recruit" style="line-height: 200%; margin-bottom: 2%;">
+                    <a type="button" class="btn btn-secondary btn-lg btn-block font-weight-bold" href="/recruit"
+                       style="line-height: 200%; margin-bottom: 2%;">
                         <div style="text-align: left;" class="ml-3">전체 채용공고
-                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{allRecruits}}</div>
+                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;"
+                                 class="badge badge-light mr-3">{{allRecruits}}</div>
                         </div>
                     </a>
                     <div class="btn-group btn-block">
-                    <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-done" style="line-height: 200%; margin-bottom: 3%;">
-                        <div style="text-align: left;" class="ml-3">마감된 채용공고
-                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{allRecruits}}</div>
-                        </div>
-                    </a>
-                    <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-active" style="line-height: 200%; margin-bottom: 3%;">
-                        <div style="text-align: left;" class="ml-3">진행중인 채용공고
-                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">
-                                {{#doneRecruits}}{{doneRecruits}}{{/doneRecruits}}
-                                {{^doneRecruits}}0{{/doneRecruits}}
+                        <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-done"
+                           style="line-height: 200%; margin-bottom: 3%;">
+                            <div style="text-align: left;" class="ml-3">마감된 채용공고
+                                <div style="float: right; margin-top: 0.5rem; line-height: 150%;"
+                                     class="badge badge-light mr-3">{{allRecruits}}</div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                        <a type="button" class="btn btn-outline-dark btn-lg font-weight-bold" href="/recruit-active"
+                           style="line-height: 200%; margin-bottom: 3%;">
+                            <div style="text-align: left;" class="ml-3">진행중인 채용공고
+                                <div style="float: right; margin-top: 0.5rem; line-height: 150%;"
+                                     class="badge badge-light mr-3">
+                                    {{#doneRecruits}}{{doneRecruits}}{{/doneRecruits}}
+                                    {{^doneRecruits}}0{{/doneRecruits}}
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <a class="btn btn-warning" type="button" href="/company-info-update">
                         <i class="fas fa-pencil-ruler"></i> 기업 정보 수정하기</a>
@@ -46,25 +54,72 @@
                     <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{role}}</span>입니다.</div>
                 </div>
             </div>
-            <div class="container" >
+            <div class="container">
+                <div class="card shadow mx-5" style="margin: 1.25rem">
+                    <div class="card-header">
+                        <h4 style="float: left; margin-top:1%;">내 프로필</h4>
+                        <div class="row justify-content-md-end" style="margin-top:0.5%;">
+                            <a class="btn btn-info" type="button" href="/profile">
+                                <i class="fas fa-pencil-ruler"></i> 프로필 수정하기
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-md-between m-4">
+                            <div class="cols-4">
+                                <h6>이름</h6>
+                                <h4>{{user.username}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>이메일</h6>
+                                <h4>{{user.email}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>주소</h6>
+                                <h4>{{#user.address}}{{user.address}}{{/user.address}}
+                                    {{^user.address}}입력하지 않음{{/user.address}}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-between m-4">
+                            <div class="cols-4">
+                                <h6>성별</h6>
+                                <h4>{{#user.gender}}{{user.gender}}{{/user.gender}}
+                                    {{^user.gender}}입력하지 않음{{/user.gender}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>생일</h6>
+                                <h4>{{#user.birth}}{{user.birth}}{{/user.birth}}
+                                    {{^user.birth}}입력하지 않음{{/user.birth}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>대학</h6>
+                                <h4>{{#user.college}}{{user.college}}{{/user.college}}
+                                    {{^user.college}}입력하지 않음{{/user.college}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="mypage-wrapper mx-5">
                     <div class="btn-group btn-block">
-                    <a type="button" class="btn btn-dark btn-lg font-weight-bold" href="/application/list/active" style="line-height: 200%; margin-bottom: 2%;">
-                        <div style="text-align: left;" class="ml-3">진행중인 지원서
-                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{activeApplications}}</div>
-                        </div>
-                    </a>
-                    <a type="button" class="btn btn-secondary btn-lg font-weight-bold" href="/application/list/writing" style="line-height: 200%; margin-bottom: 2%;">
-                        <div style="text-align: left;" class="ml-3">작성중인 지원서
-                            <div style="float: right; margin-top: 0.5rem; line-height: 150%;" class="badge badge-light mr-3">{{writingApplications}}</div>
-                        </div>
-                    </a>
+                        <a type="button" class="btn btn-dark btn-lg font-weight-bold" href="/application/list/active"
+                           style="line-height: 200%; margin-bottom: 2%;">
+                            <div style="text-align: left;" class="ml-3">진행중인 지원서
+                                <div style="float: right; margin-top: 0.5rem; line-height: 150%;"
+                                     class="badge badge-light mr-3">{{activeApplications}}</div>
+                            </div>
+                        </a>
+                        <a type="button" class="btn btn-secondary btn-lg font-weight-bold"
+                           href="/application/list/writing" style="line-height: 200%; margin-bottom: 2%;">
+                            <div style="text-align: left;" class="ml-3">작성중인 지원서
+                                <div style="float: right; margin-top: 0.5rem; line-height: 150%;"
+                                     class="badge badge-light mr-3">{{writingApplications}}</div>
+                            </div>
+                        </a>
                     </div>
-                    <a type="button" class="btn btn-outline-dark btn-lg btn-block font-weight-bold" href="/specs" style="line-height: 200%; margin-bottom: 3%;">
+                    <a type="button" class="btn btn-outline-dark btn-lg btn-block font-weight-bold" href="/specs"
+                       style="line-height: 200%; margin-bottom: 3%;">
                         <div style="text-align: center;" class="ml-3">내 스펙보기</div>
-                    </a>
-                    <a class="btn btn-warning" type="button" href="/profile">
-                        <i class="fas fa-pencil-ruler"></i> 개인 정보 수정하기
                     </a>
                 </div>
             </div>
