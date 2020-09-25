@@ -40,7 +40,7 @@ public class CompanyUserController {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
 
-        User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(()-> new IllegalArgumentException("NO USER!"));
+        User loginUser = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(() -> new IllegalArgumentException("NO USER!"));
         model.addAttribute("companyUser", loginUser.getEmail());
         model.addAttribute("pageTitle", "새로운 기업 등록");
         return "companyInfo";
@@ -112,15 +112,27 @@ public class CompanyUserController {
         return "companyInfo-update";
     }
 
+    @GetMapping("/company-user-add")
+    public String companyUserAdd(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 아니면 이 페이지에 못와요.")
+        );
+        CompanyInfo companyInfo = companyInfoRepository.findByCompanyNo((long) companyInfoRepository.findAll().size());
+        model.addAttribute("sideUser", user);
+        model.addAttribute("companyInfo", companyInfo);
+        model.addAttribute("pageTitle", "새로운 기업 사용자 등록");
+        return "company-user-add";
+    }
+
     @PutMapping("/mypage/company-info-update/{companyNo}")
     @ResponseBody
-    public Long companyInfoUpdate(@PathVariable Long companyNo, @RequestBody CompanyInfoUpdateDto requestDto){
+    public Long companyInfoUpdate(@PathVariable Long companyNo, @RequestBody CompanyInfoUpdateDto requestDto) {
         return companyInfoService.update(companyNo, requestDto);
     }
 
     @PutMapping("/companyUser/update/{companyUserNo}")
     @ResponseBody
-    public Long companyUserUpdate(@PathVariable Long companyUserNo, @RequestBody CompanyUserUpdateDto requestDto){
+    public Long companyUserUpdate(@PathVariable Long companyUserNo, @RequestBody CompanyUserUpdateDto requestDto) {
         return companyUserService.update(companyUserNo, requestDto);
     }
 }

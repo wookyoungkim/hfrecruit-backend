@@ -27,6 +27,12 @@ public class CompanyUserDto {
 //        this.user = entity.getUser();
     }
 
+    @Builder
+    public CompanyUserDto(Integer companyUserCode, CompanyInfo companyInfo){
+        this.companyUserCode = companyUserCode;
+        this.companyInfo = companyInfo;
+    }
+
     public CompanyUser toEntity(CompanyInfo companyInfo, User user){
         return CompanyUser.builder()
                 .companyUserId(companyUserId)

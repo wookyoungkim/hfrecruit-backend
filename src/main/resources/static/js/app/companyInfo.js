@@ -36,7 +36,7 @@ var companyInfo = {
             data: JSON.stringify(data)
         }).done(function () {
             alert('기업등록이 완료되었습니다.');
-            window.location.href = '/companyUser';
+            window.location.href = '/company-user-add';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
