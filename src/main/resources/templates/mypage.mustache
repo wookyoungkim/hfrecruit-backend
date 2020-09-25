@@ -6,15 +6,71 @@
     <div id="mypage">
         <br>
         {{#checker}}
+            <input type="hidden" class="form-control" id="companyUserId" value={{companyUserId}} readonly>
             <div class="welcome-card text-center">
                 <div class="welcome-card-body">
                     <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
-                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{company}} {{role}}</span>입니다.
+                    <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{company.companyName}} {{role}}</span>입니다.
                     </div>
                 </div>
             </div>
-
             <div class="container">
+                <div class="card shadow mx-5" style="margin: 1.25rem">
+                    <div class="card-header">
+                        <h4 style="float: left; margin-top:1%;">기업 정보</h4>
+                        <div class="row justify-content-md-end" style="margin-top:0.5%;">
+                            <a class="btn btn-info" type="button" href="/company-info-update">
+                                <i class="fas fa-pencil-ruler"></i> 기업 정보 수정하기
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-md-between m-4">
+                            <div class="cols-4">
+                                <h6>회사명</h6>
+                                <h4>{{company.companyName}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>회사 대표 이메일</h6>
+                                <h4>{{company.companyEmail}}</h4>
+                            </div>
+                            <div class="cols-4">
+                                <h6>회사 홈페이지</h6>
+                                <h4>{{company.companyPage}}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-between m-4">
+                            <div class="col-6">
+                                <h6>관리자 아이디</h6>
+                                <h4>{{company.managerId}}</h4>
+                            </div>
+                            <div class="col-6">
+                                <h6>회사 로고</h6>
+                                <h4>{{company.companyLogo}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mx-5" style="margin: 1.25rem">
+                    <div class="card-header">
+                        <h4 style="float: left; margin-top:1%;">내 역할</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-md-between m-4">
+                            <select id="companyUserCode" class="form-control col-9" value="{{companyUserCode}}">
+                            <option id="1">채용관리자</option>
+                            <option id="2">인사담당자</option>
+                            </select>
+                            <div class="row justify-content-md-end">
+                                <a class="btn btn-info" type="button" id="companyUserCodeUpdate">
+                                    <i class="fas fa-pencil-ruler"></i> 역할 수정하기
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="mypage-wrapper mx-5">
                     <a type="button" class="btn btn-secondary btn-lg btn-block font-weight-bold" href="/recruit"
                        style="line-height: 200%; margin-bottom: 2%;">
@@ -42,8 +98,6 @@
                             </div>
                         </a>
                     </div>
-                    <a class="btn btn-warning" type="button" href="/company-info-update">
-                        <i class="fas fa-pencil-ruler"></i> 기업 정보 수정하기</a>
                 </div>
             </div>
         {{/checker}}
