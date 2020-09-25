@@ -29,11 +29,6 @@ public class IndexPageController {
     @GetMapping("/")
     public String index(Model model) {
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        if(sessionUser==null){
-            model.addAttribute("sideUser", User.builder().name("비회원").build());
-        }else {
-            model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
-        }
         model.addAttribute("pageTitle", "Home");
 
         LocalDateTime current = LocalDateTime.now();
@@ -44,7 +39,19 @@ public class IndexPageController {
         for(Recruit recruit: closedRecruits){
             recruitService.updateBit(recruit.getRecruitNo());
         }
-        return "index";
+        List<Recruit> activeRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isAfter(current))
+                .collect(Collectors.toList());
+
+        model.addAttribute("recruits", activeRecruits);
+        if(sessionUser==null){
+            model.addAttribute("sideUser", User.builder().name("비회원").build());
+            return "index";
+        }else {
+            model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
+            return "index-login";
+        }
     }
 
     @GetMapping("/evaluation")
