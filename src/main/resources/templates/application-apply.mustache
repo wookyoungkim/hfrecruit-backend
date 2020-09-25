@@ -33,34 +33,34 @@
                         <div class="row justify-content-md-between m-4">
                             <div class="cols-4">
                                 <h6>이름</h6>
-                                <h4>{{userProfile.username}}</h4>
+                                <h4>{{sideUser.username}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>이메일</h6>
-                                <h4>{{userProfile.email}}</h4>
+                                <h4>{{sideUser.email}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>주소</h6>
-                                <h4>{{#userProfile.address}}{{userProfile.address}}{{/userProfile.address}}
-                                    {{^userProfile.address}}입력하지 않음{{/userProfile.address}}
+                                <h4>{{#sideUser.address}}{{sideUser.address}}{{/sideUser.address}}
+                                    {{^sideUser.address}}입력하지 않음{{/sideUser.address}}
                                 </h4>
                             </div>
                         </div>
                         <div class="row justify-content-md-between m-4">
                             <div class="cols-4">
                                 <h6>성별</h6>
-                                <h4>{{#userProfile.gender}}{{userProfile.gender}}{{/userProfile.gender}}
-                                    {{^userProfile.gender}}입력하지 않음{{/userProfile.gender}}</h4>
+                                <h4>{{#sideUser.gender}}{{sideUser.gender}}{{/sideUser.gender}}
+                                    {{^sideUser.gender}}입력하지 않음{{/sideUser.gender}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>생일</h6>
-                                <h4>{{#userProfile.birth}}{{userProfile.birth}}{{/userProfile.birth}}
-                                    {{^userProfile.birth}}입력하지 않음{{/userProfile.birth}}</h4>
+                                <h4>{{#sideUser.birth}}{{sideUser.birth}}{{/sideUser.birth}}
+                                    {{^sideUser.birth}}입력하지 않음{{/sideUser.birth}}</h4>
                             </div>
                             <div class="cols-4">
                                 <h6>대학</h6>
-                                <h4>{{#userProfile.college}}{{userProfile.college}}{{/userProfile.college}}
-                                    {{^userProfile.college}}입력하지 않음{{/userProfile.college}}</h4>
+                                <h4>{{#sideUser.college}}{{sideUser.college}}{{/sideUser.college}}
+                                    {{^sideUser.college}}입력하지 않음{{/sideUser.college}}</h4>
                             </div>
                         </div>
                     </div>
