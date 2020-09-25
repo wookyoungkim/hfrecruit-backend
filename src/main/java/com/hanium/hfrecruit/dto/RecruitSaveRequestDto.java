@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,8 +18,8 @@ import java.sql.Timestamp;
 public class RecruitSaveRequestDto {
     private String recruitTitle;
     private String recruitContent;
-    private Timestamp startDate;
-    private Timestamp closedDate;
+    private LocalDateTime startDate;
+    private LocalDateTime closedDate;
     private String question1;
     private String question2;
     private String question3;
@@ -29,7 +30,7 @@ public class RecruitSaveRequestDto {
     private CompanyUser companyUser;
 
     @Builder
-    public RecruitSaveRequestDto(String recruitTitle, String recruitContent, Timestamp startDate, Timestamp closedDate,
+    public RecruitSaveRequestDto(String recruitTitle, String recruitContent, LocalDateTime startDate, LocalDateTime closedDate,
                                  String question1, String question2, String question3, String question4, String question5, Integer closedBit,
                                  CompanyInfo companyInfo, CompanyUser companyUser){
         this.recruitTitle = recruitTitle;
@@ -57,7 +58,7 @@ public class RecruitSaveRequestDto {
                 .question3(question3)
                 .question4(question4)
                 .question5(question5)
-                .closedBit(0)
+                .closedBit(null)
                 .companyInfo(companyInfo)
                 .companyUser(companyUser)
                 .build();

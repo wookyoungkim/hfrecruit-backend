@@ -7,7 +7,7 @@
     <!-- Page Content -->
 
     <div style="display: flex; flex-wrap: wrap;">
-        <div class="container-fluid mt-2 mb-2" style="width: 80%; float: left;">
+        <div class="container-fluid mt-2 mb-2" style="float: left;">
             <div class="jumbotron jumbo text-white bg-cover" style="height: 100%">
                 <div class="container">
                     <h2 class="display-4">부정행위로부터 안전한 채용</h2>
@@ -20,21 +20,16 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-2" style="float:right; width: 20%!important;">
-            <div class="signin-form signin-form-main" style="width: 100%">
-                {{>layout/loginform}}
-            </div>
-        </div>
     </div>
 
     <div class="card" style="margin: auto 15px;">
         <h5 class="card-header">진행중인 공고</h5>
         {{#recruits}}
-        <div class="card-body">
-            <h3 class="card-title">{{recruitTitle}}</h3>
-            <p class="card-text">{{recruitContent}}</p>
-            <a href="/recruit/{{recruitNo}}" class="btn btn-light">자세히 보기</a>
-        </div>
+            <div class="card-body">
+                <h3 class="card-title">{{recruitTitle}}</h3>
+                <p class="card-text">{{recruitContent}}</p>
+                <a href="/recruit/{{recruitNo}}" class="btn btn-light">자세히 보기</a>
+            </div>
         {{/recruits}}
         {{^recruits}}
             <div class="card-body">

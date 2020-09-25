@@ -29,4 +29,12 @@ public class CompanyInfoService {
     public CompanyInfoDto findByCompanyNo(Long companyNo) {
         return new CompanyInfoDto(companyInfoRepository.findByCompanyNo(companyNo));
     }
+
+    @Transactional
+    public Long update(Long companyNo, CompanyInfoUpdateDto companyInfoDto) {
+        CompanyInfo companyInfo = companyInfoRepository.findById(companyNo).orElseThrow(()->new IllegalArgumentException("기업이 없습니다."));
+        companyInfo.update(companyInfoDto.getCompanyName(), companyInfoDto.getCompanyEmail(), companyInfoDto.getCompanyPage(),
+                companyInfoDto.getManagerId(), companyInfoDto.getCompanyLogo());
+        return companyNo;
+    }
 }

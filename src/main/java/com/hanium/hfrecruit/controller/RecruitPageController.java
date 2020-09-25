@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,25 +42,38 @@ public class RecruitPageController {
     public String recruit(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
-        LocalDateTime current = LocalDateTime.now();
-        List<Recruit> closedRecruits = recruitRepository.findAll()
-                .stream()
-                .filter(recruit -> recruit.getClosedDate().before(Timestamp.valueOf(current)))
-                .collect(Collectors.toList());
-        for(Recruit recruit: closedRecruits){
-            recruitService.updateBit(recruit.getRecruitNo());
-        }
         List<Recruit> allRecruits = recruitRepository.findAll();
-//        for(Recruit recruit : allRecruits){
-//            if(recruit.getClosedBit()==1){
-//                model.addAttribute("remain", "마감");
-//            }else{
-//                model.addAttribute("remain", "진행중");
-//            }
-//        }
         model.addAttribute("recruit", allRecruits);
         model.addAttribute("pageTitle", "전체 채용 공고");
         return "recruit";
+    }
+
+    @GetMapping("/recruit-active")
+    public String recruitActive(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> activeRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isAfter(current))
+                .collect(Collectors.toList());
+        model.addAttribute("recruit", activeRecruits);
+        model.addAttribute("pageTitle", "진행 중인 채용 공고");
+        return "recruit-active";
+    }
+
+    @GetMapping("/recruit-done")
+    public String recruitDone(Model model, @SessionAttribute("user") SessionUser sessionUser) {
+        User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
+        model.addAttribute("sideUser", sideUser);
+        LocalDateTime current = LocalDateTime.now();
+        List<Recruit> doneRecruits = recruitRepository.findAll()
+                .stream()
+                .filter(recruit -> recruit.getClosedDate().isBefore(current))
+                .collect(Collectors.toList());
+        model.addAttribute("recruit", doneRecruits);
+        model.addAttribute("pageTitle", "마감된 채용 공고");
+        return "recruit-active";
     }
 
     @GetMapping("/recruit/{recruitNo}")
@@ -70,6 +85,8 @@ public class RecruitPageController {
                 .orElseThrow(() -> new NoResultException("error"));
         model.addAttribute("recruit", recruit);
         model.addAttribute("pageTitle", recruit.getRecruitTitle());
+        model.addAttribute("startDateFormatting", recruit.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        model.addAttribute("closeDateFormatting", recruit.getClosedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         return "recruit-detail";
     }
 
@@ -96,8 +113,8 @@ public class RecruitPageController {
             throw new IllegalArgumentException("권한이 없습니다.");
         }
         model.addAttribute("sideUser", loginUser);
-        model.addAttribute("startDate", recruitResponseDto.getStartDate().toLocalDateTime());
-        model.addAttribute("closeDate", recruitResponseDto.getClosedDate().toLocalDateTime());
+        model.addAttribute("startDate", recruitResponseDto.getStartDate());
+        model.addAttribute("closeDate", recruitResponseDto.getClosedDate());
         model.addAttribute("recruit", recruitResponseDto);
         model.addAttribute("pageTitle", recruitResponseDto.getRecruitTitle()+" 수정");
         return "recruit-update";

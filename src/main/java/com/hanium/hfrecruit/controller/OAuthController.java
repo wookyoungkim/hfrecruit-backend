@@ -34,9 +34,12 @@ public class OAuthController {
         return "home";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/user/login")
+    public String login(Model model) {
+
+        model.addAttribute("sideUser", User.builder().name("비회원").build());
+        model.addAttribute("pageTitle", "Login");
+        return "login-page";
     }
 
     @GetMapping("/loginsuccessed")

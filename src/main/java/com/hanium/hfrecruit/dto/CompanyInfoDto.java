@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Getter
@@ -19,7 +20,7 @@ public class CompanyInfoDto {
     private String companyEmail;
     private String companyPage;
     private String managerId;
-    private String companyLogo;
+    private Long companyLogo;
     private List<CompanyUser> companyUsersList;
     private List<Recruit> recruits;
 

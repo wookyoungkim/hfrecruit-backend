@@ -20,7 +20,6 @@ public class ApplicationSaveRequestDto {
     private String q3Comment;
     private Integer score;
     private Integer passStage;
-    private Integer passOrFail;
     private Integer applied;
     private String q1Feedback;
     private String q2Feedback;
@@ -29,7 +28,7 @@ public class ApplicationSaveRequestDto {
     private User user;
 
     public ApplicationSaveRequestDto(Integer bit, String q1Comment, String q2Comment, String q3Comment,
-                                     Integer score, Integer passStage, Integer passOrFail, Integer applied,
+                                     Integer score, Integer passStage, Integer applied,
                                      String q1Feedback, String q2Feedback, String q3Feedback,
                                      Recruit recruit, User user){
         this.bit = bit;
@@ -37,8 +36,6 @@ public class ApplicationSaveRequestDto {
         this.q2Comment = q2Comment;
         this.q3Comment = q3Comment;
         this.score = score;
-        this.passStage = passStage;
-        this.passOrFail = passOrFail;
         this.applied = applied;
         this.q1Feedback = q1Feedback;
         this.q2Feedback = q2Feedback;
@@ -54,8 +51,6 @@ public class ApplicationSaveRequestDto {
                 .q2Comment(q2Comment)
                 .q3Comment(q3Comment)
                 .score(score)
-                .passStage(passStage)
-                .passOrFail(passOrFail)
                 .applied(applied)
                 .q1Feedback(q1Feedback)
                 .q2Feedback(q2Feedback)

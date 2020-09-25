@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -28,12 +29,11 @@ public class Recruit {
     private String recruitContent;
 
     @Column(nullable = false)
-    private Timestamp startDate;
+    private LocalDateTime startDate;
 
     @Column(nullable = false)
-    private Timestamp closedDate;
+    private LocalDateTime closedDate;
 
-    @Column(nullable = false)
     private Integer closedBit;
 
     @Column(nullable = false)
@@ -65,7 +65,7 @@ public class Recruit {
         }
         return closedDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
     }*/
-    public void update(String recruitTitle, String recruitContent, Timestamp startDate, Timestamp closedDate,
+    public void update(String recruitTitle, String recruitContent, LocalDateTime startDate, LocalDateTime closedDate,
                        String question1, String question2, String question3, String question4, String question5)  {
         this.recruitTitle = recruitTitle;
         this.recruitContent = recruitContent;

@@ -3,6 +3,7 @@ package com.hanium.hfrecruit.domain.company;
 
 import com.hanium.hfrecruit.domain.recruit.Recruit;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @ToString(exclude = {"companyUsersList", "recruits"})
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class CompanyInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -30,14 +32,21 @@ public class CompanyInfo {
     @Column(nullable = false)
     private String managerId;
 
-    @Column(nullable = false)
-    private String companyLogo;
+    private Long companyLogo;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyInfo")
     private List<CompanyUser> companyUsersList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyInfo")
     private List<Recruit> recruits;
+
+    public void update(String companyName, String companyEmail, String companyPage, String managerId, Long companyLogo) {
+        this.companyName = companyName;
+        this.companyEmail = companyEmail;
+        this.companyPage = companyPage;
+        this.managerId = managerId;
+        this.companyLogo = companyLogo;
+    }
 
 //    @Override
 //    public String toString() {

@@ -2,6 +2,11 @@ package com.hanium.hfrecruit.controller;
 
 import com.hanium.hfrecruit.auth.dto.SessionUser;
 import com.hanium.hfrecruit.domain.application.ApplicationQueryRepository;
+import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
+import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
+import com.hanium.hfrecruit.domain.recruit.Recruit;
+import com.hanium.hfrecruit.domain.recruit.RecruitRepository;
+import com.hanium.hfrecruit.domain.user.Role;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
 import com.hanium.hfrecruit.dto.UserUpdateRequestDto;
@@ -14,32 +19,48 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping
 public class MyPageController {
-    private final HttpSession httpSession;
-    @Autowired
-    private UserService userService;
+
     private final UserRepository userRepository;
     private final ApplicationQueryRepository applicationQueryRepository;
-
+    private final RecruitRepository recruitRepository;
+    private final CompanyUserRepository companyUserRepository;
+    private final CompanyInfoRepository companyInfoRepository;
+    private final UserService userService;
 
     @GetMapping("/mypage")
     public String mypage(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
-        Integer active = applicationQueryRepository.findActiveByRecruit(user.getUserNo()).size();
-        Integer writing = applicationQueryRepository.findWritingApplication(user.getUserNo()).size();
 
-        model.addAttribute("pageTitle", "마이페이지");
+        model.addAttribute("pageTitle", "MY PAGE");
         model.addAttribute("user", user);
         model.addAttribute("sideUser", user);
-        model.addAttribute("activeApplication", active);
-        model.addAttribute("writingApplication", writing);
-        return "userMypage";
+
+        if(user.getRole()== Role.COMPANYUSER) {
+            model.addAttribute("company", companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()).getCompanyName());
+            model.addAttribute("role", "회원");
+            model.addAttribute("checker", "1");
+            List<Recruit> allRecruits = recruitRepository.findAllByCompanyInfo(companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()));
+            model.addAttribute("recruits", allRecruits);
+            model.addAttribute("allRecruits", (long) allRecruits.size());
+            model.addAttribute("activeRecruits", allRecruits.stream().filter(recruit -> recruit.getClosedBit()==null).count());
+            model.addAttribute("doneRecruits", allRecruits.stream().filter(recruit -> recruit.getClosedBit()==1).count());
+        }else {
+            model.addAttribute("role", "일반회원");
+            model.addAttribute("checker", null);
+            Integer active = applicationQueryRepository.findActiveByRecruit(user.getUserNo()).size();
+            Integer writing = applicationQueryRepository.findWritingApplication(user.getUserNo()).size();
+            model.addAttribute("activeApplications", active);
+            model.addAttribute("writingApplications", writing);
+        }
+        return "mypage";
     }
 
     @GetMapping("/profile")
