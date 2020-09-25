@@ -44,7 +44,13 @@ public class MyPageController {
         model.addAttribute("sideUser", user);
 
         if(user.getRole()== Role.COMPANYUSER) {
-            model.addAttribute("company", companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()).getCompanyName());
+            model.addAttribute("company", companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()));
+            if(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyUserCode().equals(1)) {
+                model.addAttribute("companyUserCode", "채용관리자");
+            } else{
+                model.addAttribute("companyUserCode", "인사담당자");
+            }
+            model.addAttribute("companyUserId", companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyUserId());
             model.addAttribute("role", "회원");
             model.addAttribute("checker", "1");
             List<Recruit> allRecruits = recruitRepository.findAllByCompanyInfo(companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()));
