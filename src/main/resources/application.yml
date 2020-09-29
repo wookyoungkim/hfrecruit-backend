@@ -20,8 +20,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 149780946214-c321v9jmlr1u0tl9t2d1thmspr8otqh4.apps.googleusercontent.com
-            client-secret: bhPDty8b3hLxvhs7PcPeZd-G
+            client-id: 1091319332721-plbgp2gj700nqd4609j3a7m8sr8oau33.apps.googleusercontent.com
+            client-secret: hbaf-BI4VgLekSA28TjQwNuf
             scope: profile, email
 
           naver:
