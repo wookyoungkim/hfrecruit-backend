@@ -6,7 +6,10 @@ import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
 import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
-import com.hanium.hfrecruit.dto.*;
+import com.hanium.hfrecruit.dto.CompanyInfoDto;
+import com.hanium.hfrecruit.dto.CompanyInfoUpdateDto;
+import com.hanium.hfrecruit.dto.CompanyUserDto;
+import com.hanium.hfrecruit.dto.CompanyUserUpdateDto;
 import com.hanium.hfrecruit.service.CompanyInfoService;
 import com.hanium.hfrecruit.service.CompanyUserService;
 import com.hanium.hfrecruit.service.UserService;
@@ -14,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 @Controller
 @RequiredArgsConstructor
