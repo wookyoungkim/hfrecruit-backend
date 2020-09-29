@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,13 +44,15 @@ public class IndexPageController {
                 .stream()
                 .filter(recruit -> recruit.getClosedDate().isAfter(current))
                 .collect(Collectors.toList());
-
         model.addAttribute("recruits", activeRecruits);
+
         if(sessionUser==null){
             model.addAttribute("sideUser", User.builder().name("비회원").build());
             return "index";
         }else {
-            model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
+            User user = userRepository.findByEmail(sessionUser.getEmail())
+                    .orElseThrow(() -> new NoResultException("erroror"));
+            model.addAttribute("sideUser", user);
             return "index-login";
         }
     }
