@@ -4,25 +4,19 @@ import com.hanium.hfrecruit.auth.dto.SessionUser;
 import com.hanium.hfrecruit.domain.company.CompanyInfo;
 import com.hanium.hfrecruit.domain.company.CompanyInfoRepository;
 import com.hanium.hfrecruit.domain.company.CompanyUserRepository;
-import com.hanium.hfrecruit.domain.company.File;
-import com.hanium.hfrecruit.domain.recruit.Recruit;
 import com.hanium.hfrecruit.domain.user.User;
 import com.hanium.hfrecruit.domain.user.UserRepository;
-import com.hanium.hfrecruit.dto.*;
+import com.hanium.hfrecruit.dto.CompanyInfoDto;
+import com.hanium.hfrecruit.dto.CompanyInfoUpdateDto;
+import com.hanium.hfrecruit.dto.CompanyUserDto;
+import com.hanium.hfrecruit.dto.CompanyUserUpdateDto;
 import com.hanium.hfrecruit.service.CompanyInfoService;
 import com.hanium.hfrecruit.service.CompanyUserService;
-import com.hanium.hfrecruit.service.FileService;
 import com.hanium.hfrecruit.service.UserService;
-import com.hanium.hfrecruit.util.MD5Generator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.NoResultException;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,7 +27,6 @@ public class CompanyUserController {
     private final CompanyUserRepository companyUserRepository;
     private final UserRepository userRepository;
     private final UserService userService;
-    private final FileService fileService;
 
     @GetMapping("/companyInfo")
     public String companyInfo(Model model, @SessionAttribute("user") SessionUser sessionUser) {
