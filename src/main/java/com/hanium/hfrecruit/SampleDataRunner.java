@@ -71,16 +71,7 @@ public class SampleDataRunner implements CommandLineRunner {
                 .companyPage("https://www.hanium.or.kr/")
                 .companyLogo("/images/H-logo.png")
                 .companyName("한이음")
-                .managerId("dusdn1702@gmail.com")
-                .build();
-        companyInfoRepository.save(companyInfoSample2);
-
-        CompanyInfo companyInfoSample2 = CompanyInfo.builder()
-                .companyEmail("hanium@gmail.com")
-                .companyPage("https://www.hanium.or.kr/")
-                .companyLogo("/images/H-logo.png")
-                .companyName("한이음")
-                .managerId("dusdn1702@naver.com")
+                .managerId("dusdn1702")
                 .build();
         companyInfoRepository.save(companyInfoSample2);
 
