@@ -75,6 +75,15 @@ public class SampleDataRunner implements CommandLineRunner {
                 .build();
         companyInfoRepository.save(companyInfoSample2);
 
+        CompanyInfo companyInfoSample2 = CompanyInfo.builder()
+                .companyEmail("hanium@gmail.com")
+                .companyPage("https://www.hanium.or.kr/")
+                .companyLogo("/images/H-logo.png")
+                .companyName("한이음")
+                .managerId("dusdn1702@naver.com")
+                .build();
+        companyInfoRepository.save(companyInfoSample2);
+
         CompanyUser companyUserSample = CompanyUser.builder()
                 .companyInfo(companyInfoSample)
                 .companyUserCode(2)
