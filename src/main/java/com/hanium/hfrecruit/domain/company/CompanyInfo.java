@@ -32,7 +32,7 @@ public class CompanyInfo {
     @Column(nullable = false)
     private String managerId;
 
-    private Long companyLogo;
+    private String companyLogo;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyInfo")
     private List<CompanyUser> companyUsersList;
@@ -40,7 +40,7 @@ public class CompanyInfo {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "companyInfo")
     private List<Recruit> recruits;
 
-    public void update(String companyName, String companyEmail, String companyPage, String managerId, Long companyLogo) {
+    public void update(String companyName, String companyEmail, String companyPage, String managerId, String companyLogo) {
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.companyPage = companyPage;

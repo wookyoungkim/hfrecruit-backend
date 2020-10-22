@@ -25,7 +25,7 @@ public class Recruit {
     @Column(nullable = false)
     private String recruitTitle;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String recruitContent;
 
     @Column(nullable = false)
@@ -36,15 +36,19 @@ public class Recruit {
 
     private Integer closedBit;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String question1;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String question2;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String question3;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String question4;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String question5;
 
     @ManyToOne
