@@ -20,7 +20,7 @@ public class CompanyInfoDto {
     private String companyEmail;
     private String companyPage;
     private String managerId;
-    private Long companyLogo;
+    private String companyLogo;
     private List<CompanyUser> companyUsersList;
     private List<Recruit> recruits;
 
