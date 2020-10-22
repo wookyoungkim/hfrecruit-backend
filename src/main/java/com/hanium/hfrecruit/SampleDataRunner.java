@@ -105,7 +105,7 @@ public class SampleDataRunner implements CommandLineRunner {
                         "\n\t2. 채용유형" +
                         "\n\t\t한이음 프로젝트 관리부 정직원" +
                         "\n\t3. 접수기한" +
-                        "\n\t\t2020년 10월 15일 오후 5시 ~ 2020년 10월 22일 오후 5시" +
+                        "\n\t\t2020년 10월 15일 오후 5시 ~ 2020년 10월 31일 오후 5시" +
                         "\n\t4. 접수방법" +
                         "\n\t\t본 서비스를 통한 온라인 지원" +
                         "\n\t5. 담당업무" +
@@ -119,7 +119,7 @@ public class SampleDataRunner implements CommandLineRunner {
                         "\n\t관련문의" +
                         "\n\t\t연락처 : 02-2046-1452~9" + "\n\t\t문의메일 : hanium@fkii.org"
                 )
-                .closedBit(1)
+                .closedBit(null)
                 .question1("회사를 지원하게 된 동기는 무엇인가요? 간단한 자기소개와 함께 작성해 주세요. (1000자 이내)")
                 .question2("가장 성취감을 느낀 일은 무엇이 있나요? 구체적인 사례를 들어 설명해주세요. (1500자 이내)")
                 .question3("가장 실패감을 느낀 일은 무엇이 있나요? 구체적인 사례를 들어 설명해주세요. (1500자 이내)")
