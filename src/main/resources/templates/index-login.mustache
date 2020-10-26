@@ -23,13 +23,15 @@
     </div>
 
     <div class="card" style="margin: auto 15px;">
-        <h5 class="card-header">진행중인 공고</h5>
+        <h4 class="card-header">진행중인 공고</h4>
         {{#recruits}}
-            <div class="card-body">
-                <h3 class="card-title">{{recruitTitle}}</h3>
-                <p class="card-text">{{recruitContent}}</p>
-                <a href="/recruit/{{recruitNo}}" class="btn btn-light">자세히 보기</a>
-            </div>
+            <table class="table" style="margin:auto; vertical-align: middle;">
+                <tbody>
+                <tr>
+                    <td><h5 style="white-space: pre-wrap;">    {{recruitTitle}}</h5></td>
+                    <td><a href="/recruit/{{recruitNo}}" class="btn btn-light" style="margin-right: 10%; float: right;">자세히 보기</a></td>
+                </tr>
+            </table>
         {{/recruits}}
         {{^recruits}}
             <div class="card-body">
@@ -38,10 +40,6 @@
         {{/recruits}}
         <a href="/recruit" class="btn btn-light">더 많은 공고 보기</a>
     </div>
-
-
-
-
 </div>
 
 
