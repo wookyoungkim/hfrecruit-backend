@@ -3,11 +3,11 @@
 <div id="wrapper">
 
     {{>layout/sidebar}}
-    {{>layout/topnavbar}}
+    {{>layout/topnavbar-login}}
     <!-- Page Content -->
 
     <div style="display: flex; flex-wrap: wrap;">
-        <div class="container-fluid mt-2 mb-2" style="width: 80%; float: left;">
+        <div class="container-fluid mt-2 mb-2" style="float: left;">
             <div class="jumbotron jumbo text-white bg-cover" style="height: 100%">
                 <div class="container">
                     <h2 class="display-4">부정행위로부터 안전한 채용</h2>
@@ -18,11 +18,6 @@
                         <a class="btn btn-primary btn-lg" href="/recruit" role="button">채용 공고 보러가기</a>
                     </p>
                 </div>
-            </div>
-        </div>
-        <div class="container mt-2" style="float:right; width: 20%!important;">
-            <div class="signin-form signin-form-main" style="width: 100%">
-                {{>layout/loginform}}
             </div>
         </div>
     </div>
