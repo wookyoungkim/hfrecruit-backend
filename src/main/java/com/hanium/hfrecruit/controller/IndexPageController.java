@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +39,7 @@ public class IndexPageController {
                 .stream()
                 .filter(recruit -> recruit.getClosedDate().isBefore(current))
                 .collect(Collectors.toList());
-        for(Recruit recruit: closedRecruits){
+        for (Recruit recruit : closedRecruits) {
             recruitService.updateBit(recruit.getRecruitNo());
         }
         List<Recruit> activeRecruits = recruitRepository.findAll()
@@ -45,11 +47,19 @@ public class IndexPageController {
                 .filter(recruit -> recruit.getClosedDate().isAfter(current))
                 .collect(Collectors.toList());
         model.addAttribute("recruits", activeRecruits);
+        List<String> closes = new ArrayList<>();
+        List<String> starts = new ArrayList<>();
+        for (Recruit recruit : activeRecruits) {
+            starts.add(recruit.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            closes.add(recruit.getClosedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        }
+        model.addAttribute("startDateFormatting", starts);
+        model.addAttribute("closeDateFormatting", closes);
 
-        if(sessionUser==null){
+        if (sessionUser == null) {
             model.addAttribute("sideUser", User.builder().name("비회원").build());
             return "index";
-        }else {
+        } else {
             User user = userRepository.findByEmail(sessionUser.getEmail())
                     .orElseThrow(() -> new NoResultException("erroror"));
             model.addAttribute("sideUser", user);
