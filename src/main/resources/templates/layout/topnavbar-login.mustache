@@ -1,0 +1,28 @@
+
+<style>
+    .bg-primary{
+        background-color: #5e72e4!important;
+        opacity: 90%;
+    }
+    @media (max-width: 580px) {
+        #search{
+            display: none;
+        }
+    }
+    #titleText {
+        font-weight: 200;
+        font-size: 1.5rem;
+    }
+</style>
+<div id="page-content-wrapper" style="padding: 0; position: relative">
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom justify-content-md-between" style="display: block">
+        <a class="navbar-brand ml-2" id="titleText">{{pageTitle}}</a>
+        <!--mustache 문법으로 {.{pageTtitle}.} 해야함-->
+        <a href="/user/login" id="titleText" class="navbar-brand ml-2" style="float: right; font-size:1rem; padding-top:.7rem">
+            <i class="fas fa-user" style="padding-right: .3rem"></i>
+            로그인</a>
+        <a href="/user/login" id="titleText" class="navbar-brand ml-2" style="float: right; font-size:1rem; padding-top:.7rem">
+            <i class="fas fa-user-plus" style="padding-right: .3rem"></i>
+            회원가입</a>
+    </nav>
+</div>
