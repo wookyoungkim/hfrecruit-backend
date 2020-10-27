@@ -30,7 +30,7 @@ public class OAuthController {
     public String home(Model model, @SessionAttribute("user") SessionUser sessionUser) {
         if (sessionUser != null) {
             model.addAttribute("sideUser", userRepository.findByEmail(sessionUser.getEmail()));
-            model.addAttribute("pageTitle", "Home");
+            model.addAttribute("pageTitle", "HOME");
         }
         return "home";
     }
@@ -39,7 +39,7 @@ public class OAuthController {
     public String login(Model model) {
 
         model.addAttribute("sideUser", User.builder().name("비회원").build());
-        model.addAttribute("pageTitle", "Login");
+        model.addAttribute("pageTitle", "로그인");
         return "login-page";
     }
 

@@ -32,7 +32,7 @@ public class IndexPageController {
     @GetMapping("/")
     public String index(Model model) {
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("pageTitle", "Home");
+        model.addAttribute("pageTitle", "HOME");
 
         LocalDateTime current = LocalDateTime.now();
         List<Recruit> closedRecruits = recruitRepository.findAll()
