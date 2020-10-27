@@ -16,7 +16,7 @@
                         <h5 class="recruit-company-card-title">{{companyInfo.companyName}}</h5>
                         <p class="recruit-company-card-text">{{startDateFormatting}} ~ {{closeDateFormatting}}</p>
                         {{^closedBit}}
-                            <a type="button" id="closedBit" value={{closedBit}} class="btn btn-primary" href="/application/apply/{{recruitNo}}">지원하기</a>
+                            <a type="button" id="closedBit" class="btn btn-primary" href="/application/apply/{{recruitNo}}">지원하기</a>
                         {{/closedBit}}
                         <a type="button" class="btn btn-primary" href="{{companyInfo.companyPage}}">홈페이지</a>
                     </div>
