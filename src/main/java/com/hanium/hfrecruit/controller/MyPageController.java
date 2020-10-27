@@ -56,7 +56,7 @@ public class MyPageController {
             List<Recruit> allRecruits = recruitRepository.findAllByCompanyInfo(companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()));
             model.addAttribute("recruits", allRecruits);
             long allRecruitsSize = allRecruits.size();
-            model.addAttribute("allRecruits", allRecruits);
+            model.addAttribute("allRecruits", allRecruitsSize);
             long activeRecruitsSize = allRecruits.stream().filter(recruit -> recruit.getClosedBit() == null).count();
             model.addAttribute("activeRecruits", activeRecruitsSize);
             model.addAttribute("doneRecruits", allRecruitsSize - activeRecruitsSize);
