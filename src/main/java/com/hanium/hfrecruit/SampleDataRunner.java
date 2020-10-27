@@ -92,7 +92,7 @@ public class SampleDataRunner implements CommandLineRunner {
         Recruit recruitSample2 = Recruit.builder()
                 .recruitTitle("한이음 프로젝트 관리부 정직원 채용")
                 .startDate(LocalDateTime.parse("2020-10-15T17:00:00"))
-                .closedDate(LocalDateTime.parse("2020-10-22T17:00:00"))
+                .closedDate(LocalDateTime.parse("2020-10-31T17:00:00"))
                 .recruitContent("  안녕하세요. 대학생 멘티와 지도교수, 기업전문가 ICT멘토가 팀을 이루어 현업 실무 기술이반영된 프로젝트를 " +
                         "수행하는 ICT인재양성 프로그램으로 학생은 다양한 ICT분야의 기업전문가 멘토에게 지도 받을 수 있는 기회를, " +
                         "멘토는 ICT분야에 관심 있는 대학생들에게 실무노하우를 전수하고 비전을 제시해 주도록 지원하고 있는 ICT 멘토링 사무국입니다." +
@@ -105,7 +105,7 @@ public class SampleDataRunner implements CommandLineRunner {
                         "\n\t2. 채용유형" +
                         "\n\t\t한이음 프로젝트 관리부 정직원" +
                         "\n\t3. 접수기한" +
-                        "\n\t\t2020년 10월 15일 오후 5시 ~ 2020년 10월 22일 오후 5시" +
+                        "\n\t\t2020년 10월 15일 오후 5시 ~ 2020년 10월 31일 오후 5시" +
                         "\n\t4. 접수방법" +
                         "\n\t\t본 서비스를 통한 온라인 지원" +
                         "\n\t5. 담당업무" +
@@ -119,7 +119,7 @@ public class SampleDataRunner implements CommandLineRunner {
                         "\n\t관련문의" +
                         "\n\t\t연락처 : 02-2046-1452~9" + "\n\t\t문의메일 : hanium@fkii.org"
                 )
-                .closedBit(1)
+                .closedBit(null)
                 .question1("회사를 지원하게 된 동기는 무엇인가요? 간단한 자기소개와 함께 작성해 주세요. (1000자 이내)")
                 .question2("가장 성취감을 느낀 일은 무엇이 있나요? 구체적인 사례를 들어 설명해주세요. (1500자 이내)")
                 .question3("가장 실패감을 느낀 일은 무엇이 있나요? 구체적인 사례를 들어 설명해주세요. (1500자 이내)")
@@ -153,7 +153,7 @@ public class SampleDataRunner implements CommandLineRunner {
                         "\n\t\t컴퓨터공학 전공" +
                         "\n\t지원자격" +
                         "\n\t\t2021년 졸업예정자")
-                .closedBit(0)
+                .closedBit(null)
                 .question1("회사를 지원하게 된 동기는 무엇인가요? 간단한 자기소개와 함께 작성해 주세요. (1000자 이내)")
                 .question2("가장 성취감 느낀 일은 무엇이 있나요? 구체적인 사례를 들어 설명해주세요. (1500자 이내)")
                 .question3("입사하게 된다면 가장 하고 싶은 일은 무엇인가요? 구체적인 설명과 함께 작성해주세요. (1500자 이내)")

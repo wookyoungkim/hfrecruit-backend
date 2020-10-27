@@ -55,10 +55,17 @@ public class MyPageController {
             model.addAttribute("checker", "1");
             List<Recruit> allRecruits = recruitRepository.findAllByCompanyInfo(companyInfoRepository.findByCompanyNo(companyUserRepository.findByCompanyUserEmail(user.getEmail()).getCompanyInfo().getCompanyNo()));
             model.addAttribute("recruits", allRecruits);
-            model.addAttribute("allRecruits", (long) allRecruits.size());
-            model.addAttribute("activeRecruits", allRecruits.stream().filter(recruit -> recruit.getClosedBit()==null).count());
-            model.addAttribute("doneRecruits", allRecruits.stream().filter(recruit -> recruit.getClosedBit()==1).count());
-        }else {
+            long allRecruitsSize = allRecruits.size();
+            model.addAttribute("allRecruits", allRecruits);
+            long activeRecruitsSize = allRecruits.stream().filter(recruit -> recruit.getClosedBit() == null).count();
+            model.addAttribute("activeRecruits", activeRecruitsSize);
+            model.addAttribute("doneRecruits", allRecruitsSize - activeRecruitsSize);
+//            if(allRecruits.stream().noneMatch(recruit -> recruit.getClosedBit() == 1)){
+//                model.addAttribute("doneRecruits", 0);
+//            }else{
+//                model.addAttribute("doneRecruits", allRecruits.stream().filter(recruit -> recruit.getClosedBit()==1).count());
+//            }
+        } else {
             model.addAttribute("role", "일반회원");
             model.addAttribute("checker", null);
             Integer active = applicationQueryRepository.findActiveByRecruit(user.getUserNo()).size();
