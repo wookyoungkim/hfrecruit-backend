@@ -9,7 +9,7 @@
             <input type="hidden" class="form-control" id="companyUserId" value={{companyUserId}} readonly>
             <div class="welcome-card text-center">
                 <div class="welcome-card-body">
-                    <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
+                    <h5 class="welcome-card-title">{{sideUser.username}}님, 환영합니다!</h5>
                     <div class="welcome-card-text mb-4">회원님은 <span
                             class="font-weight-bold">{{company.companyName}} {{role}}</span>입니다.
                     </div>
@@ -108,7 +108,7 @@
         {{^checker}}
             <div class="welcome-card text-center">
                 <div class="welcome-card-body">
-                    <h5 class="welcome-card-title">{{user.username}}님, 환영합니다!</h5>
+                    <h5 class="welcome-card-title">{{sideUser.username}}님, 환영합니다!</h5>
                     <div class="welcome-card-text mb-4">회원님은 <span class="font-weight-bold">{{role}}</span>입니다.</div>
                 </div>
             </div>
