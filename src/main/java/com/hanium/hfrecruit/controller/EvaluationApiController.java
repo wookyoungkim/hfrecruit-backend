@@ -45,7 +45,9 @@ public class EvaluationApiController {
         List<Application> applications = applicationRepository.findAllByRecruit(recruit);
         model.addAttribute("applications", applications);
         model.addAttribute("pageTitle", recruit.getRecruitTitle());
-
+        //여기 수정
+        model.addAttribute("passStage", "평가 대기중");
+        model.addAttribute("recruitClosedBit", "진행중");
         return "application-list-per-recruit";
     }
 

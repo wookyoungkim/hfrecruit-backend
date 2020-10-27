@@ -79,6 +79,9 @@ public class ApplicationPageController {
         List<Application> applications = applicationQueryRepository.findWritingApplication(loginUser.getUserNo());
         model.addAttribute("sideUser", loginUser);
         model.addAttribute("applications", applications);
+        //여기 수정
+        model.addAttribute("passStage", "평가 대기중");
+        model.addAttribute("recruitClosedBit", "진행중");
         model.addAttribute("pageTitle", "작성중인 지원서");
         return "application-list-writing";
     }
