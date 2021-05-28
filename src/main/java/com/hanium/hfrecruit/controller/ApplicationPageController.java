@@ -42,14 +42,18 @@ public class ApplicationPageController {
     @ApiOperation(value = "지원서 리스트 전체 조회 ")
     @GetMapping("/list")
     public String applicationList(Model model, @SessionAttribute("user") SessionUser sessionUser){
+        // 세션에서 받아온 유저정보를 통해 가입된 유저가 맞는지 검사한다.
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
+        // 맞으면 화면 내의 side bar에 띄워주기 위해 로그인된 유저 정보를 model에 추가한다.
         model.addAttribute("sideUser", loginUser);
+        // 일반 유저의 경우 지원서를
         if(loginUser.getRole() == Role.USER){
             model.addAttribute("applications", applicationService.findAllDesc(loginUser));
             model.addAttribute("pageTitle", "내 지원서");
             return "application-list";
         }
+        // 기업 유저의 경우 지원서를 띄운다.
         else{
             CompanyUser companyUser = companyUserRepository.findByCompanyUserEmail(loginUser.getEmail());
             model.addAttribute("recruits", recruitRepository.findAllByCompanyInfo(companyUser.getCompanyInfo()));
@@ -64,8 +68,9 @@ public class ApplicationPageController {
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
 
+        // 해당 유저의 정보를 포함하는 지원서를 검색한다.
         List<Application> applicationList = applicationRepository.findAllByRecruitCompanyInfoCompanyNameOrRecruitRecruitTitleContaining(sideUser.getUserNo(), keyword);
-        System.out.println(applicationList);
+        // System.out.println(applicationList);
         model.addAttribute("applications", applicationList);
         model.addAttribute("pageTitle", "' "+keyword+" '"+"로 검색한 지원서");
         return "application-list";
@@ -76,6 +81,7 @@ public class ApplicationPageController {
     public String applicationWritingList(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
+        // 내가 작성한 지원서 중 지원이 완료되지 않은 지원서를 검색한다. -> queryDSL을 이용해서 처리하였다.
         List<Application> applications = applicationQueryRepository.findWritingApplication(loginUser.getUserNo());
         model.addAttribute("sideUser", loginUser);
         model.addAttribute("applications", applications);
@@ -88,6 +94,7 @@ public class ApplicationPageController {
     public String applicationActiveList(Model model, @SessionAttribute("user") SessionUser sessionUser){
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
+        // 내가 작성한 지원서 중, 현재 공고가 진행중인 지원서를 검색한다. -> 지원서 엔티티와 공고 엔티티를 조인하여 결과를 반환해야 하므로 queryDSL을 이용해서 처리하였다.
         List<Application> applications = applicationQueryRepository.findActiveByRecruit(loginUser.getUserNo());
         model.addAttribute("sideUser", loginUser);
         model.addAttribute("applications", applications);
@@ -99,6 +106,7 @@ public class ApplicationPageController {
     @GetMapping("/apply/{recruitNo}")
     public String apply(@PathVariable Long recruitNo, Model model,
                         @SessionAttribute("user") SessionUser sessionUser){
+        // 세션에서 받아온 유저 정보로 해당 공고의 지원서를 작성하는 페이지를 띄운다.
         User user = userRepository.findByEmail(sessionUser.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("finding userNo Failed!")
         );
@@ -116,6 +124,7 @@ public class ApplicationPageController {
     @PostMapping("/apply/{recruitNo}")
     @ResponseBody
     public Long save(@RequestBody ApplicationSaveRequestDto dto, @PathVariable Long recruitNo, Model model, @SessionAttribute("user") SessionUser sessionUser){
+        // 작성한 지원서를 임시저장 및 저장한다. db에 해당 유저가 공고에 대해 작성한 지원서가 있는지 검사하여 있으면 임시저장된 지원서로 판단하여 update, 없으면 save를 호출했다.
         User loginUser = userRepository.findByEmail(sessionUser.getEmail())
                 .orElseThrow(() -> new NoResultException("error"));
         Recruit recruit = recruitRepository.findByRecruitNo(recruitNo)
@@ -126,6 +135,7 @@ public class ApplicationPageController {
     @ApiOperation(value = "지원서 수정")
     @GetMapping("/edit/{applicationId}")
     public String edit(@PathVariable Long applicationId, Model model, @SessionAttribute("user") SessionUser sessionUser){
+        // 세션에서 유저 정보를 받고, db에서 해당 지원서를 찾아 수정할 수 있는 페이지를 호출한다.
         User sideUser = userRepository.findByEmail(sessionUser.getEmail()).orElse(User.builder().name("비회원").build());
         model.addAttribute("sideUser", sideUser);
 
@@ -142,6 +152,7 @@ public class ApplicationPageController {
     @PutMapping("/edit/{applicationId}")
     @ResponseBody
     public Long update(@PathVariable Long applicationId, @RequestBody ApplicationUpdateRequestDto requestDto){
+        // 프론트단의 ajax에서 전달해준 수정 내용을 dto에 담아 update한다. 
         return applicationService.update(applicationId, requestDto);
     }
 
@@ -149,6 +160,9 @@ public class ApplicationPageController {
     @DeleteMapping("/delete/{applicationId}")
     @ResponseBody
     public Long delete(@PathVariable Long applicationId){
+        // 해당 지원서가 존재하는지 검사하고, 있으면 service의 delete를 호출하여 삭제한다.
+        Application application = applicationRepository.findByApplicationId(applicationId)
+                .orElseThrow(() -> new NoResultException("no such application"));
         applicationService.delete(applicationId);
         return applicationId;
     }
